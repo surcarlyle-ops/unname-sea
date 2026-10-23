@@ -1,0 +1,98 @@
+[
+  {
+    "asset": "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/T_Ancient_Temple_Stairs_tj1qafrfa_2K_D.T_Ancient_Temple_Stairs_tj1qafrfa_2K_D",
+    "class": "Texture2D",
+    "import_file": "D:/../../Downloads/cache/tj1qafrfa/tier2/tj1qafrfa_2K_Albedo.exr",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": false,
+    "exr": true
+  },
+  {
+    "asset": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/T_Japanese_Gravestone_ueqiah1fa_2K_D.T_Japanese_Gravestone_ueqiah1fa_2K_D",
+    "class": "Texture2D",
+    "import_file": "D:/../../Downloads/cache/ueqiah1fa/tier2/ueqiah1fa_2K_Albedo.exr",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": false,
+    "exr": true
+  },
+  {
+    "asset": "/Game/Megascans/3D_Assets/Mossy/Mossy_Boulder_xicnaet/T_Mossy_Boulder_xicnaet_2K_D.T_Mossy_Boulder_xicnaet_2K_D",
+    "class": "Texture2D",
+    "import_file": "D:/../../Downloads/cache/xicnaet/tier2/xicnaet_2K_Albedo.exr",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": false,
+    "exr": true
+  },
+  {
+    "asset": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/T_Mossy_Chapel_Stone_scjgV_2K_D.T_Mossy_Chapel_Stone_scjgV_2K_D",
+    "class": "Texture2D",
+    "import_file": "D:/../../Downloads/cache/scjgV/tier2/Aset_chapel_brick_S_scjgV_2K_Albedo.exr",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": false,
+    "exr": true
+  },
+  {
+    "asset": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Boulder_wc1kebr/T_Mossy_Forest_Boulder_wc1kebr_2K_D.T_Mossy_Forest_Boulder_wc1kebr_2K_D",
+    "class": "Texture2D",
+    "import_file": "D:/../../Downloads/cache/wc1kebr/tier2/wc1kebr_2K_Albedo.exr",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": false,
+    "exr": true
+  },
+  {
+    "asset": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/T_Mossy_Forest_Rock_villdcuaw_2K_D.T_Mossy_Forest_Rock_villdcuaw_2K_D",
+    "class": "Texture2D",
+    "import_file": "D:/../../Downloads/cache/villdcuaw/tier2/villdcuaw_2K_Albedo.exr",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": false,
+    "exr": true
+  },
+  {
+    "asset": "/Game/Megascans/3D_Assets/Mossy/Mossy_Rock_xieiegj/T_Mossy_Rock_xieiegj_2K_D.T_Mossy_Rock_xieiegj_2K_D",
+    "class": "Texture2D",
+    "import_file": "D:/../../Downloads/cache/xieiegj/tier2/xieiegj_2K_Albedo.exr",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": false,
+    "exr": true
+  },
+  {
+    "asset": "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/T_Mossy_Forest_Boulder_wc1kedt_2K_D.T_Mossy_Forest_Boulder_wc1kedt_2K_D",
+    "class": "Texture2D",
+    "import_file": "D:/../../Downloads/cache/wc1kedt/tier2/wc1kedt_2K_Albedo.exr",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": false,
+    "exr": true
+  },
+  {
+    "asset": "/Game/Megascans/3D_Assets/Roman_Arch_thedegyfa/T_Roman_Arch_thedegyfa_2K_D.T_Roman_Arch_thedegyfa_2K_D",
+    "class": "Texture2D",
+    "import_file": "D:/../../Downloads/cache/thedegyfa/tier2/thedegyfa_2K_Albedo.exr",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": false,
+    "exr": true
+  },
+  {
+    "asset": "/Game/Megascans/Surfaces/Ancient_Temple_Wall_smfoebvp/T_Ancient_Temple_Wall_smfoebvp_2K_D.T_Ancient_Temple_Wall_smfoebvp_2K_D",
+    "class": "Texture2D",
+    "import_file": "D:/../../Downloads/cache/smfoebvp/tier2/smfoebvp_2K_Albedo.exr",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": false,
+    "exr": true
+  },
+  {
+    "asset": "/Game/portal/PORTAL_材质_001_BaseColor",
+    "class": "Texture2D",
+    "import_file": "D:/Desktop/texture/PORTAL_材质.001_BaseColor.png",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": true,
+    "exr": false
+  },
+  {
+    "asset": "/Game/portal/tex/portal3_low_材质_002_BaseColor",
+    "class": "Texture2D",
+    "import_file": "D:/Desktop/model/tex/portal3_low_材质.002_BaseColor.png",
+    "source_error": "Texture2D: Property 'Source' for attribute 'source' on 'Texture2D' is protected and cannot be read",
+    "tga": true,
+    "exr": false
+  }
+]

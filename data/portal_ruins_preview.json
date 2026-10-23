@@ -1,0 +1,13 @@
+{
+  "title": "遗迹传送门 · 导入预览",
+  "role": "后续章节的独立区域候选，通过传送门切换进入；章节归属与任务尚未定稿。",
+  "source_map": "E:/MyProject222 5.8/Content/landscape_text.umap",
+  "model": "res://assets/environments/portal_ruins/portal_ruins_sample.glb",
+  "world_offset": [20.0, 110.0, -640.0],
+  "spawn_xz": [-28.0, -48.0],
+  "camera_yaw": -2.65,
+  "overview_position": [110.0, 145.0, -150.0],
+  "overview_target": [0.0, 55.0, 0.0],
+  "controls": "WASD 移动 · 鼠标转镜头 · Shift 闪避 · R 返回出生点 · Tab 切换全景 · Esc 释放鼠标",
+  "scope": "真实资产与地形导入预览；未接剧情、战斗或跨图传送逻辑。"
+}

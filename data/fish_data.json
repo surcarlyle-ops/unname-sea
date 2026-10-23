@@ -1,0 +1,93 @@
+{
+  "_comment": "鱼种数据。首版为浅水区测试数据，正式开发时扩充至 30+ 种。",
+  "fish": [
+    {
+      "id": "fish_pale_minnow",
+      "name": "苍白小鲦",
+      "area": "shallow",
+      "depth": 1,
+      "rarity": "common",
+      "value": 10,
+      "description": "浅水里最常见的小鱼。半透明，像一片会游动的水光。",
+      "drops": ["item_fish_bone"],
+      "flavor": "它似乎不太明白自己为什么会被钓上来。"
+    },
+    {
+      "id": "fish_ring_scale",
+      "name": "环鳞鱼",
+      "area": "shallow",
+      "depth": 1,
+      "rarity": "common",
+      "value": 15,
+      "description": "鳞片呈同心圆环状的银色小鱼。据说数它的鳞环能算出年龄。",
+      "drops": ["item_fish_bone", "item_scale"],
+      "flavor": "环越多，游得越慢。"
+    },
+    {
+      "id": "fish_flat_eye",
+      "name": "扁目鱼",
+      "area": "shallow",
+      "depth": 1,
+      "rarity": "uncommon",
+      "value": 35,
+      "description": "双眼长在同一侧的扁鱼。总是朝着水底的方向游。",
+      "drops": ["item_scale", "item_fish_bone"],
+      "flavor": "它从不看向水面。"
+    },
+    {
+      "id": "fish_glass_veil",
+      "name": "玻璃鲹",
+      "area": "shallow",
+      "depth": 1,
+      "rarity": "uncommon",
+      "value": 45,
+      "description": "通体透明的鱼，只有骨架在光下微微反光。",
+      "drops": ["item_glass_shard"],
+      "flavor": "看得见它的骨头，看不见它的肉。"
+    },
+    {
+      "id": "fish_moss_back",
+      "name": "苔背鱼",
+      "area": "shallow",
+      "depth": 1,
+      "rarity": "common",
+      "value": 12,
+      "description": "背上长满绿色苔藓的懒鱼，行动迟缓。",
+      "drops": ["item_fish_bone", "item_fiber"],
+      "flavor": "它背上的苔藓比它自己活得久。"
+    },
+    {
+      "id": "fish_broken_fin",
+      "name": "残鳍鱼",
+      "area": "shallow",
+      "depth": 1,
+      "rarity": "uncommon",
+      "value": 40,
+      "description": "一侧的鳍残缺不全，但游得异常稳。",
+      "drops": ["item_scale", "item_fish_bone"],
+      "flavor": "缺了什么，反而更稳。"
+    },
+    {
+      "id": "fish_lantern_belly",
+      "name": "灯腹鱼",
+      "area": "shallow",
+      "depth": 2,
+      "rarity": "rare",
+      "value": 120,
+      "description": "腹部有一团发光的器官。夜里看起来像水中漂着的一盏灯。",
+      "drops": ["item_glow_core"],
+      "flavor": "光很暖。但它不是为了照亮谁。"
+    },
+    {
+      "id": "fish_thread_body",
+      "name": "线体鱼",
+      "area": "shallow",
+      "depth": 2,
+      "rarity": "rare",
+      "value": 150,
+      "description": "身体细如丝线，能缠住任何靠近它的东西。",
+      "drops": ["item_fiber", "item_glow_core"],
+      "flavor": "钓它上来的时候，鱼线分不清哪根是它。"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "_comment": "鱼饵系统。不同鱼饵影响渔获概率分布与特定渔获的可达性。",
+  "baits": [
+    {
+      "id": "bait_none",
+      "name": "无鱼饵",
+      "description": "什么都没有。就这样抛竿。",
+      "effect": "none",
+      "modifiers": {},
+      "consumable": false
+    },
+    {
+      "id": "bait_meat",
+      "name": "碎肉饵",
+      "description": "用普通鱼分解出的碎肉。基础饵料，无特殊加成。",
+      "effect": "none",
+      "modifiers": {},
+      "consumable": true
+    },
+    {
+      "id": "bait_glow",
+      "name": "发光饵",
+      "description": "光水域特有的发光素材制成。稀有鱼出现概率翻倍。",
+      "effect": "rarity_up",
+      "modifiers": { "rare_multiplier": 2.0 },
+      "consumable": true
+    },
+    {
+      "id": "bait_sinker",
+      "name": "重坠饵",
+      "description": "沉船金属打造的重坠。能沉入深水层，解锁深水渔获。",
+      "effect": "depth_unlock",
+      "modifiers": { "unlock_depth": 2 },
+      "consumable": true
+    },
+    {
+      "id": "bait_live",
+      "name": "活饵",
+      "description": "用特殊鱼制成的活饵。异兽上钩概率大幅提升——危险与机遇并存。",
+      "effect": "monster_up",
+      "modifiers": { "monster_multiplier": 3.0 },
+      "consumable": true
+    },
+    {
+      "id": "bait_silence",
+      "name": "寂静饵",
+      "description": "只在\"静默\"事件期间有效。据说能钓出\"那个东西\"。",
+      "effect": "silence_only",
+      "modifiers": { "silence_event_only": true },
+      "consumable": true
+    }
+  ]
+}

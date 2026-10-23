@@ -1,0 +1,77 @@
+{
+  "_comment": "水域配置。首版仅实现浅水区，其余为占位数据。",
+  "areas": [
+    {
+      "id": "shallow",
+      "name": "浅水区",
+      "order": 1,
+      "unlocked": true,
+      "difficulty": 1,
+      "description": "明亮、安全的水域。光线能一直照到水底，能看清每一粒沙。",
+      "fish_pool": ["fish_pale_minnow", "fish_ring_scale", "fish_flat_eye", "fish_glass_veil", "fish_moss_back", "fish_broken_fin", "fish_lantern_belly", "fish_thread_body"],
+      "monster_pool": ["mon_phosphor_scale", "mon_silence"],
+      "unlock_condition": null,
+      "ambient": { "sky": "#D8BFD8", "water": "#4A6B8A", "light": "bright" }
+    },
+    {
+      "id": "deep",
+      "name": "深水区",
+      "order": 2,
+      "unlocked": false,
+      "difficulty": 2,
+      "description": "光线只能到达上层。再往下，是你不该看的东西。",
+      "fish_pool": [],
+      "monster_pool": ["mon_eye_holder"],
+      "unlock_condition": { "type": "story", "chapter": 1 },
+      "ambient": { "sky": "#8F9BC8", "water": "#2C3E5C", "light": "dim" }
+    },
+    {
+      "id": "light",
+      "name": "光水域",
+      "order": 3,
+      "unlocked": false,
+      "difficulty": 2,
+      "description": "水面上漂浮着无数发光体。分不清是水在发光，还是光在流动。",
+      "fish_pool": [],
+      "monster_pool": [],
+      "unlock_condition": { "type": "story", "chapter": 2 },
+      "ambient": { "sky": "#F4E5B8", "water": "#6B8FA8", "light": "glow" }
+    },
+    {
+      "id": "red_tide",
+      "name": "红潮水域",
+      "order": 4,
+      "unlocked": false,
+      "difficulty": 4,
+      "description": "水是红的。不是血的红，是更古老的那种红。",
+      "fish_pool": [],
+      "monster_pool": ["mon_tide_mother"],
+      "unlock_condition": { "type": "story", "chapter": 3 },
+      "ambient": { "sky": "#C88A8A", "water": "#7A2E2E", "light": "ominous" }
+    },
+    {
+      "id": "abyss",
+      "name": "深渊",
+      "order": 5,
+      "unlocked": false,
+      "difficulty": 5,
+      "description": "没有光。你的鱼竿是唯一能触到那里的东西。",
+      "fish_pool": [],
+      "monster_pool": [],
+      "unlock_condition": { "type": "story", "chapter": 4 },
+      "ambient": { "sky": "#1A2B3C", "water": "#0D1B2A", "light": "none" }
+    },
+    {
+      "id": "polar_abyss",
+      "name": "极渊",
+      "order": 6,
+      "unlocked": false,
+      "difficulty": 6,
+      "description": "隐藏区域。只有集齐关键剧情道具后才会显现。",
+      "fish_pool": [],
+      "monster_pool": [],
+      "unlock_condition": { "type": "hidden", "requires": ["item_relic_echo", "item_story_shard"] },
+      "ambient": { "sky": "#000000", "water": "#000000", "light": "silent" }
+    }
+  ]
+}

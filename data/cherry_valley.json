@@ -1,0 +1,852 @@
+{
+    "_comment": "樱花山谷场景参数。全部数值可调；脚本不硬编码布局。Claude Code",
+    "scene": {
+        "title": "樱花山谷",
+        "subtitle": "Cherry Blossom Valley · 未名之海场景样片",
+        "player_scene": "res://scenes/mvp/first_person_player.tscn",
+        "spawn": [
+            22.0,
+            70.0
+        ],
+        "spawn_yaw_degrees": 38.0,
+        "camera_far": 1200.0,
+        "timeout_seconds": 120,
+        "reduce_motion": false
+    },
+    "terrain": {
+        "size": [
+            280.0,
+            280.0
+        ],
+        "resolution": 176,
+        "base_height": 1.35,
+        "noise": {
+            "seed": 17,
+            "frequency": 0.017,
+            "amplitude": 2.8,
+            "octaves": 3
+        },
+        "hills": [
+            {
+                "center": [
+                    -96.0,
+                    -46.0
+                ],
+                "radius": 96.0,
+                "height": 34.0
+            },
+            {
+                "center": [
+                    -84.0,
+                    92.0
+                ],
+                "radius": 84.0,
+                "height": 27.0
+            },
+            {
+                "center": [
+                    102.0,
+                    16.0
+                ],
+                "radius": 100.0,
+                "height": 36.0
+            },
+            {
+                "center": [
+                    76.0,
+                    116.0
+                ],
+                "radius": 74.0,
+                "height": 24.0
+            },
+            {
+                "center": [
+                    0.0,
+                    -136.0
+                ],
+                "radius": 118.0,
+                "height": 42.0
+            },
+            {
+                "center": [
+                    0.0,
+                    142.0
+                ],
+                "radius": 92.0,
+                "height": 12.0
+            }
+        ],
+        "river": {
+            "points": [
+                [
+                    -10,
+                    -136
+                ],
+                [
+                    -16,
+                    -98
+                ],
+                [
+                    -20,
+                    -68
+                ],
+                [
+                    -18,
+                    -38
+                ],
+                [
+                    -14,
+                    -8
+                ],
+                [
+                    -12,
+                    18
+                ],
+                [
+                    -16,
+                    46
+                ],
+                [
+                    -22,
+                    74
+                ],
+                [
+                    -26,
+                    106
+                ],
+                [
+                    -30,
+                    138
+                ]
+            ],
+            "width": 13.0,
+            "depth": 3.6,
+            "bank": 6.5,
+            "bed_color": "#5d6f68",
+            "wet_color": "#8b8f78"
+        },
+        "paths": [
+            {
+                "name": "SpawnToBridge",
+                "width": 3.4,
+                "points": [
+                    [
+                        18,
+                        78
+                    ],
+                    [
+                        18,
+                        64
+                    ],
+                    [
+                        18,
+                        48
+                    ],
+                    [
+                        14,
+                        32
+                    ],
+                    [
+                        8,
+                        20
+                    ],
+                    [
+                        2,
+                        11
+                    ],
+                    [
+                        -2.5,
+                        8.2
+                    ],
+                    [
+                        -5.2,
+                        7.4
+                    ]
+                ]
+            },
+            {
+                "name": "BridgeToVillage",
+                "width": 3.2,
+                "points": [
+                    [
+                        -5.2,
+                        7.4
+                    ],
+                    [
+                        2,
+                        8.2
+                    ],
+                    [
+                        10,
+                        12
+                    ],
+                    [
+                        18,
+                        18
+                    ],
+                    [
+                        26,
+                        26
+                    ],
+                    [
+                        31,
+                        32
+                    ]
+                ]
+            },
+            {
+                "name": "BridgeToShrine",
+                "width": 3.0,
+                "points": [
+                    [
+                        -22.6,
+                        8.7
+                    ],
+                    [
+                        -28.5,
+                        8.0
+                    ],
+                    [
+                        -35,
+                        -2
+                    ],
+                    [
+                        -41,
+                        -9
+                    ],
+                    [
+                        -47,
+                        -17
+                    ]
+                ]
+            },
+            {
+                "name": "VillageLoop",
+                "width": 2.6,
+                "points": [
+                    [
+                        31,
+                        32
+                    ],
+                    [
+                        36,
+                        38
+                    ],
+                    [
+                        32,
+                        44
+                    ],
+                    [
+                        24,
+                        44
+                    ],
+                    [
+                        19,
+                        38
+                    ],
+                    [
+                        20,
+                        28
+                    ],
+                    [
+                        25,
+                        22
+                    ]
+                ]
+            },
+            {
+                "name": "PagodaTrail",
+                "width": 2.4,
+                "points": [
+                    [
+                        36,
+                        38
+                    ],
+                    [
+                        44,
+                        26
+                    ],
+                    [
+                        50,
+                        10
+                    ],
+                    [
+                        54,
+                        -8
+                    ],
+                    [
+                        57,
+                        -26
+                    ],
+                    [
+                        59,
+                        -46
+                    ]
+                ]
+            }
+        ],
+        "palette": {
+            "grass": "#85a46b",
+            "grass_dark": "#5f8757",
+            "dry_grass": "#a3a06f",
+            "dirt": "#8a7a5e",
+            "path": "#b8a684",
+            "rock": "#86887f",
+            "snow": "#eef1f4"
+        }
+    },
+    "water": {
+        "segments": 96,
+        "across": 14,
+        "deep_color": "#12333c",
+        "shallow_color": "#3f6b6d",
+        "sky_color": "#8593ab",
+        "foam_color": "#dfeee9",
+        "wave_strength": 0.03,
+        "flow_speed": 0.20,
+        "alpha": 0.88,
+        "surface_offset": 0.02
+    },
+    "village": {
+        "bridge": {
+            "center": [
+                -14.0,
+                8.0
+            ],
+            "span": 17.0,
+            "width": 4.2,
+            "height": 1.25
+        },
+        "tea_house": {
+            "center": [
+                24.0,
+                14.0
+            ],
+            "yaw": -18.0,
+            "size": [
+                10.0,
+                7.0
+            ],
+            "height": 6.4,
+            "veranda": true
+        },
+        "houses": [
+            {
+                "center": [
+                    35.0,
+                    30.0
+                ],
+                "yaw": 22.0,
+                "size": [
+                    7.5,
+                    6.0
+                ],
+                "height": 5.2
+            },
+            {
+                "center": [
+                    42.0,
+                    4.0
+                ],
+                "yaw": -8.0,
+                "size": [
+                    6.8,
+                    5.4
+                ],
+                "height": 4.8
+            },
+            {
+                "center": [
+                    28.0,
+                    39.0
+                ],
+                "yaw": 40.0,
+                "size": [
+                    6.4,
+                    5.0
+                ],
+                "height": 4.6
+            },
+            {
+                "center": [
+                    38.0,
+                    47.0
+                ],
+                "yaw": -28.0,
+                "size": [
+                    7.0,
+                    5.6
+                ],
+                "height": 5.0
+            }
+        ],
+        "shrine": {
+            "center": [
+                -47.0,
+                -21.0
+            ],
+            "yaw": 28.0,
+            "size": [
+                9.0,
+                7.0
+            ],
+            "height": 6.8
+        },
+        "pagoda": {
+            "center": [
+                61.0,
+                -48.0
+            ],
+            "levels": 5,
+            "level_height": 3.3,
+            "base_width": 8.6,
+            "taper": 0.8
+        },
+        "lanterns": [
+            [
+                10,
+                16
+            ],
+            [
+                -2,
+                10
+            ],
+            [
+                -24,
+                8
+            ],
+            [
+                -36,
+                -4
+            ],
+            [
+                18,
+                24
+            ],
+            [
+                30,
+                32
+            ],
+            [
+                40,
+                28
+            ],
+            [
+                50,
+                8
+            ],
+            [
+                56,
+                -20
+            ]
+        ],
+        "fences": [
+            [
+                [
+                    -8,
+                    19
+                ],
+                [
+                    -8,
+                    10.8
+                ]
+            ],
+            [
+                [
+                    20,
+                    36
+                ],
+                [
+                    30,
+                    44
+                ]
+            ],
+            [
+                [
+                    48,
+                    0
+                ],
+                [
+                    52,
+                    -18
+                ]
+            ]
+        ],
+        "stone_steps": [
+            {
+                "from": [
+                    -5.2,
+                    7.4
+                ],
+                "to": [
+                    31,
+                    32
+                ],
+                "count": 6
+            },
+            {
+                "from": [
+                    -41,
+                    -9
+                ],
+                "to": [
+                    -47,
+                    -17
+                ],
+                "count": 4
+            }
+        ]
+    },
+    "flora": {
+        "hero_tree": {
+            "center": [
+                4.0,
+                56.0
+            ],
+            "scale": 1.6,
+            "seed": 4
+        },
+        "cherry_trees": {
+            "count": 88,
+            "seed": 21,
+            "min_distance": 9.0,
+            "z_range": [
+                -118.0,
+                96.0
+            ],
+            "x_range": [
+                -84.0,
+                84.0
+            ]
+        },
+        "deep_trees": {
+            "count": 120,
+            "seed": 33,
+            "min_distance": 7.0,
+            "z_range": [
+                -140.0,
+                130.0
+            ],
+            "x_range": [
+                -128.0,
+                128.0
+            ],
+            "slope_min": 0.16
+        },
+        "grass": {
+            "count": 6200,
+            "seed": 51,
+            "radius": 92.0
+        },
+        "flowers": {
+            "count": 1800,
+            "seed": 61,
+            "radius": 80.0
+        },
+        "rocks": {
+            "count": 260,
+            "seed": 71,
+            "radius": 120.0
+        },
+        "petals": {
+            "amount": 240,
+            "radius": 42.0
+        },
+        "fireflies": {
+            "amount": 120,
+            "radius": 70.0
+        },
+        "koi": {
+            "count": 7
+        }
+    },
+    "moods": {
+        "blue_hour": {
+            "label": "蓝调时刻",
+            "sky_top": "#53668d",
+            "sky_horizon": "#d9bcc9",
+            "sky_ground_horizon": "#aab4c8",
+            "sky_bottom": "#5d677d",
+            "ambient_color": "#9fb0cf",
+            "ambient_energy": 0.46,
+            "sun_color": "#ffd7c2",
+            "sun_energy": 1.45,
+            "sun_rotation": [
+                -32.0,
+                -28.0,
+                0.0
+            ],
+            "fog_color": "#8aa0bf",
+            "fog_density": 0.0014,
+            "fog_aerial": 0.42,
+            "fog_sky": 0.28,
+            "exposure": 1.06,
+            "glow": 0.26,
+            "water_deep": "#1a4149",
+            "water_shallow": "#4f7d80",
+            "water_sky": "#8f9fbe",
+            "water_alpha": 0.88,
+            "rain": false,
+            "petal_color": "#ffc2d6",
+            "fog_begin": 45.0,
+            "fog_end": 430.0,
+            "fog_curve": 1.25,
+            "sun_scale": 0.30
+        },
+        "morning": {
+            "label": "清晨",
+            "sky_top": "#7fa8d8",
+            "sky_horizon": "#ffe0c8",
+            "sky_ground_horizon": "#c3c8c0",
+            "sky_bottom": "#4d6270",
+            "ambient_color": "#dfe8f2",
+            "ambient_energy": 0.54,
+            "sun_color": "#fff0d8",
+            "sun_energy": 1.6,
+            "sun_rotation": [
+                -38.0,
+                -58.0,
+                0.0
+            ],
+            "fog_color": "#cdd8e0",
+            "fog_density": 0.001,
+            "fog_aerial": 0.42,
+            "fog_sky": 0.3,
+            "exposure": 1.10,
+            "glow": 0.20,
+            "water_deep": "#1a4550",
+            "water_shallow": "#54898a",
+            "water_sky": "#b6cbe0",
+            "water_alpha": 0.86,
+            "rain": false,
+            "petal_color": "#ffe4ec",
+            "fog_begin": 45.0,
+            "fog_end": 430.0,
+            "fog_curve": 1.25,
+            "sun_scale": 0.36
+        },
+        "rain": {
+            "label": "雨中",
+            "sky_top": "#56616f",
+            "sky_horizon": "#9aa3aa",
+            "sky_ground_horizon": "#7c8489",
+            "sky_bottom": "#2c3238",
+            "ambient_color": "#aeb9c2",
+            "ambient_energy": 0.48,
+            "sun_color": "#cfd6dd",
+            "sun_energy": 0.35,
+            "sun_rotation": [
+                -42.0,
+                -20.0,
+                0.0
+            ],
+            "fog_color": "#8b95a0",
+            "fog_density": 0.0034,
+            "fog_aerial": 0.62,
+            "fog_sky": 0.55,
+            "exposure": 1.04,
+            "glow": 0.18,
+            "water_deep": "#122229",
+            "water_shallow": "#35505a",
+            "water_sky": "#79838f",
+            "water_alpha": 0.9,
+            "rain": true,
+            "petal_color": "#f2cbd6",
+            "fog_begin": 30.0,
+            "fog_end": 260.0,
+            "fog_curve": 1.25,
+            "sun_scale": 0.16
+        }
+    },
+    "quality": {
+        "high": {
+            "reflection": true,
+            "grass_distance": 120.0,
+            "tree_distance": 240.0,
+            "petal_amount": 240,
+            "firefly_amount": 120,
+            "shadow_distance": 130.0
+        },
+        "light": {
+            "reflection": false,
+            "grass_distance": 68.0,
+            "tree_distance": 150.0,
+            "petal_amount": 90,
+            "firefly_amount": 60,
+            "shadow_distance": 72.0
+        }
+    },
+    "cinematic": [
+        {
+            "name": "山谷全景",
+            "position": [
+                0,
+                27,
+                92
+            ],
+            "target": [
+                0,
+                5,
+                -34
+            ],
+            "fov": 62.0
+        },
+        {
+            "name": "河边低机位",
+            "position": [
+                6,
+                2.1,
+                14
+            ],
+            "target": [
+                -20,
+                2.4,
+                -8
+            ],
+            "fov": 54.0
+        },
+        {
+            "name": "神社小径",
+            "position": [
+                -30,
+                4.6,
+                2
+            ],
+            "target": [
+                -47,
+                6.6,
+                -20
+            ],
+            "fov": 58.0
+        },
+        {
+            "name": "山坡俯瞰",
+            "position": [
+                48,
+                25,
+                -30
+            ],
+            "target": [
+                -8,
+                2,
+                44
+            ],
+            "fov": 68.0
+        }
+    ],
+    "navigation": {
+        "cell_size": 0.45,
+        "agent_radius": 0.45,
+        "agent_height": 1.7,
+        "max_slope_degrees": 32.0,
+        "max_climb": 0.55,
+        "areas": [
+            {
+                "name": "VillageYard",
+                "center": [
+                    31,
+                    32
+                ],
+                "size": [
+                    26,
+                    26
+                ],
+                "height": null
+            },
+            {
+                "name": "ShrineYard",
+                "center": [
+                    -45,
+                    -17
+                ],
+                "size": [
+                    13,
+                    13
+                ],
+                "height": null
+            },
+            {
+                "name": "TeaYard",
+                "center": [
+                    23,
+                    18
+                ],
+                "size": [
+                    16,
+                    13
+                ],
+                "height": null
+            }
+        ]
+    },
+    "reflection": {
+        "enabled_quality": "high",
+        "tint": "#6b7a86",
+        "alpha": 0.34,
+        "plane_y": 0.0
+    },
+    "shaders": {
+        "toon": "res://shaders/valley_toon.gdshader",
+        "water": "res://shaders/valley_water.gdshader"
+    },
+    "waterfall": {
+        "_comment": "落差固定在河道中心（x 由河道推导），上游为岩台，下游为浅水潭。",
+        "enabled": true,
+        "cliff": {
+            "center": [
+                -17.5,
+                -88.0
+            ],
+            "span_z": 18.0,
+            "height": 17.0,
+            "depth": 8.0
+        },
+        "fall": {
+            "top_y": 16.0,
+            "bottom_y": -0.6,
+            "width": 4.8,
+            "z": -87.0,
+            "shelf_blend": 5.5
+        },
+        "foam": {
+            "radius": 4.2
+        },
+        "mist": {
+            "amount": 80,
+            "radius": 3.6
+        },
+        "pool_radius": 6.5
+    },
+    "birds": {
+        "enabled": true,
+        "count": 28,
+        "seed": 71,
+        "center": [
+            10.0,
+            58.0,
+            -60.0
+        ],
+        "radius": 55.0,
+        "height_spread": 9.0,
+        "speed": 0.055,
+        "size": 1.25
+    },
+    "ambient": {
+        "enabled": true,
+        "default_on": false,
+        "volume_db": -20.0,
+        "river_gain": 0.55,
+        "wind_gain": 0.3
+    },
+    "tour": {
+        "enabled": true,
+        "interval": 11.0,
+        "start_shot": 0
+    },
+    "touch": {
+        "enabled": true,
+        "joystick_radius": 92.0,
+        "look_sensitivity": 2.2,
+        "force_light_quality": true
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "dodge_started": true,
+  "final_position": [
+    -21.5556812286377,
+    35.479434967041,
+    -44.9345893859863
+  ],
+  "floor_after_movement_and_dodge": true,
+  "movement_distance_m": 3.22624540328979,
+  "passed": true,
+  "spawn_on_imported_ground": true
+}

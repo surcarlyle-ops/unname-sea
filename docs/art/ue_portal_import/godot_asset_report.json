@@ -1,0 +1,10 @@
+{
+  "file": "D:\\claude project\\projects\\unname_sea\\assets\\environments\\portal_ruins\\portal_ruins_sample.glb",
+  "bytes": 24310352,
+  "meshes": 32,
+  "triangles_unique_meshes": 63008,
+  "materials": 16,
+  "embedded_base_color_textures": 12,
+  "terrain_material": "Flat preview color; original layered shader not baked.",
+  "texture_conversion": "EXR linear RGB converted to sRGB; maximum 1024 px for preview."
+}

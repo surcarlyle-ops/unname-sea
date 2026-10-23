@@ -1,0 +1,106 @@
+[gd_scene load_steps=18 format=3]
+
+[ext_resource type="Script" path="res://scripts/mvp/player_3d.gd" id="1_player"]
+[ext_resource type="PackedScene" path="res://assets/characters/newcomer_tripo/newcomer.glb" id="2_model"]
+
+[sub_resource type="CapsuleShape3D" id="PlayerShape"]
+radius = 0.32
+height = 1.7
+
+[sub_resource type="StandardMaterial3D" id="Coat"]
+albedo_color = Color(0.22, 0.39, 0.42, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Skin"]
+albedo_color = Color(0.91, 0.74, 0.56, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="Cloth"]
+albedo_color = Color(0.92, 0.87, 0.7, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="Dark"]
+albedo_color = Color(0.16, 0.2, 0.24, 1)
+roughness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="Bag"]
+albedo_color = Color(0.6, 0.36, 0.22, 1)
+roughness = 1.0
+
+[sub_resource type="CapsuleMesh" id="TorsoMesh"]
+material = SubResource("Coat")
+radius = 0.33
+height = 0.95
+radial_segments = 12
+rings = 4
+
+[sub_resource type="SphereMesh" id="HeadMesh"]
+material = SubResource("Skin")
+radius = 0.23
+height = 0.46
+radial_segments = 12
+rings = 6
+
+[sub_resource type="BoxMesh" id="LegMesh"]
+material = SubResource("Dark")
+size = Vector3(0.19, 0.52, 0.25)
+
+[sub_resource type="BoxMesh" id="ArmMesh"]
+material = SubResource("Coat")
+size = Vector3(0.17, 0.55, 0.21)
+
+[sub_resource type="BoxMesh" id="ScarfMesh"]
+material = SubResource("Cloth")
+size = Vector3(0.51, 0.12, 0.4)
+
+[sub_resource type="BoxMesh" id="BagMesh"]
+material = SubResource("Bag")
+size = Vector3(0.4, 0.37, 0.19)
+
+[sub_resource type="BoxMesh" id="FaceMesh"]
+material = SubResource("Dark")
+size = Vector3(0.16, 0.045, 0.04)
+
+[sub_resource type="SphereShape3D" id="CameraShape"]
+radius = 0.22
+
+[sub_resource type="SphereMesh" id="HairMesh"]
+material = SubResource("Dark")
+radius = 0.24
+height = 0.29
+radial_segments = 12
+rings = 6
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 1
+floor_snap_length = 0.35
+script = ExtResource("1_player")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.85, 0)
+shape = SubResource("PlayerShape")
+
+[node name="Visual" type="Node3D" parent="."]
+
+[node name="Model" parent="Visual" instance=ExtResource("2_model")]
+rotation = Vector3(0, 3.1415927, 0)
+scale = Vector3(1.7508549, 1.7508549, 1.7508549)
+
+[node name="CameraYaw" type="Node3D" parent="."]
+position = Vector3(0, 1.2, 0)
+
+[node name="CameraPitch" type="Node3D" parent="CameraYaw"]
+rotation = Vector3(-0.15, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraYaw/CameraPitch"]
+shape = SubResource("CameraShape")
+spring_length = 3.6
+margin = 0.18
+collision_mask = 1
+
+[node name="Camera3D" type="Camera3D" parent="CameraYaw/CameraPitch/SpringArm3D"]
+current = true
+fov = 60.0
+near = 0.12
+far = 240.0

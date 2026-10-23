@@ -1,0 +1,168 @@
+{
+  "source_project": "E:/MyProject222 5.8/MyProject.uproject",
+  "map": "/Game/landscape_text",
+  "region_cm": [
+    -15000.0,
+    17000.0,
+    47000.0,
+    76000.0
+  ],
+  "actors": [
+    "PORTAL",
+    "\u67f1\u4f53_004",
+    "PORTAL2",
+    "S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+    "S_Japanese_Gravestone_ueqiah1fa_lod3_Var2",
+    "S_Roman_Arch_thedegyfa_lod3",
+    "S_Mossy_Chapel_Stone_scjgV_lod3_Var1",
+    "S_Japanese_Gravestone_ueqiah1fa_lod3_Var3",
+    "S_Japanese_Gravestone_ueqiah1fa_lod3_Var4",
+    "S_Nordic_Forest_Cluster_Medium_xisgcic_lod3",
+    "S_Nordic_Forest_Rock_Small_xiemca1_lod3",
+    "S_Nordic_Forest_Rock_Small_xjiifd1_lod3",
+    "S_Ancient_Temple_Stairs_tj1qafrfa_lod3",
+    "S_Japanese_Gravestone_ueqiah1fa_lod3_Var5",
+    "S_Mossy_Boulder_xicnaet_lod3_Var1",
+    "S_Mossy_Chapel_Stone_scjgV_lod3_Var2",
+    "S_Mossy_Chapel_Stone_scjgV_lod3_Var3",
+    "S_Mossy_Chapel_Stone_scjgV_lod3_Var4",
+    "S_Mossy_Chapel_Stone_scjgV_lod3_Var5",
+    "S_Mossy_Forest_Boulder_wc1kebr_lod3_Var1",
+    "S_Mossy_Forest_Rock_villdcuaw_lod3_Var1",
+    "S_Mossy_Rock_xieiegj_lod3_Var1",
+    "S_Roman_Arch_thedegyfa_lod4",
+    "S_Mossy_Forest_Rock_villdcuaw_lod3_Var2",
+    "S_Mossy_Forest_Rock_villdcuaw_lod3_Var3",
+    "S_Mossy_Forest_Rock_villdcuaw_lod3_Var4",
+    "S_Ancient_Temple_Stairs_tj1qafrfa_lod4",
+    "S_Ancient_Temple_Stairs_tj1qafrfa_lod5",
+    "S_Mossy_Forest_Rock_villdcuaw_lod3_Var5",
+    "S_Mossy_Forest_Rock_villdcuaw_lod3_Var6",
+    "S_Stone_Pillar_sehwz_lod3",
+    "S_Stone_Pillar_sehwz_lod4",
+    "S_Japanese_Gravestone_ueqiah1fa_lod3_Var6",
+    "S_Nordic_Forest_Cluster_Medium_xisgcic_lod5",
+    "S_Mossy_Chapel_Stone_scjgV_lod3_Var6",
+    "S_Mossy_Chapel_Stone_scjgV_lod3_Var7",
+    "S_Mossy_Chapel_Stone_scjgV_lod3_Var8",
+    "S_Mossy_Chapel_Stone_scjgV_lod3_Var9",
+    "S_Japanese_Gravestone_ueqiah1fa_lod3_Var7",
+    "S_Japanese_Gravestone_ueqiah1fa_lod3_Var8",
+    "S_Mossy_Forest_Boulder_wc1kedt_lod3_Var1",
+    "S_Mossy_Forest_Boulder_wc1kedt_lod3_Var2",
+    "S_Mossy_Forest_Boulder_wc1kedt_lod3_Var3",
+    "S_Mossy_Forest_Boulder_wc1kedt_lod3_Var4",
+    "S_Japanese_Gravestone_ueqiah1fa_lod3_Var9",
+    "S_Japanese_Gravestone_ueqiah1fa_lod3_Var10",
+    "S_Roman_Broken_Column_tk4tfgzfa_lod3",
+    "S_Roman_Broken_Column_tk4tfgzfa_lod4",
+    "S_Roman_Broken_Column_tk4tfgzfa_lod5",
+    "S_Roman_Broken_Column_tk4tfgzfa_lod6"
+  ],
+  "terrain_components": [
+    "LandscapeComponent_211",
+    "LandscapeComponent_212",
+    "LandscapeComponent_213",
+    "LandscapeComponent_228",
+    "LandscapeComponent_229",
+    "LandscapeComponent_230",
+    "LandscapeComponent_245",
+    "LandscapeComponent_246",
+    "LandscapeComponent_247"
+  ],
+  "source_saved": false,
+  "license_status": "Source asset licenses not yet verified for release.",
+  "success": true,
+  "messages": "<Struct 'GLTFExportMessages' (0x0000024E39024530) {suggestions: , warnings: , errors: }>",
+  "material_sources": {
+    "MI_Mossy_Chapel_Stone_scjgV_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/MI_Mossy_Chapel_Stone_scjgV_2K.MI_Mossy_Chapel_Stone_scjgV_2K",
+      "candidate_textures": [
+        "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/T_Mossy_Chapel_Stone_scjgV_2K_D.T_Mossy_Chapel_Stone_scjgV_2K_D",
+        "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/T_MossyChapelStone_scjgV_2K_DpR.T_MossyChapelStone_scjgV_2K_DpR"
+      ]
+    },
+    "MI_Mossy_Forest_Boulder_wc1kedt_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/MI_Mossy_Forest_Boulder_wc1kedt_2K.MI_Mossy_Forest_Boulder_wc1kedt_2K",
+      "candidate_textures": [
+        "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/T_Mossy_Forest_Boulder_wc1kedt_2K_D.T_Mossy_Forest_Boulder_wc1kedt_2K_D",
+        "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/T_MossyForestBoulder_wc1kedt_2K_DpRF.T_MossyForestBoulder_wc1kedt_2K_DpRF"
+      ]
+    },
+    "MI_Ancient_Temple_Stairs_tj1qafrfa_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/MI_Ancient_Temple_Stairs_tj1qafrfa_2K.MI_Ancient_Temple_Stairs_tj1qafrfa_2K",
+      "candidate_textures": [
+        "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/T_Ancient_Temple_Stairs_tj1qafrfa_2K_D.T_Ancient_Temple_Stairs_tj1qafrfa_2K_D",
+        "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/T_AncientTempleStairs_tj1qafrfa_2K_DpRF.T_AncientTempleStairs_tj1qafrfa_2K_DpRF"
+      ]
+    },
+    "MI_Mossy_Forest_Boulder_wc1kebr_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Boulder_wc1kebr/MI_Mossy_Forest_Boulder_wc1kebr_2K.MI_Mossy_Forest_Boulder_wc1kebr_2K",
+      "candidate_textures": [
+        "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Boulder_wc1kebr/T_Mossy_Forest_Boulder_wc1kebr_2K_D.T_Mossy_Forest_Boulder_wc1kebr_2K_D",
+        "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Boulder_wc1kebr/T_MossyForestBoulder_wc1kebr_2K_DpRF.T_MossyForestBoulder_wc1kebr_2K_DpRF"
+      ]
+    },
+    "MI_Mossy_Rock_xieiegj_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Mossy/Mossy_Rock_xieiegj/MI_Mossy_Rock_xieiegj_2K.MI_Mossy_Rock_xieiegj_2K",
+      "candidate_textures": [
+        "/Game/Megascans/3D_Assets/Mossy/Mossy_Rock_xieiegj/T_Mossy_Rock_xieiegj_2K_D.T_Mossy_Rock_xieiegj_2K_D",
+        "/Game/Megascans/3D_Assets/Mossy/Mossy_Rock_xieiegj/T_MossyRock_xieiegj_2K_DpRF.T_MossyRock_xieiegj_2K_DpRF"
+      ]
+    },
+    "MI_Mossy_Forest_Rock_villdcuaw_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/MI_Mossy_Forest_Rock_villdcuaw_2K.MI_Mossy_Forest_Rock_villdcuaw_2K",
+      "candidate_textures": [
+        "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/T_Mossy_Forest_Rock_villdcuaw_2K_D.T_Mossy_Forest_Rock_villdcuaw_2K_D",
+        "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/T_MossyForestRock_villdcuaw_2K_DpRF.T_MossyForestRock_villdcuaw_2K_DpRF"
+      ]
+    },
+    "MI_Japanese_Gravestone_ueqiah1fa_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/MI_Japanese_Gravestone_ueqiah1fa_2K.MI_Japanese_Gravestone_ueqiah1fa_2K",
+      "candidate_textures": [
+        "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/T_Japanese_Gravestone_ueqiah1fa_2K_D.T_Japanese_Gravestone_ueqiah1fa_2K_D",
+        "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/T_JapaneseGravestone_ueqiah1fa_2K_DpRF.T_JapaneseGravestone_ueqiah1fa_2K_DpRF"
+      ]
+    },
+    "MI_Nordic_Forest_Cluster_Medium_xisgcic_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Cluster_Medium_xisgcic/MI_Nordic_Forest_Cluster_Medium_xisgcic_2K.MI_Nordic_Forest_Cluster_Medium_xisgcic_2K",
+      "candidate_textures": []
+    },
+    "MI_Ancient_Temple_Wall_smfoebvp_2K": {
+      "asset": "/Game/Megascans/Surfaces/Ancient_Temple_Wall_smfoebvp/MI_Ancient_Temple_Wall_smfoebvp_2K.MI_Ancient_Temple_Wall_smfoebvp_2K",
+      "candidate_textures": [
+        "/Game/Megascans/Surfaces/Ancient_Temple_Wall_smfoebvp/T_Ancient_Temple_Wall_smfoebvp_2K_D.T_Ancient_Temple_Wall_smfoebvp_2K_D"
+      ]
+    },
+    "MI_Nordic_Forest_Rock_Small_xjiifd1_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Rock_Small_xjiifd1/MI_Nordic_Forest_Rock_Small_xjiifd1_2K.MI_Nordic_Forest_Rock_Small_xjiifd1_2K",
+      "candidate_textures": []
+    },
+    "MI_Nordic_Forest_Rock_Small_xiemca1_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Rock_Small_xiemca1/MI_Nordic_Forest_Rock_Small_xiemca1_2K.MI_Nordic_Forest_Rock_Small_xiemca1_2K",
+      "candidate_textures": []
+    },
+    "pt2": {
+      "asset": "/Game/portal/tex/pt2.pt2",
+      "candidate_textures": []
+    },
+    "MI_Roman_Arch_thedegyfa_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Roman_Arch_thedegyfa/MI_Roman_Arch_thedegyfa_2K.MI_Roman_Arch_thedegyfa_2K",
+      "candidate_textures": [
+        "/Game/Megascans/3D_Assets/Roman_Arch_thedegyfa/T_Roman_Arch_thedegyfa_2K_D.T_Roman_Arch_thedegyfa_2K_D",
+        "/Game/Megascans/3D_Assets/Roman_Arch_thedegyfa/T_RomanArch_thedegyfa_2K_DpR.T_RomanArch_thedegyfa_2K_DpR"
+      ]
+    },
+    "mat_portal": {
+      "asset": "/Game/portal/mat_portal.mat_portal",
+      "candidate_textures": []
+    },
+    "MI_Mossy_Boulder_xicnaet_2K": {
+      "asset": "/Game/Megascans/3D_Assets/Mossy/Mossy_Boulder_xicnaet/MI_Mossy_Boulder_xicnaet_2K.MI_Mossy_Boulder_xicnaet_2K",
+      "candidate_textures": [
+        "/Game/Megascans/3D_Assets/Mossy/Mossy_Boulder_xicnaet/T_Mossy_Boulder_xicnaet_2K_D.T_Mossy_Boulder_xicnaet_2K_D",
+        "/Game/Megascans/3D_Assets/Mossy/Mossy_Boulder_xicnaet/T_MossyBoulder_xicnaet_2K_DpRF.T_MossyBoulder_xicnaet_2K_DpRF"
+      ]
+    }
+  }
+}

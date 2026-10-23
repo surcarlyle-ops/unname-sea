@@ -1,0 +1,32 @@
+{
+  "source": "User-provided Tripo GLB with selected idle/walk animations",
+  "source_sha256": "6fdbe089cc57d1d8baefcbab8085f095d473ab8c509228386888a6e91a99da3b",
+  "output_sha256": "cbb70a4769928afba94c302f89f152c4b0535a964dd3de3eda9d43eba433627e",
+  "vertices": 12502,
+  "triangles": 9992,
+  "bones": 65,
+  "clips": [
+    {
+      "source_name": "walk.001",
+      "name": "walk",
+      "duration_seconds": 2.375
+    },
+    {
+      "source_name": "idle.001",
+      "name": "idle",
+      "duration_seconds": 15.375
+    }
+  ],
+  "bind_height_m": 0.99951171875,
+  "target_height_m": 1.75,
+  "scene_uniform_scale": 1.7508549096238397,
+  "processing": "Only clip names normalized. Original geometry, weights, keyframes and textures preserved.",
+  "missing_clips": [
+    "run",
+    "dodge",
+    "attack",
+    "hit",
+    "death",
+    "fishing"
+  ]
+}

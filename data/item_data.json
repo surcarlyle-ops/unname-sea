@@ -1,0 +1,31 @@
+{
+  "_comment": "物品数据。总量控制在 30-50 种，分基础资源 / 中间材料 / 海洋遗物 / 剧情道具四类。",
+  "items": [
+    { "id": "item_branch", "name": "断枝", "category": "basic", "value": 1, "stack": 99, "description": "残骸上折断的树枝。可以做点什么，但你想不出能做什么。" },
+    { "id": "item_rope", "name": "草绳", "category": "basic", "value": 1, "stack": 99, "description": "从残骸上拆下来的麻绳。粗糙，但结实。" },
+    { "id": "item_sharp_stone", "name": "尖石", "category": "basic", "value": 1, "stack": 99, "description": "边缘锋利的碎石。握在手里有一种奇怪的安心感。" },
+    { "id": "item_fiber", "name": "纤维", "category": "basic", "value": 2, "stack": 99, "description": "从植物或鱼身上剥下的柔韧纤维。" },
+    { "id": "item_fine_wood", "name": "精木", "category": "basic", "value": 8, "stack": 99, "description": "纹理细密的木材。比普通树枝硬得多。" },
+    { "id": "item_fish_bone", "name": "鱼骨", "category": "material", "value": 3, "stack": 99, "description": "晒干的鱼骨。3 根可以炼成一根骨制竿。" },
+    { "id": "item_scale", "name": "鳞片", "category": "material", "value": 5, "stack": 99, "description": "某种生物的鳞片。边缘有细密的齿。" },
+    { "id": "item_glass_shard", "name": "玻璃碎片", "category": "material", "value": 12, "stack": 99, "description": "透明的碎片。对着光看时，会映出不属于你的影子。" },
+    { "id": "item_glow_core", "name": "发光核", "category": "material", "value": 25, "stack": 99, "description": "仍在缓慢发光的球体。温度不冷不热，像有心跳。" },
+    { "id": "item_sunken_metal", "name": "沉船金属", "category": "material", "value": 20, "stack": 99, "description": "从水底打捞的金属块。上面有看不懂的刻痕。" },
+    { "id": "item_deep_essence", "name": "深水精华", "category": "material", "value": 40, "stack": 99, "description": "深水层凝出的一滴浓稠液体。倒映出的景象总是错的。" },
+    { "id": "item_sand_grit", "name": "砂砾", "category": "material", "value": 2, "stack": 99, "description": "水底的细砂。混着一些细小的、发亮的东西。" },
+    { "id": "item_lens_shard", "name": "晶状体碎片", "category": "material", "value": 30, "stack": 99, "description": "某种眼睛的碎片。透过它看世界，颜色会变淡。" },
+    { "id": "item_tide_gel", "name": "潮汐胶质", "category": "material", "value": 35, "stack": 99, "description": "半透明的胶状物。它会缓慢地流动，仿佛还记得自己是水。" },
+    { "id": "item_phosphor_heart", "name": "磷之心", "category": "signature", "value": 200, "stack": 99, "description": "磷鳞的核心。它的光比同类更亮，也更冷。" },
+    { "id": "item_silent_membrane", "name": "沉默之膜", "category": "signature", "value": 200, "stack": 99, "description": "沉默的膜。靠近它时，你会听不见自己的心跳。" },
+    { "id": "item_gaze_core", "name": "凝视之核", "category": "signature", "value": 300, "stack": 99, "description": "眼主的核。拿着它的时候，你会觉得有人在看你。" },
+    { "id": "item_eye_of_watcher", "name": "观者之眼", "category": "signature", "value": 500, "stack": 99, "description": "一只从未眨过的眼睛。它认识你，虽然你从没见过它。" },
+    { "id": "item_tide_heart", "name": "潮汐之心", "category": "signature", "value": 600, "stack": 99, "description": "潮汐母的心脏。它还在跳，按着某种不属于任何生物的节奏。" },
+    { "id": "item_relic_fragment", "name": "遗物·残片", "category": "relic", "value": 15, "stack": 99, "description": "海洋遗物的碎片。边缘已经锈蚀，但仍能感到它的分量。" },
+    { "id": "item_relic_complete", "name": "遗物·完整体", "category": "relic", "value": 300, "stack": 99, "description": "完整的海洋遗物。它不属于这个时代，却被水送到了你面前。" },
+    { "id": "item_relic_echo", "name": "遗物·回响", "category": "relic", "value": 999, "stack": 99, "description": "遗物的回声。握住它时，你会听见很多人同时说话。" },
+    { "id": "item_junk_boot", "name": "破鞋", "category": "junk", "value": 1, "stack": 99, "description": "一只泡烂的鞋。它是谁的？它的人在哪里？" },
+    { "id": "item_junk_net", "name": "烂网", "category": "junk", "value": 1, "stack": 99, "description": "一张破旧的渔网。有人在这里捕过鱼，很久以前。" },
+    { "id": "item_story_letter", "name": "浸水的信", "category": "story", "value": 0, "stack": 1, "description": "字迹已经模糊。只有一句话还能辨认：\"别让它钓到你。\"" },
+    { "id": "item_story_shard", "name": "无名碎片", "category": "story", "value": 0, "stack": 1, "description": "一片无法判断材质的碎片。它比水轻，却沉得比石头快。" }
+  ]
+}

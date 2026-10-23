@@ -1,0 +1,23 @@
+# Godot caches
+.godot/
+
+# Restricted / unreferenced third-party packs
+assets/characters/trailblazer_local/
+assets/environments/portal_ruins/
+assets/characters/fps_arms_ak/
+
+# QA evidence (regenerable screenshots and logs)
+.mvp_qa/
+.cv_qa/
+.gdd_qa/
+
+# Duplicate reference archives (unpacked copies are tracked)
+docs/art/*.zip
+
+# Tool dependencies
+tools/asset_pipeline/.deps/
+
+# Local logs and caches
+*.log
+__pycache__/
+*.pyc

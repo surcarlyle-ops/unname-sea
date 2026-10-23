@@ -1,0 +1,83 @@
+{
+  "_comment": "鱼竿梯度数据。直接对标泰拉瑞亚：垃圾竿等待久且易脱钩，好竿快且稳。",
+  "rods": [
+    {
+      "id": "rod_branch",
+      "name": "树枝竿",
+      "level": 1,
+      "description": "用树枝、草绳和尖石临时拼凑的鱼竿。简陋，但这是你唯一的工具。",
+      "wait_min": 15.0,
+      "wait_max": 45.0,
+      "reel_min": 10.0,
+      "reel_max": 20.0,
+      "escape_rate": 0.30,
+      "rarity_bonus": 0.0,
+      "recipe": null
+    },
+    {
+      "id": "rod_bone",
+      "name": "骨制竿",
+      "level": 2,
+      "description": "用钓上来的鱼骨打磨而成的鱼竿。比树枝结实得多。",
+      "wait_min": 10.0,
+      "wait_max": 30.0,
+      "reel_min": 8.0,
+      "reel_max": 15.0,
+      "escape_rate": 0.15,
+      "rarity_bonus": 0.05,
+      "recipe": { "materials": { "item_fish_bone": 3 }, "time": 3.0 }
+    },
+    {
+      "id": "rod_wood",
+      "name": "木制精工竿",
+      "level": 3,
+      "description": "以精木为骨、纤维为弦的手工鱼竿。匠人的手艺藏在每一处细节里。",
+      "wait_min": 8.0,
+      "wait_max": 25.0,
+      "reel_min": 6.0,
+      "reel_max": 12.0,
+      "escape_rate": 0.08,
+      "rarity_bonus": 0.10,
+      "recipe": { "materials": { "item_fine_wood": 2, "item_fiber": 4 }, "time": 4.0 }
+    },
+    {
+      "id": "rod_metal",
+      "name": "金属竿",
+      "level": 4,
+      "description": "从沉船残骸中打捞的金属打造而成。冰冷、沉重、可靠。",
+      "wait_min": 5.0,
+      "wait_max": 20.0,
+      "reel_min": 5.0,
+      "reel_max": 10.0,
+      "escape_rate": 0.04,
+      "rarity_bonus": 0.15,
+      "recipe": { "materials": { "item_sunken_metal": 3, "item_fine_wood": 2 }, "time": 5.0 }
+    },
+    {
+      "id": "rod_relic",
+      "name": "遗物竿",
+      "level": 5,
+      "description": "由海洋遗物·完整体炼化而成。竿身泛着不属于这个时代的光。",
+      "wait_min": 3.0,
+      "wait_max": 15.0,
+      "reel_min": 4.0,
+      "reel_max": 8.0,
+      "escape_rate": 0.01,
+      "rarity_bonus": 0.25,
+      "recipe": { "materials": { "item_relic_complete": 1, "item_sunken_metal": 3 }, "time": 8.0 }
+    },
+    {
+      "id": "rod_echo",
+      "name": "回响竿",
+      "level": 6,
+      "description": "过去的回声凝成的鱼竿。它记得所有被钓起过的东西。",
+      "wait_min": 2.0,
+      "wait_max": 10.0,
+      "reel_min": 3.0,
+      "reel_max": 6.0,
+      "escape_rate": 0.0,
+      "rarity_bonus": 0.40,
+      "recipe": { "materials": { "item_relic_echo": 1 }, "time": 12.0 }
+    }
+  ]
+}

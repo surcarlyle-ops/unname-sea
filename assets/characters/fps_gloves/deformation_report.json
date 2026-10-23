@@ -1,0 +1,26 @@
+[
+  {
+    "grip": 0.0,
+    "max_edge_extension_m": 1.5333062115992224e-08,
+    "sleeve_displacement_m": 3.460282539171923e-09,
+    "finite_vertices": true
+  },
+  {
+    "grip": 0.18,
+    "max_edge_extension_m": 0.001429807713021019,
+    "sleeve_displacement_m": 3.460282539171923e-09,
+    "finite_vertices": true
+  },
+  {
+    "grip": 0.86,
+    "max_edge_extension_m": 0.008965944857345521,
+    "sleeve_displacement_m": 3.460282539171923e-09,
+    "finite_vertices": true
+  },
+  {
+    "grip": 1.0,
+    "max_edge_extension_m": 0.010532294123202241,
+    "sleeve_displacement_m": 3.460282539171923e-09,
+    "finite_vertices": true
+  }
+]

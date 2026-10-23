@@ -1,0 +1,3444 @@
+{
+  "source_project": "E:/MyProject222 5.8/MyProject.uproject",
+  "map": "/Game/landscape_text.landscape_text",
+  "actors": [
+    {
+      "name": "ExponentialHeightFog_0",
+      "label": "ExponentialHeightFog",
+      "class": "ExponentialHeightFog",
+      "location_cm": [
+        -5600.0,
+        -50.0,
+        -6850.0
+      ],
+      "bounds_center_cm": [
+        -5600.0,
+        -50.0,
+        -6850.0
+      ],
+      "bounds_extent_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "meshes": []
+    },
+    {
+      "name": "VolumetricCloud_0",
+      "label": "VolumetricCloud",
+      "class": "VolumetricCloud",
+      "location_cm": [
+        0.0,
+        0.0,
+        700.0
+      ],
+      "bounds_center_cm": [
+        0.0,
+        0.0,
+        700.0
+      ],
+      "bounds_extent_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "meshes": []
+    },
+    {
+      "name": "StaticMeshActor_1",
+      "label": "SM_SkySphere",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bounds_center_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bounds_extent_cm": [
+        1638400.0,
+        1638400.0,
+        1638400.0
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Engine/EngineSky/SM_SkySphere.SM_SkySphere",
+          "materials": [
+            "/Engine/EngineSky/M_SimpleSkyDome.M_SimpleSkyDome"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "PlayerStart_0",
+      "label": "PlayerStart",
+      "class": "PlayerStart",
+      "location_cm": [
+        -19216.846590734418,
+        65171.804281539975,
+        -8637.884753876684
+      ],
+      "bounds_center_cm": [
+        -19116.846590734418,
+        65171.804281539975,
+        -8637.884753876684
+      ],
+      "bounds_extent_cm": [
+        140.0,
+        80.0,
+        92.0
+      ],
+      "meshes": []
+    },
+    {
+      "name": "Landscape_0",
+      "label": "Landscape",
+      "class": "Landscape",
+      "location_cm": [
+        -107900.0,
+        -107900.0,
+        100.0
+      ],
+      "bounds_center_cm": [
+        50.0,
+        50.0,
+        -5591.015625
+      ],
+      "bounds_extent_cm": [
+        107950.0,
+        107950.0,
+        4801.953125
+      ],
+      "meshes": []
+    },
+    {
+      "name": "SkeletalMeshActor_1",
+      "label": "SKM_Quinn_Simple",
+      "class": "SkeletalMeshActor",
+      "location_cm": [
+        -18188.886158274763,
+        64597.00313258682,
+        -8688.444874263201
+      ],
+      "bounds_center_cm": [
+        -18194.912936991397,
+        64608.70989017418,
+        -8598.823082016517
+      ],
+      "bounds_extent_cm": [
+        60.77305809481186,
+        25.6670563321386,
+        95.11719834419273
+      ],
+      "meshes": []
+    },
+    {
+      "name": "InstancedFoliageActor_0",
+      "label": "InstancedFoliageActor0",
+      "class": "InstancedFoliageActor",
+      "location_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bounds_center_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "bounds_extent_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "meshes": [
+        {
+          "component": "FoliageInstancedStaticMeshComponent_0",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var3_lod1.S_Lemongrass_sktne_Var3_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_1",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var5_lod1.S_Lemongrass_sktne_Var5_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_10",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/SimpleWind/SM_EuropeanHornbeam_Sapling_03.SM_EuropeanHornbeam_Sapling_03",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_TwoSided.MI_EuropeanHornbeam_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Tileable.MI_EuropeanHornbeam_Tileable"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_11",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/SimpleWind/SM_EuropeanHornbeam_Sapling_05.SM_EuropeanHornbeam_Sapling_05",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_TwoSided.MI_EuropeanHornbeam_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Tileable.MI_EuropeanHornbeam_Tileable"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_12",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var4_lod1.S_Wild_Grass_sjliZ_Var4_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_13",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var5_lod1.S_Wild_Grass_sjliZ_Var5_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_14",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var3_lod1.S_Wild_Grass_sjliZ_Var3_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_15",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var2_lod1.S_Lemongrass_sktne_Var2_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_16",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var4_lod1.S_Lemongrass_sktne_Var4_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_17",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var5_lod1.S_Lemongrass_sktne_Var5_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_18",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var1_lod1.S_Lemongrass_sktne_Var1_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_19",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var3_lod1.S_Lemongrass_sktne_Var3_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_2",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var4_lod1.S_Lemongrass_sktne_Var4_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_20",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var1_lod1.S_Wild_Grass_sjliZ_Var1_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_21",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var2_lod1.S_Wild_Grass_sjliZ_Var2_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_22",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var3_lod1.S_Wild_Grass_sjliZ_Var3_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_23",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var4_lod1.S_Wild_Grass_sjliZ_Var4_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_24",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var5_lod1.S_Wild_Grass_sjliZ_Var5_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_25",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var1_lod1.S_Field_Poppy_vmcobd0ja_Var1_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_26",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var10_lod1.S_Field_Poppy_vmcobd0ja_Var10_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_27",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var11_lod1.S_Field_Poppy_vmcobd0ja_Var11_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_28",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var12_lod1.S_Field_Poppy_vmcobd0ja_Var12_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_29",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var13_lod1.S_Field_Poppy_vmcobd0ja_Var13_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_3",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var1_lod1.S_Lemongrass_sktne_Var1_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_30",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var14_lod1.S_Field_Poppy_vmcobd0ja_Var14_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_31",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var2_lod1.S_Field_Poppy_vmcobd0ja_Var2_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_32",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var3_lod1.S_Field_Poppy_vmcobd0ja_Var3_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_33",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var4_lod1.S_Field_Poppy_vmcobd0ja_Var4_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_34",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var5_lod1.S_Field_Poppy_vmcobd0ja_Var5_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_35",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var6_lod1.S_Field_Poppy_vmcobd0ja_Var6_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_36",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var7_lod1.S_Field_Poppy_vmcobd0ja_Var7_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_37",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var8_lod1.S_Field_Poppy_vmcobd0ja_Var8_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_38",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var9_lod1.S_Field_Poppy_vmcobd0ja_Var9_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_39",
+          "mesh": "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/S_Periwinkle_tfclbger_Var1_lod1.S_Periwinkle_tfclbger_Var1_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/MI_Periwinkle_tfclbger_2K.MI_Periwinkle_tfclbger_2K",
+            "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/MI_Periwinkle_tfclbger_Billboard_2K.MI_Periwinkle_tfclbger_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_4",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var2_lod1.S_Lemongrass_sktne_Var2_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_40",
+          "mesh": "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/S_Periwinkle_tfclbger_Var2_lod1.S_Periwinkle_tfclbger_Var2_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/MI_Periwinkle_tfclbger_2K.MI_Periwinkle_tfclbger_2K",
+            "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/MI_Periwinkle_tfclbger_Billboard_2K.MI_Periwinkle_tfclbger_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_41",
+          "mesh": "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/S_Periwinkle_tfclbger_Var3_lod1.S_Periwinkle_tfclbger_Var3_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/MI_Periwinkle_tfclbger_2K.MI_Periwinkle_tfclbger_2K",
+            "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/MI_Periwinkle_tfclbger_Billboard_2K.MI_Periwinkle_tfclbger_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_42",
+          "mesh": "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/S_Periwinkle_tfclbger_Var4_lod1.S_Periwinkle_tfclbger_Var4_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/MI_Periwinkle_tfclbger_2K.MI_Periwinkle_tfclbger_2K",
+            "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/MI_Periwinkle_tfclbger_Billboard_2K.MI_Periwinkle_tfclbger_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_43",
+          "mesh": "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/S_Periwinkle_tfclbger_Var5_lod1.S_Periwinkle_tfclbger_Var5_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/MI_Periwinkle_tfclbger_2K.MI_Periwinkle_tfclbger_2K",
+            "/Game/Megascans/3D_Plants/Periwinkle_tfclbger/MI_Periwinkle_tfclbger_Billboard_2K.MI_Periwinkle_tfclbger_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_5",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var1_lod1.S_Wild_Grass_sjliZ_Var1_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_50",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var1_lod1.S_Field_Poppy_vmcobd0ja_Var1_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_51",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var10_lod1.S_Field_Poppy_vmcobd0ja_Var10_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_52",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var11_lod1.S_Field_Poppy_vmcobd0ja_Var11_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_53",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var12_lod1.S_Field_Poppy_vmcobd0ja_Var12_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_54",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var13_lod1.S_Field_Poppy_vmcobd0ja_Var13_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_55",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var14_lod1.S_Field_Poppy_vmcobd0ja_Var14_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_6",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/SimpleWind/SM_EuropeanHornbeam_Forest_01.SM_EuropeanHornbeam_Forest_01",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_TwoSided.MI_EuropeanHornbeam_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Tileable.MI_EuropeanHornbeam_Tileable",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Decoration.MI_EuropeanHornbeam_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Forest_01.MI_Impostor_Forest_01"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_7",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/SimpleWind/SM_EuropeanHornbeam_Forest_03.SM_EuropeanHornbeam_Forest_03",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_TwoSided.MI_EuropeanHornbeam_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Tileable.MI_EuropeanHornbeam_Tileable",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Trunk_01.MI_EuropeanHornbeam_Trunk_01",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Decoration.MI_EuropeanHornbeam_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Forest_03.MI_Impostor_Forest_03"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_8",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Field_03_PP.SM_EuropeanHornbeam_Field_03_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_03/MI_EuropeanHornbeam_Field_03_TwoSided.MI_EuropeanHornbeam_Field_03_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_03/MI_EuropeanHornbeam_Field_03_Tileable.MI_EuropeanHornbeam_Field_03_Tileable",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Trunk_01.MI_EuropeanHornbeam_Trunk_01",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_03/MI_EuropeanHornbeam_Field_03_Decoration.MI_EuropeanHornbeam_Field_03_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Field_03.MI_Impostor_Field_03"
+          ]
+        },
+        {
+          "component": "FoliageInstancedStaticMeshComponent_9",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var2_lod1.S_Wild_Grass_sjliZ_Var2_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_0",
+      "label": "CubeGridToolOutput",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        10200.0,
+        35500.0,
+        -6000.0
+      ],
+      "bounds_center_cm": [
+        11100.0,
+        36850.0,
+        -5950.0
+      ],
+      "bounds_extent_cm": [
+        900.0,
+        1350.0,
+        50.0
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/_GENERATED/Admin/CubeGridToolOutput_46C8C2A0.CubeGridToolOutput_46C8C2A0",
+          "materials": [
+            "/Game/RuralAustralia/Landscape/Textures/T_Ground_Gravel_01_CA_Mat.T_Ground_Gravel_01_CA_Mat"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_2",
+      "label": "Plane",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        7600.0,
+        49730.0,
+        -6474.770529882815
+      ],
+      "bounds_center_cm": [
+        7600.0,
+        49730.0,
+        -6474.770529882815
+      ],
+      "bounds_extent_cm": [
+        40.976900040720466,
+        50.85861466873757,
+        39.64977986930626
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Engine/BasicShapes/Plane.Plane",
+          "materials": [
+            "/Game/Megascans/Surfaces/Tarp_vb1kaft/clouth2.clouth2"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_3",
+      "label": "Rectangle",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        7250.0,
+        49330.0,
+        -6460.0
+      ],
+      "bounds_center_cm": [
+        7250.0,
+        49330.0,
+        -6460.0
+      ],
+      "bounds_extent_cm": [
+        49.24201854454077,
+        32.78891597686015,
+        121.21188986803827
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/_GENERATED/Admin/Rectangle_A140D103.Rectangle_A140D103",
+          "materials": [
+            "/Game/Megascans/Surfaces/Tarp_vb1kaft/clouth2.clouth2"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_5",
+      "label": "PORTAL",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        10170.0,
+        47230.0,
+        -6350.0
+      ],
+      "bounds_center_cm": [
+        10158.889472327426,
+        47230.615252879186,
+        -6231.167086622544
+      ],
+      "bounds_extent_cm": [
+        110.12466175485315,
+        50.540542253686,
+        129.92859642092026
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/portal/PORTAL.PORTAL",
+          "materials": [
+            "/Game/portal/mat_portal.mat_portal"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_7",
+      "label": "柱体_004",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        9780.0,
+        47320.0,
+        -6410.0
+      ],
+      "bounds_center_cm": [
+        9780.0,
+        47320.0,
+        -6410.0
+      ],
+      "bounds_extent_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "meshes": []
+    },
+    {
+      "name": "StaticMeshActor_11",
+      "label": "柱体_5",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        11480.804908411666,
+        42609.20266893867,
+        -6416.283767910078
+      ],
+      "bounds_center_cm": [
+        11480.804908411666,
+        42609.20266893867,
+        -6416.283767910078
+      ],
+      "bounds_extent_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "meshes": []
+    },
+    {
+      "name": "StaticMeshActor_9",
+      "label": "PORTAL2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -1994.6666444221132,
+        63982.65711538188,
+        -6952.704295960383
+      ],
+      "bounds_center_cm": [
+        -1848.0819778406924,
+        63950.47206042739,
+        -5758.18253576474
+      ],
+      "bounds_extent_cm": [
+        749.0000271644096,
+        1934.0038195847628,
+        1499.5633984712686
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/portal/PORTAL2.PORTAL2",
+          "materials": [
+            "/Game/portal/tex/pt2.pt2"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_6",
+      "label": "SM_EuropeanHornbeam_Field_01_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18410.68618051012,
+        64279.134444143616,
+        -8721.598622306921
+      ],
+      "bounds_center_cm": [
+        -18432.84752945028,
+        64273.6030898367,
+        -7890.794498383115
+      ],
+      "bounds_extent_cm": [
+        660.7009073956397,
+        679.5597049433782,
+        882.3918472623013
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Field_01_PP.SM_EuropeanHornbeam_Field_01_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_01/MI_EuropeanHornbeam_Field_01_TwoSided.MI_EuropeanHornbeam_Field_01_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_01/MI_EuropeanHornbeam_Field_01_Tileable.MI_EuropeanHornbeam_Field_01_Tileable",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Trunk_01.MI_EuropeanHornbeam_Trunk_01",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_01/MI_EuropeanHornbeam_Field_01_Decoration.MI_EuropeanHornbeam_Field_01_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Field_01.MI_Impostor_Field_01"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_12",
+      "label": "SM_EuropeanHornbeam_Field_02_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -17999.891273845387,
+        65560.80083631138,
+        -8730.17666957742
+      ],
+      "bounds_center_cm": [
+        -18044.543812370448,
+        65533.35817812284,
+        -7939.723057148932
+      ],
+      "bounds_extent_cm": [
+        709.5322940822625,
+        825.0104971156106,
+        826.7626871106268
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Field_02_PP.SM_EuropeanHornbeam_Field_02_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_02/MI_EuropeanHornbeam_Field_02_TwoSided.MI_EuropeanHornbeam_Field_02_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_02/MI_EuropeanHornbeam_Field_02_Tileable.MI_EuropeanHornbeam_Field_02_Tileable",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_02/MI_EuropeanHornbeam_Field_02_Decoration.MI_EuropeanHornbeam_Field_02_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Field_02.MI_Impostor_Field_02"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_14",
+      "label": "SM_EuropeanHornbeam_Field_03_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -17814.080585201224,
+        64748.26394077583,
+        -8711.146394340101
+      ],
+      "bounds_center_cm": [
+        -17877.887457124878,
+        64783.87398796473,
+        -7564.88031020856
+      ],
+      "bounds_extent_cm": [
+        1029.4443582832646,
+        929.4356261411849,
+        1197.8267832038123
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Field_03_PP.SM_EuropeanHornbeam_Field_03_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_03/MI_EuropeanHornbeam_Field_03_TwoSided.MI_EuropeanHornbeam_Field_03_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_03/MI_EuropeanHornbeam_Field_03_Tileable.MI_EuropeanHornbeam_Field_03_Tileable",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Trunk_01.MI_EuropeanHornbeam_Trunk_01",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_03/MI_EuropeanHornbeam_Field_03_Decoration.MI_EuropeanHornbeam_Field_03_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Field_03.MI_Impostor_Field_03"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_16",
+      "label": "SM_EuropeanHornbeam_Field_04_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18957.93042403928,
+        64341.006737109026,
+        -8725.459976615477
+      ],
+      "bounds_center_cm": [
+        -18999.878773761426,
+        64332.313528875675,
+        -8132.031477087221
+      ],
+      "bounds_extent_cm": [
+        641.5514182079569,
+        584.1508069060146,
+        623.2155737535309
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Field_04_PP.SM_EuropeanHornbeam_Field_04_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_04/MI_EuropeanHornbeam_Field_04_TwoSided.MI_EuropeanHornbeam_Field_04_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_04/MI_EuropeanHornbeam_Field_04_Tileable.MI_EuropeanHornbeam_Field_04_Tileable",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_04/MI_EuropeanHornbeam_Field_04_Decoration.MI_EuropeanHornbeam_Field_04_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Field_04.MI_Impostor_Field_04"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_18",
+      "label": "SM_EuropeanHornbeam_Forest_03_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -17937.134942657216,
+        65894.5434551132,
+        -8712.564223525857
+      ],
+      "bounds_center_cm": [
+        -18107.0759467421,
+        65823.36253943056,
+        -7993.239764537828
+      ],
+      "bounds_extent_cm": [
+        472.155610201331,
+        422.089373883402,
+        803.9509303540731
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Forest_03_PP.SM_EuropeanHornbeam_Forest_03_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_03/MI_EuropeanHornbeam_Forest_03_TwoSided.MI_EuropeanHornbeam_Forest_03_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_03/MI_EuropeanHornbeam_Forest_03_Tileable.MI_EuropeanHornbeam_Forest_03_Tileable",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_03/MI_EuropeanHornbeam_Forest_03_Trunk.MI_EuropeanHornbeam_Forest_03_Trunk",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_03/MI_EuropeanHornbeam_Forest_03_Decoration.MI_EuropeanHornbeam_Forest_03_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Forest_03.MI_Impostor_Forest_03"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_20",
+      "label": "SM_EuropeanHornbeam_Forest_07_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18281.432284141625,
+        65771.68739138474,
+        -8739.209538393363
+      ],
+      "bounds_center_cm": [
+        -18265.12046142127,
+        65718.94555310042,
+        -8118.423105337135
+      ],
+      "bounds_extent_cm": [
+        457.80502924669054,
+        473.162035592919,
+        645.8183450997531
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Forest_07_PP.SM_EuropeanHornbeam_Forest_07_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_07/MI_EuropeanHornbeam_Forest_07_TwoSided.MI_EuropeanHornbeam_Forest_07_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_07/MI_EuropeanHornbeam_Forest_07_Tileable.MI_EuropeanHornbeam_Forest_07_Tileable",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Trunk_02.MI_EuropeanHornbeam_Trunk_02",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_07/MI_EuropeanHornbeam_Forest_07_Decoration.MI_EuropeanHornbeam_Forest_07_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Forest_07.MI_Impostor_Forest_07"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_23",
+      "label": "SM_EuropeanHornbeam_Sapling_03_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18278.769564663882,
+        65900.00645426678,
+        -8735.575664889318
+      ],
+      "bounds_center_cm": [
+        -18283.275477827545,
+        65880.86537180336,
+        -8648.861220978286
+      ],
+      "bounds_extent_cm": [
+        109.80228054000327,
+        98.76389808372187,
+        106.81466110556903
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_03_PP.SM_EuropeanHornbeam_Sapling_03_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_03/MI_EuropeanHornbeam_Sapling_03_TwoSided.MI_EuropeanHornbeam_Sapling_03_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_03/MI_EuropeanHornbeam_Sapling_03_Tileable.MI_EuropeanHornbeam_Sapling_03_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_25",
+      "label": "SM_EuropeanHornbeam_Sapling_02_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18210.0,
+        65660.0,
+        -8740.0
+      ],
+      "bounds_center_cm": [
+        -18192.646255493164,
+        65647.74361801147,
+        -8642.870254516602
+      ],
+      "bounds_extent_cm": [
+        97.13980102539062,
+        88.8231201171875,
+        100.84658813476562
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_02_PP.SM_EuropeanHornbeam_Sapling_02_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_02/MI_EuropeanHornbeam_Sapling_02_TwoSided.MI_EuropeanHornbeam_Sapling_02_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_02/MI_EuropeanHornbeam_Sapling_02_Tileable.MI_EuropeanHornbeam_Sapling_02_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_28",
+      "label": "SM_EuropeanHornbeam_Sapling_01_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18096.196966615335,
+        65827.3727366367,
+        -8726.216324759433
+      ],
+      "bounds_center_cm": [
+        -18106.834341202113,
+        65788.09881765756,
+        -8621.657245485894
+      ],
+      "bounds_extent_cm": [
+        98.33007257863937,
+        153.6442915085354,
+        135.38322714949572
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_01_PP.SM_EuropeanHornbeam_Sapling_01_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_01/MI_EuropeanHornbeam_Sapling_01_TwoSided.MI_EuropeanHornbeam_Sapling_01_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_01/MI_EuropeanHornbeam_Sapling_01_Tileable.MI_EuropeanHornbeam_Sapling_01_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_30",
+      "label": "SM_EuropeanHornbeam_Sapling_05_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18600.0,
+        65780.0,
+        -8740.0
+      ],
+      "bounds_center_cm": [
+        -18594.050689697266,
+        65791.22297438353,
+        -8669.715173385304
+      ],
+      "bounds_extent_cm": [
+        61.724525451660156,
+        71.85937671938154,
+        71.76553996266011
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_05_PP.SM_EuropeanHornbeam_Sapling_05_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_05/MI_EuropeanHornbeam_Sapling_05_TwoSided.MI_EuropeanHornbeam_Sapling_05_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_05/MI_EuropeanHornbeam_Sapling_05_Tileable.MI_EuropeanHornbeam_Sapling_05_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_32",
+      "label": "SM_EuropeanHornbeam_Sapling_06_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18180.0,
+        65440.0,
+        -8730.0
+      ],
+      "bounds_center_cm": [
+        -18183.389489879013,
+        65433.897226582165,
+        -8669.02130426584
+      ],
+      "bounds_extent_cm": [
+        76.6479946836007,
+        92.4098153852683,
+        65.55056138677355
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_06_PP.SM_EuropeanHornbeam_Sapling_06_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_06/MI_EuropeanHornbeam_Sapling_06_TwoSided.MI_EuropeanHornbeam_Sapling_06_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_06/MI_EuropeanHornbeam_Sapling_06_Tileable.MI_EuropeanHornbeam_Sapling_06_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_34",
+      "label": "SM_EuropeanHornbeam_Sapling_07_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18060.0,
+        64880.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -18066.710574758876,
+        64877.42543133949,
+        -8658.628172567343
+      ],
+      "bounds_extent_cm": [
+        74.06678442504199,
+        91.0711293311033,
+        66.55598027599444
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_07_PP.SM_EuropeanHornbeam_Sapling_07_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_07/MI_EuropeanHornbeam_Sapling_07_TwoSided.MI_EuropeanHornbeam_Sapling_07_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_07/MI_EuropeanHornbeam_Sapling_07_Tileable.MI_EuropeanHornbeam_Sapling_07_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_36",
+      "label": "SM_EuropeanHornbeam_Sapling_08_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18360.0,
+        64540.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -18357.8440396148,
+        64556.020688274104,
+        -8671.4536650355
+      ],
+      "bounds_extent_cm": [
+        58.36904460834921,
+        56.85555440104508,
+        50.83215149634452
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_08_PP.SM_EuropeanHornbeam_Sapling_08_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_08/MI_EuropeanHornbeam_Sapling_08_TwoSided.MI_EuropeanHornbeam_Sapling_08_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_08/MI_EuropeanHornbeam_Sapling_08_Tileable.MI_EuropeanHornbeam_Sapling_08_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_38",
+      "label": "SM_EuropeanHornbeam_Seedling_01_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18640.0,
+        64250.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -18633.704221527365,
+        64257.898414413714,
+        -8671.086482049797
+      ],
+      "bounds_extent_cm": [
+        55.30048342002192,
+        51.64195134216425,
+        51.319924349381836
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Seedling_01_PP.SM_EuropeanHornbeam_Seedling_01_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Seedling/Seedling_01/MI_EuropeanHornbeam_Seedling_01_TwoSided.MI_EuropeanHornbeam_Seedling_01_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Seedling/Seedling_01/MI_EuropeanHornbeam_Seedling_01_Tileable.MI_EuropeanHornbeam_Seedling_01_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_48",
+      "label": "SM_EuropeanHornbeam_Sapling_03_PP2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18560.0,
+        65560.0,
+        -8740.0
+      ],
+      "bounds_center_cm": [
+        -18557.688707323094,
+        65549.71201705933,
+        -8651.711300795152
+      ],
+      "bounds_extent_cm": [
+        102.81601688929004,
+        89.83328247070312,
+        90.71049974741254
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_03_PP.SM_EuropeanHornbeam_Sapling_03_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_03/MI_EuropeanHornbeam_Sapling_03_TwoSided.MI_EuropeanHornbeam_Sapling_03_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_03/MI_EuropeanHornbeam_Sapling_03_Tileable.MI_EuropeanHornbeam_Sapling_03_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_50",
+      "label": "SM_EuropeanHornbeam_Sapling_04_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18470.0,
+        65800.0,
+        -8740.0
+      ],
+      "bounds_center_cm": [
+        -18458.20304165456,
+        65796.57680187795,
+        -8667.774791178424
+      ],
+      "bounds_extent_cm": [
+        68.21543782878143,
+        89.23516510752961,
+        75.20060439437839
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_04_PP.SM_EuropeanHornbeam_Sapling_04_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_04/MI_EuropeanHornbeam_Sapling_04_TwoSided.MI_EuropeanHornbeam_Sapling_04_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_04/MI_EuropeanHornbeam_Sapling_04_Tileable.MI_EuropeanHornbeam_Sapling_04_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_52",
+      "label": "SM_EuropeanHornbeam_Sapling_03_PP3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18690.0,
+        64390.0,
+        -8730.0
+      ],
+      "bounds_center_cm": [
+        -18689.050963890066,
+        64381.073262935635,
+        -8641.538190330766
+      ],
+      "bounds_extent_cm": [
+        104.17382655678375,
+        91.21994788634038,
+        93.6137488599652
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_03_PP.SM_EuropeanHornbeam_Sapling_03_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_03/MI_EuropeanHornbeam_Sapling_03_TwoSided.MI_EuropeanHornbeam_Sapling_03_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_03/MI_EuropeanHornbeam_Sapling_03_Tileable.MI_EuropeanHornbeam_Sapling_03_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_54",
+      "label": "SM_EuropeanHornbeam_Sapling_04_PP2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18350.0,
+        64390.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -18338.75946096869,
+        64386.57740309696,
+        -8647.686077318182
+      ],
+      "bounds_extent_cm": [
+        68.77151642378885,
+        89.23898087604903,
+        75.7062383758639
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_04_PP.SM_EuropeanHornbeam_Sapling_04_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_04/MI_EuropeanHornbeam_Sapling_04_TwoSided.MI_EuropeanHornbeam_Sapling_04_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_04/MI_EuropeanHornbeam_Sapling_04_Tileable.MI_EuropeanHornbeam_Sapling_04_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_56",
+      "label": "SM_EuropeanHornbeam_Sapling_05_PP2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18850.0,
+        64520.0,
+        -8730.0
+      ],
+      "bounds_center_cm": [
+        -18844.050689697266,
+        64531.872141804255,
+        -8659.821910433164
+      ],
+      "bounds_extent_cm": [
+        61.724525451660156,
+        72.49947771360166,
+        72.40653945677514
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_05_PP.SM_EuropeanHornbeam_Sapling_05_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_05/MI_EuropeanHornbeam_Sapling_05_TwoSided.MI_EuropeanHornbeam_Sapling_05_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_05/MI_EuropeanHornbeam_Sapling_05_Tileable.MI_EuropeanHornbeam_Sapling_05_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_58",
+      "label": "SM_EuropeanHornbeam_Sapling_06_PP2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18040.0,
+        64370.0,
+        -8710.0
+      ],
+      "bounds_center_cm": [
+        -18045.36006239561,
+        64363.89879497819,
+        -8649.16268540718
+      ],
+      "bounds_extent_cm": [
+        78.6286184147175,
+        92.42766590479005,
+        67.92978410720752
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_06_PP.SM_EuropeanHornbeam_Sapling_06_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_06/MI_EuropeanHornbeam_Sapling_06_TwoSided.MI_EuropeanHornbeam_Sapling_06_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_06/MI_EuropeanHornbeam_Sapling_06_Tileable.MI_EuropeanHornbeam_Sapling_06_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_60",
+      "label": "SM_EuropeanHornbeam_Sapling_08_PP2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18430.0,
+        64420.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -18428.220280276284,
+        64435.64642715454,
+        -8671.316541089947
+      ],
+      "bounds_extent_cm": [
+        58.73001882935205,
+        56.47397804260254,
+        50.82904141402105
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_08_PP.SM_EuropeanHornbeam_Sapling_08_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_08/MI_EuropeanHornbeam_Sapling_08_TwoSided.MI_EuropeanHornbeam_Sapling_08_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_08/MI_EuropeanHornbeam_Sapling_08_Tileable.MI_EuropeanHornbeam_Sapling_08_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_62",
+      "label": "SM_EuropeanHornbeam_Seedling_02_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -19060.0,
+        64510.0,
+        -8730.0
+      ],
+      "bounds_center_cm": [
+        -19051.565157034565,
+        64515.2849005184,
+        -8691.740830955936
+      ],
+      "bounds_extent_cm": [
+        34.75315012181818,
+        30.119325622130418,
+        39.97008033023303
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Seedling_02_PP.SM_EuropeanHornbeam_Seedling_02_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Seedling/Seedling_02/MI_EuropeanHornbeam_Seedling_02_TwoSided.MI_EuropeanHornbeam_Seedling_02_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Seedling/Seedling_02/MI_EuropeanHornbeam_Seedling_02_Tileable.MI_EuropeanHornbeam_Seedling_02_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_64",
+      "label": "SM_EuropeanHornbeam_Seedling_03_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18940.0,
+        64360.0,
+        -8730.0
+      ],
+      "bounds_center_cm": [
+        -18941.41267777067,
+        64370.97538756169,
+        -8692.466982819546
+      ],
+      "bounds_extent_cm": [
+        22.263538153165428,
+        26.48088018866838,
+        39.094035393914965
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Seedling_03_PP.SM_EuropeanHornbeam_Seedling_03_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Seedling/Seedling_03/MI_EuropeanHornbeam_Seedling_03_TwoSided.MI_EuropeanHornbeam_Seedling_03_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Seedling/Seedling_03/MI_EuropeanHornbeam_Seedling_03_Tileable.MI_EuropeanHornbeam_Seedling_03_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_66",
+      "label": "SM_EuropeanHornbeam_Seedling_05_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -19060.0,
+        64310.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -19058.86083941106,
+        64324.6492375886,
+        -8710.753408780933
+      ],
+      "bounds_extent_cm": [
+        12.717337167006917,
+        17.673495546288905,
+        9.996219850394482
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Seedling_05_PP.SM_EuropeanHornbeam_Seedling_05_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Seedling/Seedling_05/MI_EuropeanHornbeam_Seedling_05_TwoSided.MI_EuropeanHornbeam_Seedling_05_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Seedling/Seedling_05/MI_EuropeanHornbeam_Seedling_05_Tileable.MI_EuropeanHornbeam_Seedling_05_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_68",
+      "label": "SM_EuropeanHornbeam_Seedling_03_PP2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18450.0,
+        64400.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -18453.157668709067,
+        64409.8143119812,
+        -8682.252277182053
+      ],
+      "bounds_extent_cm": [
+        22.83528986978854,
+        25.31707763671875,
+        38.65257490550175
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Seedling_03_PP.SM_EuropeanHornbeam_Seedling_03_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Seedling/Seedling_03/MI_EuropeanHornbeam_Seedling_03_TwoSided.MI_EuropeanHornbeam_Seedling_03_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Seedling/Seedling_03/MI_EuropeanHornbeam_Seedling_03_Tileable.MI_EuropeanHornbeam_Seedling_03_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_71",
+      "label": "SM_EuropeanHornbeam_Forest_08_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18676.344397725767,
+        63994.349152942785,
+        -8713.223274477803
+      ],
+      "bounds_center_cm": [
+        -18802.64434799074,
+        64165.09295583924,
+        -8186.206198702948
+      ],
+      "bounds_extent_cm": [
+        794.2198034041539,
+        790.2834987660826,
+        756.3240395732469
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Forest_08_PP.SM_EuropeanHornbeam_Forest_08_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_08/MI_EuropeanHornbeam_Forest_08_TwoSided.MI_EuropeanHornbeam_Forest_08_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_08/MI_EuropeanHornbeam_Forest_08_Tileable.MI_EuropeanHornbeam_Forest_08_Tileable",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_08/MI_EuropeanHornbeam_Forest_08_Decoration.MI_EuropeanHornbeam_Forest_08_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Forest_08.MI_Impostor_Forest_08"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_73",
+      "label": "SM_EuropeanHornbeam_Sapling_03_PP4",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -19040.0,
+        64160.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -19036.32847213745,
+        64153.862726547166,
+        -8631.371941057983
+      ],
+      "bounds_extent_cm": [
+        101.45416259765625,
+        93.91670107661776,
+        93.27355290839114
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Sapling_03_PP.SM_EuropeanHornbeam_Sapling_03_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_03/MI_EuropeanHornbeam_Sapling_03_TwoSided.MI_EuropeanHornbeam_Sapling_03_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Sapling/Sapling_03/MI_EuropeanHornbeam_Sapling_03_Tileable.MI_EuropeanHornbeam_Sapling_03_Tileable"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_75",
+      "label": "SM_EuropeanHornbeam_Forest_07_PP2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -19180.0,
+        64120.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -19134.92035674444,
+        64072.384681716794,
+        -8100.222475591858
+      ],
+      "bounds_extent_cm": [
+        448.50382702373463,
+        478.0965250593217,
+        642.9792748901618
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Forest_07_PP.SM_EuropeanHornbeam_Forest_07_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_07/MI_EuropeanHornbeam_Forest_07_TwoSided.MI_EuropeanHornbeam_Forest_07_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_07/MI_EuropeanHornbeam_Forest_07_Tileable.MI_EuropeanHornbeam_Forest_07_Tileable",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Trunk_02.MI_EuropeanHornbeam_Trunk_02",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_07/MI_EuropeanHornbeam_Forest_07_Decoration.MI_EuropeanHornbeam_Forest_07_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Forest_07.MI_Impostor_Forest_07"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_77",
+      "label": "SM_EuropeanHornbeam_Forest_05_PP",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18170.0,
+        64210.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -18261.688925154616,
+        64271.09909458883,
+        -8084.486212128424
+      ],
+      "bounds_extent_cm": [
+        327.4245597310219,
+        332.79129578728316,
+        684.8421615284733
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Forest_05_PP.SM_EuropeanHornbeam_Forest_05_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_05/MI_EuropeanHornbeam_Forest_05_TwoSided.MI_EuropeanHornbeam_Forest_05_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_05/MI_EuropeanHornbeam_Forest_05_Tileable.MI_EuropeanHornbeam_Forest_05_Tileable",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Trunk_03.MI_EuropeanHornbeam_Trunk_03",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Forest/Forest_05/MI_EuropeanHornbeam_Forest_05_Decoration.MI_EuropeanHornbeam_Forest_05_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Forest_05.MI_Impostor_Forest_05"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_79",
+      "label": "SM_EuropeanHornbeam_Field_01_PP2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -18180.0,
+        66080.0,
+        -8710.0
+      ],
+      "bounds_center_cm": [
+        -18325.89728257645,
+        65946.5279551151,
+        -7902.747617056986
+      ],
+      "bounds_extent_cm": [
+        780.765149942039,
+        743.9864919560205,
+        1004.7820170946939
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/EuropeanHornbeam/Geometry/PivotPainter/SM_EuropeanHornbeam_Field_01_PP.SM_EuropeanHornbeam_Field_01_PP",
+          "materials": [
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_01/MI_EuropeanHornbeam_Field_01_TwoSided.MI_EuropeanHornbeam_Field_01_TwoSided",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_01/MI_EuropeanHornbeam_Field_01_Tileable.MI_EuropeanHornbeam_Field_01_Tileable",
+            "/Game/EuropeanHornbeam/Materials/SimpleWind/MI_EuropeanHornbeam_Trunk_01.MI_EuropeanHornbeam_Trunk_01",
+            "/Game/EuropeanHornbeam/Materials/PivotPainter/Field/Field_01/MI_EuropeanHornbeam_Field_01_Decoration.MI_EuropeanHornbeam_Field_01_Decoration",
+            "/Game/EuropeanHornbeam/Materials/Impostor/MI_Impostor_Field_01.MI_Impostor_Field_01"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_81",
+      "label": "S_Lemongrass_sktne_Var5_lod1",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -19060.0,
+        65200.0,
+        -8710.0
+      ],
+      "bounds_center_cm": [
+        -19050.694407865107,
+        65198.1878280818,
+        -8678.22937401356
+      ],
+      "bounds_extent_cm": [
+        32.582518291423185,
+        33.07076658947335,
+        39.98352575073477
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Plants/Lemongrass_sktne/S_Lemongrass_sktne_Var5_lod1.S_Lemongrass_sktne_Var5_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_2K.MI_Lemongrass_sktne_2K",
+            "/Game/Megascans/3D_Plants/Lemongrass_sktne/MI_Lemongrass_sktne_Billboard_2K.MI_Lemongrass_sktne_Billboard_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_84",
+      "label": "S_Wild_Grass_sjliZ_Var2_lod1",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -19090.0,
+        65590.0,
+        -8710.0
+      ],
+      "bounds_center_cm": [
+        -19093.981402605463,
+        65591.52794819551,
+        -8632.635965004853
+      ],
+      "bounds_extent_cm": [
+        74.54749230777452,
+        65.35161749345207,
+        84.9223056024075
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/S_Wild_Grass_sjliZ_Var2_lod1.S_Wild_Grass_sjliZ_Var2_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_2K.MI_Wild_Grass_sjliZ_2K",
+            "/Game/Megascans/3D_Plants/Wild_Grass_sjliZ/MI_Wild_Grass_sjliZ_Billboard_2K.MI_Wild_Grass_sjliZ_Billboard_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_96",
+      "label": "S_Field_Poppy_vmcobd0ja_Var11_lod1",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -19450.0,
+        65440.0,
+        -8710.0
+      ],
+      "bounds_center_cm": [
+        -19456.64851746478,
+        65440.415290407465,
+        -8690.177956245647
+      ],
+      "bounds_extent_cm": [
+        21.780114672274067,
+        21.06938418093341,
+        22.465521723865095
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/S_Field_Poppy_vmcobd0ja_Var11_lod1.S_Field_Poppy_vmcobd0ja_Var11_lod1",
+          "materials": [
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_2K.MI_Field_Poppy_vmcobd0ja_2K",
+            "/Game/Megascans/3D_Plants/Field_Poppy_vmcobd0ja/MI_Field_Poppy_vmcobd0ja_Billboard_2K.MI_Field_Poppy_vmcobd0ja_Billboard_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_8",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -9058.419466010633,
+        55766.70824295982,
+        -8963.739352799916
+      ],
+      "bounds_center_cm": [
+        -9201.390719396662,
+        55876.983622803964,
+        -5414.70759697734
+      ],
+      "bounds_extent_cm": [
+        2101.4966013600424,
+        1123.7054727651266,
+        3643.579571125172
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/Surfaces/Ancient_Temple_Wall_smfoebvp/MI_Ancient_Temple_Wall_smfoebvp_2K.MI_Ancient_Temple_Wall_smfoebvp_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_15",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -10534.826882667268,
+        67092.21861899002,
+        -9060.26122694746
+      ],
+      "bounds_center_cm": [
+        -10804.552348875297,
+        67965.83219933696,
+        -6708.289768754315
+      ],
+      "bounds_extent_cm": [
+        1180.0408089940902,
+        1614.321291934859,
+        2682.7511275205975
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/MI_Japanese_Gravestone_ueqiah1fa_2K.MI_Japanese_Gravestone_ueqiah1fa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_10",
+      "label": "S_Roman_Arch_thedegyfa_lod3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -1020.9594219725113,
+        65444.89083410341,
+        -5114.093412128124
+      ],
+      "bounds_center_cm": [
+        197.30322590025753,
+        66664.95925209262,
+        -1430.430667557328
+      ],
+      "bounds_extent_cm": [
+        5219.244843857028,
+        12341.088088887613,
+        9297.258158844397
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Roman_Arch_thedegyfa/S_Roman_Arch_thedegyfa_lod3.S_Roman_Arch_thedegyfa_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Roman_Arch_thedegyfa/MI_Roman_Arch_thedegyfa_2K.MI_Roman_Arch_thedegyfa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_17",
+      "label": "S_Mossy_Chapel_Stone_scjgV_lod3_Var1",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -3062.1660303871613,
+        69097.95773040237,
+        -6242.704833112704
+      ],
+      "bounds_center_cm": [
+        -3359.2926873542747,
+        69192.01826670051,
+        -5809.59560673111
+      ],
+      "bounds_extent_cm": [
+        1032.4896843446459,
+        1059.6919384031644,
+        980.0433125033178
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/S_Mossy_Chapel_Stone_scjgV_lod3_Var1.S_Mossy_Chapel_Stone_scjgV_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/MI_Mossy_Chapel_Stone_scjgV_2K.MI_Mossy_Chapel_Stone_scjgV_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_19",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -9493.631519,
+        59908.322097,
+        -9502.979638
+      ],
+      "bounds_center_cm": [
+        -9573.823356027719,
+        59047.81864084869,
+        -7897.003020533237
+      ],
+      "bounds_extent_cm": [
+        717.4274536888915,
+        1304.113379494207,
+        1876.6381553549286
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/MI_Japanese_Gravestone_ueqiah1fa_2K.MI_Japanese_Gravestone_ueqiah1fa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_21",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var4",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11834.127465198193,
+        68843.04526103968,
+        -7956.378100199991
+      ],
+      "bounds_center_cm": [
+        -12034.028794378683,
+        68895.579098387,
+        -9768.37630084746
+      ],
+      "bounds_extent_cm": [
+        948.5093488627099,
+        617.4569377126463,
+        1936.376573860242
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/MI_Japanese_Gravestone_ueqiah1fa_2K.MI_Japanese_Gravestone_ueqiah1fa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_26",
+      "label": "S_Nordic_Forest_Cluster_Medium_xisgcic_lod3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11397.172477027743,
+        63688.637562128104,
+        -8591.438607636981
+      ],
+      "bounds_center_cm": [
+        -11399.15334029096,
+        63688.20690420302,
+        -8537.706460479689
+      ],
+      "bounds_extent_cm": [
+        109.4123672355945,
+        81.85905790896504,
+        59.5897379244052
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Cluster_Medium_xisgcic/S_Nordic_Forest_Cluster_Medium_xisgcic_lod3.S_Nordic_Forest_Cluster_Medium_xisgcic_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Cluster_Medium_xisgcic/MI_Nordic_Forest_Cluster_Medium_xisgcic_2K.MI_Nordic_Forest_Cluster_Medium_xisgcic_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_29",
+      "label": "S_Nordic_Forest_Rock_Small_xiemca1_lod3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11670.0,
+        63630.0,
+        -8600.0
+      ],
+      "bounds_center_cm": [
+        -11670.154208661088,
+        63629.45468177258,
+        -8583.843725072033
+      ],
+      "bounds_extent_cm": [
+        57.83432762430493,
+        40.76479416386428,
+        26.38786926773537
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Rock_Small_xiemca1/S_Nordic_Forest_Rock_Small_xiemca1_lod3.S_Nordic_Forest_Rock_Small_xiemca1_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Rock_Small_xiemca1/MI_Nordic_Forest_Rock_Small_xiemca1_2K.MI_Nordic_Forest_Rock_Small_xiemca1_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_33",
+      "label": "S_Nordic_Forest_Rock_Small_xjiifd1_lod3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11560.0,
+        63690.0,
+        -8590.0
+      ],
+      "bounds_center_cm": [
+        -11560.731147195016,
+        63690.00609958744,
+        -8573.464968551363
+      ],
+      "bounds_extent_cm": [
+        41.659158239126555,
+        35.12721732335194,
+        19.999510370687858
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Rock_Small_xjiifd1/S_Nordic_Forest_Rock_Small_xjiifd1_lod3.S_Nordic_Forest_Rock_Small_xjiifd1_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Rock_Small_xjiifd1/MI_Nordic_Forest_Rock_Small_xjiifd1_2K.MI_Nordic_Forest_Rock_Small_xjiifd1_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_37",
+      "label": "S_Ancient_Temple_Stairs_tj1qafrfa_lod3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11550.0,
+        63340.0,
+        -8600.0
+      ],
+      "bounds_center_cm": [
+        -11549.225767863754,
+        63340.04260253906,
+        -8557.591080954931
+      ],
+      "bounds_extent_cm": [
+        96.82405511538309,
+        68.93318176269531,
+        48.45986394175634
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/S_Ancient_Temple_Stairs_tj1qafrfa_lod3.S_Ancient_Temple_Stairs_tj1qafrfa_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/MI_Ancient_Temple_Stairs_tj1qafrfa_2K.MI_Ancient_Temple_Stairs_tj1qafrfa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_39",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var5",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        1931.5805340000006,
+        55766.708243,
+        -8963.739353
+      ],
+      "bounds_center_cm": [
+        1788.6092986169351,
+        55876.98362653466,
+        -5414.707621701777
+      ],
+      "bounds_extent_cm": [
+        2101.496585562997,
+        1123.7054765706998,
+        3643.579536464533
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/MI_Ancient_Temple_Stairs_tj1qafrfa_2K.MI_Ancient_Temple_Stairs_tj1qafrfa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_41",
+      "label": "S_Mossy_Boulder_xicnaet_lod3_Var1",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11780.0,
+        63900.0,
+        -8600.0
+      ],
+      "bounds_center_cm": [
+        -11782.86967747235,
+        63899.328956604004,
+        -8540.794348099718
+      ],
+      "bounds_extent_cm": [
+        154.41481753464905,
+        100.19786071777344,
+        83.47377421669444
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Boulder_xicnaet/S_Mossy_Boulder_xicnaet_lod3_Var1.S_Mossy_Boulder_xicnaet_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Boulder_xicnaet/MI_Mossy_Boulder_xicnaet_2K.MI_Mossy_Boulder_xicnaet_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_43",
+      "label": "S_Mossy_Chapel_Stone_scjgV_lod3_Var2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11340.0,
+        63000.0,
+        -8590.0
+      ],
+      "bounds_center_cm": [
+        -11340.39099894278,
+        63000.187425815166,
+        -8577.211668627355
+      ],
+      "bounds_extent_cm": [
+        18.080990600508812,
+        23.01502013449499,
+        13.906753540679347
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/S_Mossy_Chapel_Stone_scjgV_lod3_Var1.S_Mossy_Chapel_Stone_scjgV_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/MI_Mossy_Chapel_Stone_scjgV_2K.MI_Mossy_Chapel_Stone_scjgV_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_45",
+      "label": "S_Mossy_Chapel_Stone_scjgV_lod3_Var3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11520.0,
+        62970.0,
+        -8600.0
+      ],
+      "bounds_center_cm": [
+        -11520.088649240013,
+        62970.1358923583,
+        -8590.35048176482
+      ],
+      "bounds_extent_cm": [
+        20.186172803032605,
+        20.67045210878132,
+        12.34948717424777
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/S_Mossy_Chapel_Stone_scjgV_lod3_Var2.S_Mossy_Chapel_Stone_scjgV_lod3_Var2",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/MI_Mossy_Chapel_Stone_scjgV_2K.MI_Mossy_Chapel_Stone_scjgV_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_47",
+      "label": "S_Mossy_Chapel_Stone_scjgV_lod3_Var4",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11660.0,
+        63180.0,
+        -8600.0
+      ],
+      "bounds_center_cm": [
+        -11660.592627557819,
+        63180.19758448094,
+        -8587.572383971805
+      ],
+      "bounds_extent_cm": [
+        16.003158590685416,
+        14.605937776679639,
+        14.434206903408267
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/S_Mossy_Chapel_Stone_scjgV_lod3_Var3.S_Mossy_Chapel_Stone_scjgV_lod3_Var3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/MI_Mossy_Chapel_Stone_scjgV_2K.MI_Mossy_Chapel_Stone_scjgV_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_51",
+      "label": "S_Mossy_Chapel_Stone_scjgV_lod3_Var5",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11360.0,
+        63190.0,
+        -8590.0
+      ],
+      "bounds_center_cm": [
+        -11359.539652456886,
+        63192.338076694024,
+        -8581.332074298522
+      ],
+      "bounds_extent_cm": [
+        17.361144047914422,
+        17.175857311660366,
+        9.190067463743617
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/S_Mossy_Chapel_Stone_scjgV_lod3_Var4.S_Mossy_Chapel_Stone_scjgV_lod3_Var4",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/MI_Mossy_Chapel_Stone_scjgV_2K.MI_Mossy_Chapel_Stone_scjgV_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_55",
+      "label": "S_Mossy_Forest_Boulder_wc1kebr_lod3_Var1",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11380.0,
+        63570.0,
+        -8590.0
+      ],
+      "bounds_center_cm": [
+        -11381.096144188989,
+        63569.52371727352,
+        -8561.07213458459
+      ],
+      "bounds_extent_cm": [
+        72.15436041126668,
+        43.947632779534615,
+        32.627987425345054
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Boulder_wc1kebr/S_Mossy_Forest_Boulder_wc1kebr_lod3_Var1.S_Mossy_Forest_Boulder_wc1kebr_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Boulder_wc1kebr/MI_Mossy_Forest_Boulder_wc1kebr_2K.MI_Mossy_Forest_Boulder_wc1kebr_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_59",
+      "label": "S_Mossy_Forest_Rock_villdcuaw_lod3_Var1",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -9880.0,
+        61180.0,
+        -8650.0
+      ],
+      "bounds_center_cm": [
+        -9882.780779217686,
+        61180.13213348389,
+        -8590.01299628469
+      ],
+      "bounds_extent_cm": [
+        210.3054293007608,
+        114.97322082519531,
+        73.23480224762352
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/S_Mossy_Forest_Rock_villdcuaw_lod3_Var1.S_Mossy_Forest_Rock_villdcuaw_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/MI_Mossy_Forest_Rock_villdcuaw_2K.MI_Mossy_Forest_Rock_villdcuaw_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_63",
+      "label": "S_Mossy_Rock_xieiegj_lod3_Var1",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -9900.0,
+        63910.0,
+        -8552.106255236236
+      ],
+      "bounds_center_cm": [
+        -9902.311147708615,
+        63910.50584566707,
+        -8521.515309328417
+      ],
+      "bounds_extent_cm": [
+        81.12327255727905,
+        62.54966811584745,
+        47.249847351724384
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Rock_xieiegj/S_Mossy_Rock_xieiegj_lod3_Var1.S_Mossy_Rock_xieiegj_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Rock_xieiegj/MI_Mossy_Rock_xieiegj_2K.MI_Mossy_Rock_xieiegj_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_4",
+      "label": "S_Roman_Arch_thedegyfa_lod4",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -1240.959422,
+        59924.89083399999,
+        -5664.093412
+      ],
+      "bounds_center_cm": [
+        -2391.6224359647495,
+        57236.021095024,
+        -2837.7784229187528
+      ],
+      "bounds_extent_cm": [
+        5597.747920899709,
+        11562.820479346032,
+        10777.81785394508
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Roman_Arch_thedegyfa/S_Roman_Arch_thedegyfa_lod3.S_Roman_Arch_thedegyfa_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Roman_Arch_thedegyfa/MI_Roman_Arch_thedegyfa_2K.MI_Roman_Arch_thedegyfa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GroupActor_0",
+      "label": "GroupActor0",
+      "class": "GroupActor",
+      "location_cm": [
+        -1286.4111435535865,
+        62339.6239783291,
+        -2837.7784229187528
+      ],
+      "bounds_center_cm": [
+        -1286.411143553586,
+        62339.6239783291,
+        -2837.7784229187528
+      ],
+      "bounds_extent_cm": [
+        6702.959213310873,
+        16666.423362651134,
+        10777.81785394508
+      ],
+      "meshes": []
+    },
+    {
+      "name": "WaterBodyLake_0",
+      "label": "WaterBodyLake",
+      "class": "WaterBodyLake",
+      "location_cm": [
+        4528.266169939734,
+        62434.336415385034,
+        -6494.836986729877
+      ],
+      "bounds_center_cm": [
+        9698.581351080189,
+        64186.41182178134,
+        -6889.140539263376
+      ],
+      "bounds_extent_cm": [
+        5170.3324216197225,
+        8336.594145680836,
+        394.303625200876
+      ],
+      "meshes": [
+        {
+          "component": "WaterInfoMeshComponent",
+          "mesh": "/Game/landscape_text.landscape_text:PersistentLevel.WaterBodyLake_0.WaterInfoMesh_0",
+          "materials": [
+            "/Engine/Transient.WaterInfoMID_0"
+          ]
+        },
+        {
+          "component": "DilatedWaterInfoMeshComponent",
+          "mesh": "/Game/landscape_text.landscape_text:PersistentLevel.WaterBodyLake_0.WaterInfoDilatedMesh_0",
+          "materials": [
+            "/Engine/Transient.WaterInfoMID_0"
+          ]
+        },
+        {
+          "component": "LakeMeshComponent",
+          "mesh": "/Water/Meshes/LakeMesh.LakeMesh",
+          "materials": [
+            "/Engine/Transient.WaterMID_0"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Landscape_WaterBrushManager_0",
+      "label": "Landscape_WaterBrushManager",
+      "class": "WaterBrushManager",
+      "location_cm": [
+        50.0,
+        50.0,
+        -5591.015625
+      ],
+      "bounds_center_cm": [
+        50.0,
+        50.0,
+        -5516.015625
+      ],
+      "bounds_extent_cm": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "meshes": []
+    },
+    {
+      "name": "WaterZone_0",
+      "label": "WaterZone",
+      "class": "WaterZone",
+      "location_cm": [
+        50.0,
+        50.0,
+        -5591.015625
+      ],
+      "bounds_center_cm": [
+        50.0,
+        50.0,
+        -5591.015625
+      ],
+      "bounds_extent_cm": [
+        4105600.0,
+        4105600.0,
+        105600.0
+      ],
+      "meshes": []
+    },
+    {
+      "name": "WaterBodyRiver_0",
+      "label": "WaterBodyRiver",
+      "class": "WaterBodyRiver",
+      "location_cm": [
+        -10111.476402260947,
+        61858.90430302401,
+        -8544.421213245074
+      ],
+      "bounds_center_cm": [
+        -3011.41078757618,
+        60702.92585757666,
+        -7623.210352039019
+      ],
+      "bounds_extent_cm": [
+        12708.92340476958,
+        13019.95901549053,
+        1290.1553497314453
+      ],
+      "meshes": [
+        {
+          "component": "WaterInfoMeshComponent",
+          "mesh": "/Game/landscape_text.landscape_text:PersistentLevel.WaterBodyRiver_0.WaterInfoMesh_0",
+          "materials": [
+            "/Engine/Transient.WaterInfoMID_1"
+          ]
+        },
+        {
+          "component": "DilatedWaterInfoMeshComponent",
+          "mesh": "/Game/landscape_text.landscape_text:PersistentLevel.WaterBodyRiver_0.WaterInfoDilatedMesh_0",
+          "materials": [
+            "/Engine/Transient.WaterInfoMID_1"
+          ]
+        },
+        {
+          "component": "SplineMeshComponent_0",
+          "mesh": "/Water/Meshes/RiverMesh.RiverMesh",
+          "materials": [
+            "/Engine/Transient.WaterMID_1"
+          ]
+        },
+        {
+          "component": "SplineMeshComponent_1",
+          "mesh": "/Water/Meshes/RiverMesh.RiverMesh",
+          "materials": [
+            "/Engine/Transient.WaterMID_1"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_13",
+      "label": "S_Mossy_Forest_Rock_villdcuaw_lod3_Var2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -9811.92581383918,
+        60365.926723896526,
+        -8737.19403119095
+      ],
+      "bounds_center_cm": [
+        -9811.918817588221,
+        60365.61284558315,
+        -8677.143283997324
+      ],
+      "bounds_extent_cm": [
+        207.5934066988757,
+        115.47871568887058,
+        64.51960554571997
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/S_Mossy_Forest_Rock_villdcuaw_lod3_Var1.S_Mossy_Forest_Rock_villdcuaw_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/MI_Mossy_Forest_Rock_villdcuaw_2K.MI_Mossy_Forest_Rock_villdcuaw_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_22",
+      "label": "S_Mossy_Forest_Rock_villdcuaw_lod3_Var3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11070.0,
+        63010.0,
+        -8660.0
+      ],
+      "bounds_center_cm": [
+        -11072.045266921725,
+        63011.88867071308,
+        -8600.01299629743
+      ],
+      "bounds_extent_cm": [
+        235.00666770992757,
+        223.25632081230287,
+        73.23480318403745
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/S_Mossy_Forest_Rock_villdcuaw_lod3_Var1.S_Mossy_Forest_Rock_villdcuaw_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/MI_Mossy_Forest_Rock_villdcuaw_2K.MI_Mossy_Forest_Rock_villdcuaw_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_24",
+      "label": "S_Mossy_Forest_Rock_villdcuaw_lod3_Var4",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -10187.36937352073,
+        59463.65740585164,
+        -8692.860481022215
+      ],
+      "bounds_center_cm": [
+        -10187.297211541565,
+        59464.214322808664,
+        -8632.811538956534
+      ],
+      "bounds_extent_cm": [
+        237.24996945649036,
+        203.84203605686344,
+        65.1759089895204
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/S_Mossy_Forest_Rock_villdcuaw_lod3_Var1.S_Mossy_Forest_Rock_villdcuaw_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/MI_Mossy_Forest_Rock_villdcuaw_2K.MI_Mossy_Forest_Rock_villdcuaw_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_27",
+      "label": "S_Ancient_Temple_Stairs_tj1qafrfa_lod4",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11033.857164946674,
+        66761.00671551972,
+        -8432.685554927346
+      ],
+      "bounds_center_cm": [
+        -11031.425143808616,
+        66758.7487800467,
+        -8390.399568294279
+      ],
+      "bounds_extent_cm": [
+        95.2192752660485,
+        71.36732699617278,
+        48.46164142250018
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/S_Ancient_Temple_Stairs_tj1qafrfa_lod3.S_Ancient_Temple_Stairs_tj1qafrfa_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/MI_Ancient_Temple_Stairs_tj1qafrfa_2K.MI_Ancient_Temple_Stairs_tj1qafrfa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_35",
+      "label": "S_Ancient_Temple_Stairs_tj1qafrfa_lod5",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -3702.7131551455923,
+        63854.775398242324,
+        -7856.249521812058
+      ],
+      "bounds_center_cm": [
+        -3661.2943033010747,
+        63886.92639203692,
+        -7314.638799675768
+      ],
+      "bounds_extent_cm": [
+        1080.9372416169676,
+        1227.6090838931123,
+        652.7026010811178
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/S_Ancient_Temple_Stairs_tj1qafrfa_lod3.S_Ancient_Temple_Stairs_tj1qafrfa_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/MI_Ancient_Temple_Stairs_tj1qafrfa_2K.MI_Ancient_Temple_Stairs_tj1qafrfa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_40",
+      "label": "S_Mossy_Forest_Rock_villdcuaw_lod3_Var5",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11070.0,
+        60940.0,
+        -8680.0
+      ],
+      "bounds_center_cm": [
+        -11072.045266921725,
+        60941.88867071308,
+        -8620.01299629743
+      ],
+      "bounds_extent_cm": [
+        235.00666770992757,
+        223.25632081230287,
+        73.23480318403745
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/S_Mossy_Forest_Rock_villdcuaw_lod3_Var1.S_Mossy_Forest_Rock_villdcuaw_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/MI_Mossy_Forest_Rock_villdcuaw_2K.MI_Mossy_Forest_Rock_villdcuaw_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_42",
+      "label": "S_Mossy_Forest_Rock_villdcuaw_lod3_Var6",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11190.0,
+        61150.0,
+        -8720.0
+      ],
+      "bounds_center_cm": [
+        -11191.504820718992,
+        61147.65784107131,
+        -8660.01299629743
+      ],
+      "bounds_extent_cm": [
+        204.72244577463243,
+        239.61645490965748,
+        73.23480318403745
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/S_Mossy_Forest_Rock_villdcuaw_lod3_Var1.S_Mossy_Forest_Rock_villdcuaw_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Rock_villdcuaw/MI_Mossy_Forest_Rock_villdcuaw_2K.MI_Mossy_Forest_Rock_villdcuaw_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_46",
+      "label": "S_Stone_Pillar_sehwz_lod3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -10166.263624732399,
+        57979.34277120247,
+        -8613.820544988448
+      ],
+      "bounds_center_cm": [
+        -10140.039914783965,
+        58021.87832874262,
+        -8032.201777750124
+      ],
+      "bounds_extent_cm": [
+        528.0345459757209,
+        539.5540662667263,
+        688.2128474512415
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Stone_Pillar_sehwz/S_Stone_Pillar_sehwz_lod3.S_Stone_Pillar_sehwz_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Rock_Small_xjiifd1/MI_Nordic_Forest_Rock_Small_xjiifd1_2K.MI_Nordic_Forest_Rock_Small_xjiifd1_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_49",
+      "label": "S_Stone_Pillar_sehwz_lod4",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -3168.170937905077,
+        72810.71300263524,
+        -8545.0005392654
+      ],
+      "bounds_center_cm": [
+        -2767.6883579027235,
+        72077.08133044912,
+        -5219.692777009212
+      ],
+      "bounds_extent_cm": [
+        1644.8531381525581,
+        1769.9344634086883,
+        3951.7474138332723
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Stone_Pillar_sehwz/S_Stone_Pillar_sehwz_lod3.S_Stone_Pillar_sehwz_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Rock_Small_xiemca1/MI_Nordic_Forest_Rock_Small_xiemca1_2K.MI_Nordic_Forest_Rock_Small_xiemca1_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_53",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var6",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -6719.327874216124,
+        74999.82225234329,
+        -12189.397586237772
+      ],
+      "bounds_center_cm": [
+        -8369.562387128191,
+        76095.43585261512,
+        -6796.66157804744
+      ],
+      "bounds_extent_cm": [
+        5811.806776356945,
+        2781.8262742175866,
+        6919.676328397456
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/MI_Ancient_Temple_Stairs_tj1qafrfa_2K.MI_Ancient_Temple_Stairs_tj1qafrfa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_57",
+      "label": "S_Nordic_Forest_Cluster_Medium_xisgcic_lod5",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -10601.382314,
+        57514.47503,
+        -8594.649866
+      ],
+      "bounds_center_cm": [
+        -10604.089301831968,
+        57517.38476370688,
+        -8467.267891725056
+      ],
+      "bounds_extent_cm": [
+        257.39553066496774,
+        196.17972800773714,
+        140.42148642309076
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Cluster_Medium_xisgcic/S_Nordic_Forest_Cluster_Medium_xisgcic_lod3.S_Nordic_Forest_Cluster_Medium_xisgcic_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Nordic/Nordic_Forest_Cluster_Medium_xisgcic/MI_Nordic_Forest_Cluster_Medium_xisgcic_2K.MI_Nordic_Forest_Cluster_Medium_xisgcic_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_65",
+      "label": "S_Mossy_Chapel_Stone_scjgV_lod3_Var6",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -2059.1406632333164,
+        57811.91023265523,
+        -3928.0732396668573
+      ],
+      "bounds_center_cm": [
+        -2397.859940117881,
+        57844.45026650092,
+        -3632.894878793196
+      ],
+      "bounds_extent_cm": [
+        699.4712231788899,
+        831.0056859681354,
+        701.8709489883834
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/S_Mossy_Chapel_Stone_scjgV_lod3_Var1.S_Mossy_Chapel_Stone_scjgV_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/MI_Mossy_Chapel_Stone_scjgV_2K.MI_Mossy_Chapel_Stone_scjgV_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_69",
+      "label": "S_Mossy_Chapel_Stone_scjgV_lod3_Var7",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -1183.7473329468376,
+        61187.57761183682,
+        -2927.2424115102513
+      ],
+      "bounds_center_cm": [
+        -1194.4234216934158,
+        61190.175752302275,
+        -2877.404170185381
+      ],
+      "bounds_extent_cm": [
+        117.25168251296009,
+        112.04259770610224,
+        88.89614101884536
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/S_Mossy_Chapel_Stone_scjgV_lod3_Var2.S_Mossy_Chapel_Stone_scjgV_lod3_Var2",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/MI_Mossy_Chapel_Stone_scjgV_2K.MI_Mossy_Chapel_Stone_scjgV_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_72",
+      "label": "S_Mossy_Chapel_Stone_scjgV_lod3_Var8",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        280.18080698825906,
+        59063.87188162069,
+        -2026.1539410983505
+      ],
+      "bounds_center_cm": [
+        209.00500230749546,
+        58929.559977326084,
+        -1675.694617565311
+      ],
+      "bounds_extent_cm": [
+        388.29544065748115,
+        466.93029812530585,
+        553.4711668123937
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/S_Mossy_Chapel_Stone_scjgV_lod3_Var3.S_Mossy_Chapel_Stone_scjgV_lod3_Var3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/MI_Mossy_Chapel_Stone_scjgV_2K.MI_Mossy_Chapel_Stone_scjgV_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_76",
+      "label": "S_Mossy_Chapel_Stone_scjgV_lod3_Var9",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        1746.2480186996872,
+        68015.5543124136,
+        -1578.6293945508824
+      ],
+      "bounds_center_cm": [
+        1727.6234442539228,
+        68042.39321307286,
+        -1517.263456946976
+      ],
+      "bounds_extent_cm": [
+        228.70584411741652,
+        283.6579158898094,
+        195.6353174592732
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/S_Mossy_Chapel_Stone_scjgV_lod3_Var4.S_Mossy_Chapel_Stone_scjgV_lod3_Var4",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Chapel_Stone_scjgV/MI_Mossy_Chapel_Stone_scjgV_2K.MI_Mossy_Chapel_Stone_scjgV_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_78",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var7",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -6364.826883,
+        71822.218619,
+        -10531.419350585405
+      ],
+      "bounds_center_cm": [
+        -6035.926257501707,
+        74734.14082402489,
+        -2298.122560770493
+      ],
+      "bounds_extent_cm": [
+        2664.9466357645542,
+        5156.67845148647,
+        9185.979091477024
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/MI_Japanese_Gravestone_ueqiah1fa_2K.MI_Japanese_Gravestone_ueqiah1fa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_80",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var8",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -1887.5827021195528,
+        59238.14789161246,
+        -6599.785573515699
+      ],
+      "bounds_center_cm": [
+        -1789.5775146747483,
+        58826.6789700244,
+        -5884.41416697412
+      ],
+      "bounds_extent_cm": [
+        1147.528936117128,
+        1291.6941189702993,
+        1129.5909029032518
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/MI_Japanese_Gravestone_ueqiah1fa_2K.MI_Japanese_Gravestone_ueqiah1fa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_83",
+      "label": "S_Mossy_Forest_Boulder_wc1kedt_lod3_Var1",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -1647.2211095828861,
+        67984.15881630608,
+        -4963.840816996026
+      ],
+      "bounds_center_cm": [
+        -1696.670632581116,
+        67657.62790873033,
+        -4691.8185514783
+      ],
+      "bounds_extent_cm": [
+        962.9154030968643,
+        968.2300466826418,
+        995.4339208723668
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/S_Mossy_Forest_Boulder_wc1kedt_lod3_Var1.S_Mossy_Forest_Boulder_wc1kedt_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/MI_Mossy_Forest_Boulder_wc1kedt_2K.MI_Mossy_Forest_Boulder_wc1kedt_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_85",
+      "label": "S_Mossy_Forest_Boulder_wc1kedt_lod3_Var2",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        1562.77889,
+        59124.158815999996,
+        -5653.840817
+      ],
+      "bounds_center_cm": [
+        1510.5236762437708,
+        59347.30842258671,
+        -5264.080131872309
+      ],
+      "bounds_extent_cm": [
+        1023.2300069512289,
+        1061.484331116917,
+        975.5849225427528
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/S_Mossy_Forest_Boulder_wc1kedt_lod3_Var1.S_Mossy_Forest_Boulder_wc1kedt_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/MI_Mossy_Forest_Boulder_wc1kedt_2K.MI_Mossy_Forest_Boulder_wc1kedt_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_89",
+      "label": "S_Mossy_Forest_Boulder_wc1kedt_lod3_Var3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -11150.0,
+        65110.0,
+        -8450.0
+      ],
+      "bounds_center_cm": [
+        -11149.984756469727,
+        65108.829494390375,
+        -8427.207140582652
+      ],
+      "bounds_extent_cm": [
+        53.83660888671875,
+        59.80097020510584,
+        29.083499298671086
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/S_Mossy_Forest_Boulder_wc1kedt_lod3_Var1.S_Mossy_Forest_Boulder_wc1kedt_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/MI_Mossy_Forest_Boulder_wc1kedt_2K.MI_Mossy_Forest_Boulder_wc1kedt_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_91",
+      "label": "S_Mossy_Forest_Boulder_wc1kedt_lod3_Var4",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -1407.349232011522,
+        61018.500680352496,
+        -2906.4334886610077
+      ],
+      "bounds_center_cm": [
+        -1276.2284257084884,
+        60997.09084812735,
+        -3029.473661637128
+      ],
+      "bounds_extent_cm": [
+        562.8998274925937,
+        623.9752029725278,
+        602.2785583692053
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/S_Mossy_Forest_Boulder_wc1kedt_lod3_Var1.S_Mossy_Forest_Boulder_wc1kedt_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/MI_Mossy_Forest_Boulder_wc1kedt_2K.MI_Mossy_Forest_Boulder_wc1kedt_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_92",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var9",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        15620.997796877662,
+        55936.64936431821,
+        -1032.8000414643247
+      ],
+      "bounds_center_cm": [
+        12542.16689207733,
+        61748.24299735122,
+        1596.0447584087015
+      ],
+      "bounds_extent_cm": [
+        7952.760260628056,
+        9477.069703761634,
+        8435.867557929
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Ancient_Temple_Stairs_tj1qafrfa/MI_Ancient_Temple_Stairs_tj1qafrfa_2K.MI_Ancient_Temple_Stairs_tj1qafrfa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_93",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var10",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        15999.969309517153,
+        71689.76051852255,
+        -820.0384032840111
+      ],
+      "bounds_center_cm": [
+        18498.7687645543,
+        74106.9352918443,
+        3645.656615127932
+      ],
+      "bounds_extent_cm": [
+        6903.830658203849,
+        8372.91982888477,
+        8597.17813372127
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/Surfaces/Ancient_Temple_Wall_smfoebvp/MI_Ancient_Temple_Wall_smfoebvp_2K.MI_Ancient_Temple_Wall_smfoebvp_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_94",
+      "label": "S_Japanese_Gravestone_ueqiah1fa_lod3_Var11",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        28049.96931,
+        67489.760519,
+        -820.038403
+      ],
+      "bounds_center_cm": [
+        27976.61753600776,
+        69912.8080606974,
+        4635.505449370716
+      ],
+      "bounds_extent_cm": [
+        3658.3655669463587,
+        12860.720761114877,
+        10591.252564148492
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/S_Japanese_Gravestone_ueqiah1fa_lod3_Var1.S_Japanese_Gravestone_ueqiah1fa_lod3_Var1",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy_Forest_Boulder_wc1kedt/MI_Mossy_Forest_Boulder_wc1kedt_2K.MI_Mossy_Forest_Boulder_wc1kedt_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "WaterBodyRiver_2",
+      "label": "WaterBodyRiver2",
+      "class": "WaterBodyRiver",
+      "location_cm": [
+        -9460.0,
+        59120.0,
+        -8640.0
+      ],
+      "bounds_center_cm": [
+        -3091.795646365026,
+        58490.57672544934,
+        -7812.142733173576
+      ],
+      "bounds_extent_cm": [
+        7048.132687481255,
+        4825.215462713146,
+        1083.8572691487552
+      ],
+      "meshes": [
+        {
+          "component": "WaterInfoMeshComponent",
+          "mesh": "/Game/landscape_text.landscape_text:PersistentLevel.WaterBodyRiver_2.WaterInfoMesh_0",
+          "materials": [
+            "/Engine/Transient.WaterInfoMID_2"
+          ]
+        },
+        {
+          "component": "DilatedWaterInfoMeshComponent",
+          "mesh": "/Game/landscape_text.landscape_text:PersistentLevel.WaterBodyRiver_2.WaterInfoDilatedMesh_0",
+          "materials": [
+            "/Engine/Transient.WaterInfoMID_2"
+          ]
+        },
+        {
+          "component": "SplineMeshComponent_0",
+          "mesh": "/Water/Meshes/RiverMesh.RiverMesh",
+          "materials": [
+            "/Engine/Transient.WaterMID_2"
+          ]
+        },
+        {
+          "component": "SplineMeshComponent_1",
+          "mesh": "/Water/Meshes/RiverMesh.RiverMesh",
+          "materials": [
+            "/Engine/Transient.WaterMID_2"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_44",
+      "label": "S_Roman_Broken_Column_tk4tfgzfa_lod3",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -5640.663078426495,
+        54038.54140958093,
+        -7974.72322693358
+      ],
+      "bounds_center_cm": [
+        -5843.095375024594,
+        54816.23077332253,
+        -4284.348623311158
+      ],
+      "bounds_extent_cm": [
+        1491.7928279445086,
+        2084.6119395635396,
+        4028.7746495200695
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Roman_Broken_Column_tk4tfgzfa/S_Roman_Broken_Column_tk4tfgzfa_lod3.S_Roman_Broken_Column_tk4tfgzfa_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/MI_Japanese_Gravestone_ueqiah1fa_2K.MI_Japanese_Gravestone_ueqiah1fa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_70",
+      "label": "S_Roman_Broken_Column_tk4tfgzfa_lod4",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -8297.471707056455,
+        60239.29329852591,
+        -9728.493152795503
+      ],
+      "bounds_center_cm": [
+        -7475.7568950157,
+        60393.38693876367,
+        -8630.42631679472
+      ],
+      "bounds_extent_cm": [
+        1262.399437383816,
+        687.9791141063906,
+        1379.323607770149
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Roman_Broken_Column_tk4tfgzfa/S_Roman_Broken_Column_tk4tfgzfa_lod3.S_Roman_Broken_Column_tk4tfgzfa_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Boulder_wc1kebr/MI_Mossy_Forest_Boulder_wc1kebr_2K.MI_Mossy_Forest_Boulder_wc1kebr_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_74",
+      "label": "S_Roman_Broken_Column_tk4tfgzfa_lod5",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        -6207.471707000001,
+        67399.293299,
+        -9728.493153
+      ],
+      "bounds_center_cm": [
+        -5721.637805424927,
+        66881.42350419439,
+        -8935.76169655913
+      ],
+      "bounds_extent_cm": [
+        840.5321521765554,
+        869.4181004920683,
+        1130.704970404524
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Roman_Broken_Column_tk4tfgzfa/S_Roman_Broken_Column_tk4tfgzfa_lod3.S_Roman_Broken_Column_tk4tfgzfa_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Mossy/Mossy_Forest_Boulder_wc1kebr/MI_Mossy_Forest_Boulder_wc1kebr_2K.MI_Mossy_Forest_Boulder_wc1kebr_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "StaticMeshActor_86",
+      "label": "S_Roman_Broken_Column_tk4tfgzfa_lod6",
+      "class": "StaticMeshActor",
+      "location_cm": [
+        2009.521334920537,
+        66385.58104053722,
+        -4878.066265057985
+      ],
+      "bounds_center_cm": [
+        1876.365181470874,
+        65783.86565952825,
+        -4132.2522362265
+      ],
+      "bounds_extent_cm": [
+        657.4841922173507,
+        1152.6199911198055,
+        1219.1053989106222
+      ],
+      "meshes": [
+        {
+          "component": "StaticMeshComponent0",
+          "mesh": "/Game/Megascans/3D_Assets/Roman_Broken_Column_tk4tfgzfa/S_Roman_Broken_Column_tk4tfgzfa_lod3.S_Roman_Broken_Column_tk4tfgzfa_lod3",
+          "materials": [
+            "/Game/Megascans/3D_Assets/Japanese_Gravestone_ueqiah1fa/MI_Japanese_Gravestone_ueqiah1fa_2K.MI_Japanese_Gravestone_ueqiah1fa_2K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ultra_Dynamic_Sky_C_1",
+      "label": "Ultra_Dynamic_Sky",
+      "class": "Ultra_Dynamic_Sky_C",
+      "location_cm": [
+        -9271.708158870291,
+        66749.2408417631,
+        -8150.748019666218
+      ],
+      "bounds_center_cm": [
+        -7396.708135604858,
+        67686.74079704285,
+        -574057838.2480202
+      ],
+      "bounds_extent_cm": [
+        9369288978.010273,
+        9369288040.510296,
+        9964757812.5
+      ],
+      "meshes": [
+        {
+          "component": "Ultra_Dynamic_Sky_Sphere",
+          "mesh": "/Game/UltraDynamicSky/Meshes/Ultra_Dynamic_Sky_Sphere.Ultra_Dynamic_Sky_Sphere",
+          "materials": [
+            "/Game/landscape_text.landscape_text:PersistentLevel.Ultra_Dynamic_Sky_C_1.Ultra_Dynamic_Sky_Sphere.MID_UDS_K_0"
+          ]
+        },
+        {
+          "component": "Compass",
+          "mesh": "/Game/UltraDynamicSky/Meshes/Compass.Compass",
+          "materials": [
+            "/Engine/BasicShapes/BasicShapeMaterial.BasicShapeMaterial"
+          ]
+        },
+        {
+          "component": "Overcast_Turbulence",
+          "mesh": "/Game/UltraDynamicSky/Meshes/2D_Turbulence_Disk.2D_Turbulence_Disk",
+          "materials": [
+            "/Game/landscape_text.landscape_text:PersistentLevel.Ultra_Dynamic_Sky_C_1.MID_Overcast_Turbulence_0"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Ultra_Dynamic_Weather_C_1",
+      "label": "Ultra_Dynamic_Weather",
+      "class": "Ultra_Dynamic_Weather_C",
+      "location_cm": [
+        -7820.0,
+        41370.0,
+        -7270.0
+      ],
+      "bounds_center_cm": [
+        67906.77990722656,
+        41370.0,
+        -7270.011474609375
+      ],
+      "bounds_extent_cm": [
+        375000043324.9855,
+        375001058204.2994,
+        375001058204.2422
+      ],
+      "meshes": [
+        {
+          "component": "Rainbow",
+          "mesh": "/Game/UltraDynamicSky/Meshes/Rainbow.Rainbow",
+          "materials": [
+            "/Engine/EngineMaterials/WorldGridMaterial.WorldGridMaterial"
+          ]
+        }
+      ]
+    }
+  ]
+}

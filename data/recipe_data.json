@@ -1,0 +1,92 @@
+{
+  "_comment": "炼化配方表。三层结构：固定（60%）/ 半固定（30%）/ 隐藏（10%）。",
+  "recipes": [
+    {
+      "id": "rec_rod_bone",
+      "type": "fixed",
+      "name": "骨制竿",
+      "materials": { "item_fish_bone": 3 },
+      "result": { "type": "rod", "id": "rod_bone" },
+      "time": 3.0,
+      "description": "三根鱼骨，炼成一根竿。这是烬教你的第一件事。"
+    },
+    {
+      "id": "rec_rod_wood",
+      "type": "fixed",
+      "name": "木制精工竿",
+      "materials": { "item_fine_wood": 2, "item_fiber": 4 },
+      "result": { "type": "rod", "id": "rod_wood" },
+      "time": 4.0,
+      "description": "精木为骨，纤维为弦。"
+    },
+    {
+      "id": "rec_rod_metal",
+      "type": "fixed",
+      "name": "金属竿",
+      "materials": { "item_sunken_metal": 3, "item_fine_wood": 2 },
+      "result": { "type": "rod", "id": "rod_metal" },
+      "time": 5.0,
+      "description": "沉船金属与精木的结合。"
+    },
+    {
+      "id": "rec_bait_glow",
+      "type": "fixed",
+      "name": "发光饵 x3",
+      "materials": { "item_glow_core": 1 },
+      "result": { "type": "item", "id": "bait_glow", "count": 3 },
+      "time": 2.0,
+      "description": "把发光核碾碎，混入饵料。"
+    },
+    {
+      "id": "rec_bait_live",
+      "type": "fixed",
+      "name": "活饵 x2",
+      "materials": { "item_scale": 2, "item_deep_essence": 1 },
+      "result": { "type": "item", "id": "bait_live", "count": 2 },
+      "time": 2.0,
+      "description": "用活的东西做饵。烬说这不是好主意。"
+    },
+    {
+      "id": "rec_relic_complete",
+      "type": "fixed",
+      "name": "遗物·完整体",
+      "materials": { "item_relic_fragment": 3 },
+      "result": { "type": "item", "id": "item_relic_complete", "count": 1 },
+      "time": 6.0,
+      "description": "三片残片，拼回它原本的样子。"
+    },
+    {
+      "id": "rec_rod_relic",
+      "type": "fixed",
+      "name": "遗物竿",
+      "materials": { "item_relic_complete": 1, "item_sunken_metal": 3 },
+      "result": { "type": "rod", "id": "rod_relic" },
+      "time": 8.0,
+      "description": "完整体与金属的结合。竿身开始发光。"
+    },
+    {
+      "id": "rec_semi_1",
+      "type": "semi",
+      "name": "未知产物",
+      "materials_any": ["item_scale", "item_glass_shard", "item_sand_grit"],
+      "pool": [
+        { "id": "item_glow_core", "weight": 40 },
+        { "id": "item_deep_essence", "weight": 30 },
+        { "id": "item_lens_shard", "weight": 20 },
+        { "id": "item_relic_fragment", "weight": 10 }
+      ],
+      "time": 3.0,
+      "description": "随便放点东西进去。结果不确定——这正是有意思的地方。"
+    },
+    {
+      "id": "rec_hidden_echo",
+      "type": "hidden",
+      "name": "遗物·回响",
+      "materials": { "item_relic_complete": 3, "item_eye_of_watcher": 1, "item_tide_heart": 1 },
+      "result": { "type": "item", "id": "item_relic_echo", "count": 1 },
+      "time": 12.0,
+      "hint": null,
+      "description": "没有任何提示的配方。只有把所有\"不该在一起\"的东西放在一起，才会发生。"
+    }
+  ]
+}

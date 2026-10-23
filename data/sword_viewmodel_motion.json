@@ -1,0 +1,21 @@
+{
+  "_comment": "Camera-space sword presentation only; damage and attack timing stay in combat_mvp.json. Offsets are metres from the current idle wrist; blade directions use camera -Z forward. Codex.",
+  "swings": [
+    [
+      {"t": 0.0, "offset": [0, 0, 0], "blade": [0.98, 0, 0]},
+      {"t": 0.20, "offset": [0.14, 0.08, -0.06], "blade": [0.35, 0.90, -0.25]},
+      {"t": 0.38, "offset": [-0.17, 0.06, -0.20], "blade": [-0.90, 0.22, -0.38]},
+      {"t": 0.57, "offset": [-0.34, -0.04, -0.18], "blade": [-0.90, -0.28, -0.30]},
+      {"t": 0.72, "offset": [-0.30, -0.10, -0.10], "blade": [-0.75, -0.40, -0.40]},
+      {"t": 1.0, "offset": [0, 0, 0], "blade": [0.98, 0, 0]}
+    ],
+    [
+      {"t": 0.0, "offset": [0, 0, 0], "blade": [0.98, 0, 0]},
+      {"t": 0.20, "offset": [-0.38, 0.09, -0.06], "blade": [-0.55, 0.70, -0.45]},
+      {"t": 0.38, "offset": [-0.31, 0.04, -0.22], "blade": [0.90, 0.22, -0.38]},
+      {"t": 0.57, "offset": [-0.12, -0.08, -0.20], "blade": [0.88, -0.30, -0.36]},
+      {"t": 0.72, "offset": [-0.08, -0.14, -0.12], "blade": [0.65, -0.40, -0.50]},
+      {"t": 1.0, "offset": [0, 0, 0], "blade": [0.98, 0, 0]}
+    ]
+  ]
+}

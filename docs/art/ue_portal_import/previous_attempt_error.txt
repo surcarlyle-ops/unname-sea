@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "D:/claude project/projects/unname_sea/tools/asset_pipeline/ue_portal_export.py", line 120, in <module>
+    main()
+  File "D:/claude project/projects/unname_sea/tools/asset_pipeline/ue_portal_export.py", line 108, in main
+    success, messages = unreal.GLTFExporter.export_to_gltf(world, str(path), options, selected)
+    ^^^^^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable GLTFExportMessages object

@@ -1,0 +1,77 @@
+{
+  "_comment": "异兽数据。原创设计，无文化预设。每只含独立掉落表与\"招牌稀有掉落\"。",
+  "monsters": [
+    {
+      "id": "mon_phosphor_scale",
+      "name": "磷鳞",
+      "prototype": "深海发光鱼",
+      "transform_level": "medium",
+      "area": "shallow",
+      "hp": 30,
+      "attack": 5,
+      "defense": 2,
+      "turns_hint": "3-5",
+      "description": "鳞片自行发光的鱼形生物。光很稳定，像在呼吸。",
+      "drops": [
+        { "item": "item_fish_bone", "rate": 0.60, "rarity": "common" },
+        { "item": "item_scale", "rate": 0.30, "rarity": "uncommon" },
+        { "item": "item_glow_core", "rate": 0.08, "rarity": "rare" },
+        { "item": "item_phosphor_heart", "rate": 0.02, "rarity": "signature" }
+      ]
+    },
+    {
+      "id": "mon_silence",
+      "name": "沉默",
+      "prototype": "比目鱼",
+      "transform_level": "slight",
+      "area": "shallow",
+      "hp": 20,
+      "attack": 8,
+      "defense": 1,
+      "turns_hint": "2-4",
+      "description": "伏在沙底几乎不动的扁形生物。靠近时才会暴起。",
+      "drops": [
+        { "item": "item_fish_bone", "rate": 0.55, "rarity": "common" },
+        { "item": "item_sand_grit", "rate": 0.35, "rarity": "uncommon" },
+        { "item": "item_silent_membrane", "rate": 0.02, "rarity": "signature" }
+      ]
+    },
+    {
+      "id": "mon_eye_holder",
+      "name": "眼主",
+      "prototype": "漂浮眼球",
+      "transform_level": "complete",
+      "area": "deep",
+      "hp": 60,
+      "attack": 14,
+      "defense": 5,
+      "turns_hint": "4-5",
+      "description": "一颗悬浮在水中的巨大眼球。它注视着你，但你不知道它在看什么。",
+      "drops": [
+        { "item": "item_lens_shard", "rate": 0.60, "rarity": "common" },
+        { "item": "item_deep_essence", "rate": 0.30, "rarity": "uncommon" },
+        { "item": "item_gaze_core", "rate": 0.08, "rarity": "rare" },
+        { "item": "item_eye_of_watcher", "rate": 0.02, "rarity": "signature" }
+      ]
+    },
+    {
+      "id": "mon_tide_mother",
+      "name": "潮汐母",
+      "prototype": "巨型水母",
+      "transform_level": "medium",
+      "area": "red_tide",
+      "hp": 120,
+      "attack": 20,
+      "defense": 8,
+      "turns_hint": "5-8",
+      "is_boss": true,
+      "description": "红潮水域之主。它的每一次收缩都会让整片水域的水位改变。",
+      "drops": [
+        { "item": "item_tide_gel", "rate": 0.60, "rarity": "common" },
+        { "item": "item_deep_essence", "rate": 0.30, "rarity": "uncommon" },
+        { "item": "item_relic_complete", "rate": 0.08, "rarity": "rare" },
+        { "item": "item_tide_heart", "rate": 0.02, "rarity": "signature" }
+      ]
+    }
+  ]
+}
