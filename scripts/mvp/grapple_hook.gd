@@ -12,7 +12,9 @@ signal attached(point: Vector3)
 signal released()
 signal attach_failed()
 
-enum State { IDLE, ATTACHED, COOLDOWN }
+enum State { IDLE, ATTACHED, COOLDOWN, WINDUP }
+@export var windup_duration: float = 0.12
+@export var impact_pull_delay: float = 0.06666666666666667
 
 @export_group("Range")
 ## Maximum reach, matching APEX Pathfinder's 21 m.
@@ -29,10 +31,6 @@ enum State { IDLE, ATTACHED, COOLDOWN }
 @export var pull_speed_max: float = 18.0
 ## Seconds to ramp from start to max (longer = more gradual acceleration).
 @export var pull_accel_duration: float = 0.86
-## Tension delay before the pull starts, same for every distance (APEX-style hang).
-@export var pull_delay_near: float = 0.08
-## Tension delay before the pull starts, same for every distance.
-@export var pull_delay_far: float = 0.08
 ## How quickly the radial speed approaches its current target.
 @export var pull_sharpness: float = 8.0
 ## Slow down when close to the anchor so the player does not slam into it.
@@ -63,6 +61,8 @@ enum State { IDLE, ATTACHED, COOLDOWN }
 
 var state: State = State.IDLE
 var anchor: Vector3 = Vector3.ZERO
+var anchor_normal: Vector3 = Vector3.UP
+var rope_visual: Node3D
 var rope_length: float = 0.0
 var cooldown_left: float = 0.0
 var last_cooldown: float = 0.0
@@ -76,8 +76,10 @@ var _body: CharacterBody3D
 var _camera: Camera3D
 var _super_window_left: float = 0.0
 var _attach_time: float = 0.0
+var _pull_start_delay: float = 0.0
 var _rope_mesh: MeshInstance3D
 var _hook_head: Node3D
+var _windup_left: float = 0.0
 
 
 func _ready() -> void:
@@ -87,9 +89,17 @@ func _ready() -> void:
 		return
 	_build_rope_visual()
 	_build_hook_head()
+	var presentation: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://data/first_person_presentation.json")) as Dictionary
+	windup_duration = float(presentation.grapple.get("windup_duration", 0.12))
+	impact_pull_delay = float(presentation.grapple.get("impact_pull_delay_seconds", 0.06666666666666667))
 
 
 func _physics_process(delta: float) -> void:
+	if state == State.WINDUP:
+		_windup_left = maxf(0.0, _windup_left - delta)
+		if _windup_left <= 0.000001:
+			_finish_attach()
+		return
 	if cooldown_left > 0.0:
 		cooldown_left = maxf(cooldown_left - delta, 0.0)
 		if state == State.COOLDOWN and cooldown_left <= 0.0:
@@ -108,6 +118,12 @@ func _physics_process(delta: float) -> void:
 		release()
 		return
 
+	_attach_time += delta
+	if _attach_time <= _pull_start_delay:
+		# The hook must finish flying, then hold briefly with no grapple force.
+		_update_rope_visual(true)
+		return
+
 	var direction: Vector3 = to_anchor / maxf(distance, 0.001)
 
 	# Split velocity into radial (along the rope) and tangential (the swing).
@@ -119,10 +135,8 @@ func _physics_process(delta: float) -> void:
 	# Pull: close grapples skip the slow start; long ones ease in.
 	# rope_length is fixed at attach time, so the curve matches the shot distance.
 	var distance_ratio: float = clampf(rope_length / maxf(max_range, 0.001), 0.0, 1.0)
-	var active_delay: float = lerpf(pull_delay_near, pull_delay_far, distance_ratio)
 	var active_start: float = lerpf(pull_speed_start_near, pull_speed_start_far, distance_ratio)
-	_attach_time += delta
-	var ramp: float = clampf((_attach_time - active_delay) / maxf(pull_accel_duration, 0.01), 0.0, 1.0)
+	var ramp: float = clampf((_attach_time - _pull_start_delay) / maxf(pull_accel_duration, 0.01), 0.0, 1.0)
 	var target_radial: float = lerpf(active_start, pull_speed_max, ramp * ramp)
 	if distance < arrival_soften_distance:
 		target_radial *= clampf(distance / maxf(arrival_soften_distance, 0.01), 0.3, 1.0)
@@ -161,27 +175,37 @@ func can_attach() -> bool:
 	return not _raycast_anchor().is_empty()
 
 
-## Fire the hook toward the camera's forward direction. Returns true on hit.
+## Accept a launch request. No rope or pulling force exists during the short windup.
 func try_attach() -> bool:
 	if state != State.IDLE:
 		return false
+	state = State.WINDUP
+	_windup_left = windup_duration
+	return true
+
+
+func _finish_attach() -> void:
+	# Aim/range/occlusion are evaluated at launch, after the player raises the hand.
 	var hit: Dictionary = _raycast_anchor()
 	if hit.is_empty():
+		state = State.IDLE
 		attach_failed.emit()
-		return false
+		return
 
 	anchor = hit.position as Vector3
+	anchor_normal = hit.normal as Vector3
 	rope_length = maxf(_camera.global_position.distance_to(anchor), auto_release_distance + 0.5)
 	state = State.ATTACHED
-	_super_window_left = super_grapple_window
 	_attach_time = 0.0
+	_update_rope_visual(true)
+	_pull_start_delay = rope_visual.shot_duration + impact_pull_delay
+	_super_window_left = super_grapple_window + _pull_start_delay
 	attached.emit(anchor)
-	return true
 
 
 ## APEX "super grapple": jumping right after attaching adds forward momentum.
 func apply_super_grapple() -> bool:
-	if state != State.ATTACHED or _super_window_left <= 0.0:
+	if not is_pulling() or _super_window_left <= 0.0:
 		return false
 	if _body == null or _camera == null:
 		return false
@@ -193,6 +217,10 @@ func apply_super_grapple() -> bool:
 
 ## Let go and keep the current momentum. Cooldown scales with travel distance.
 func release() -> void:
+	if state == State.WINDUP:
+		state = State.IDLE
+		_windup_left = 0.0
+		return
 	if state != State.ATTACHED:
 		return
 	_update_rope_visual(false)
@@ -212,16 +240,28 @@ func release() -> void:
 ## Reset to a clean idle state (call on death / respawn).
 func reset() -> void:
 	state = State.IDLE
+	_windup_left = 0.0
 	cooldown_left = 0.0
 	anchor = Vector3.ZERO
 	rope_length = 0.0
 	_super_window_left = 0.0
 	_attach_time = 0.0
+	_pull_start_delay = 0.0
 	_update_rope_visual(false)
+	if is_instance_valid(rope_visual):
+		rope_visual.reset()
 
 
 func is_attached() -> bool:
 	return state == State.ATTACHED
+
+
+func is_pulling() -> bool:
+	return state == State.ATTACHED and _attach_time > _pull_start_delay
+
+
+func is_preparing() -> bool:
+	return state == State.WINDUP
 
 
 func is_ready() -> bool:
@@ -260,75 +300,48 @@ func _raycast_anchor() -> Dictionary:
 
 
 func _build_rope_visual() -> void:
-	_rope_mesh = MeshInstance3D.new()
-	var rope := CylinderMesh.new()
-	rope.top_radius = 0.025
-	rope.bottom_radius = 0.025
-	rope.height = 1.0
-	rope.radial_segments = 6
-	rope.rings = 1
-	_rope_mesh.mesh = rope
-	_rope_mesh.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	var material := StandardMaterial3D.new()
-	material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	material.albedo_color = Color(0.35, 0.8, 1.0)
-	_rope_mesh.material_override = material
-	_rope_mesh.top_level = true
-	_rope_mesh.visible = false
-	add_child(_rope_mesh)
-
+	rope_visual = Node3D.new()
+	rope_visual.set_script(preload("res://scripts/mvp/grapple_presentation.gd"))
+	rope_visual.hook = self
+	add_child(rope_visual)
+	_rope_mesh = rope_visual._segments[4]
 
 func _build_hook_head() -> void:
 	_hook_head = Node3D.new()
 	_hook_head.top_level = true
 	_hook_head.visible = false
 	add_child(_hook_head)
+	var shaft: MeshInstance3D = MeshInstance3D.new()
+	var shaft_mesh: CylinderMesh = CylinderMesh.new()
+	shaft_mesh.top_radius = 0.035
+	shaft_mesh.bottom_radius = 0.045
+	shaft_mesh.height = 0.24
+	shaft_mesh.radial_segments = 8
+	shaft.mesh = shaft_mesh
+	shaft.position.y = 0.10
+	var shaft_material: StandardMaterial3D = StandardMaterial3D.new()
+	shaft_material.albedo_color = Color(0.36, 0.33, 0.29)
+	shaft_material.metallic = 0.55
+	shaft.material_override = shaft_material
+	_hook_head.add_child(shaft)
 	for i in range(3):
 		var claw := MeshInstance3D.new()
 		var cone := CylinderMesh.new()
 		cone.top_radius = 0.0
-		cone.bottom_radius = 0.05
-		cone.height = 0.3
+		cone.bottom_radius = 0.065
+		cone.height = 0.26
 		cone.radial_segments = 6
 		claw.mesh = cone
 		var material := StandardMaterial3D.new()
-		material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-		material.albedo_color = Color(0.95, 0.98, 1.0)
+		material.metallic = 0.65
+		material.albedo_color = Color(0.32, 0.30, 0.27)
 		claw.material_override = material
 		var angle: float = TAU * float(i) / 3.0
 		claw.position = Vector3(cos(angle) * 0.1, 0.0, sin(angle) * 0.1)
-		claw.rotation = Vector3(0.5, -angle, 0.0)
+		claw.rotation = Vector3(PI - 0.65, -angle, 0.0)
 		_hook_head.add_child(claw)
 
 
 func _update_rope_visual(visible_now: bool) -> void:
-	if _rope_mesh == null or _hook_head == null:
-		return
-	if not visible_now or _body == null or _camera == null:
-		_rope_mesh.visible = false
-		_hook_head.visible = false
-		return
-
-	var cam_basis: Basis = _camera.global_transform.basis
-	var start: Vector3 = _camera.global_position + cam_basis.x * 0.28 - cam_basis.y * 0.22 - cam_basis.z * 0.3
-	var delta: Vector3 = anchor - start
-	var length: float = delta.length()
-	if length < 0.05:
-		_rope_mesh.visible = false
-		_hook_head.visible = false
-		return
-
-	var up: Vector3 = delta / length
-	var right: Vector3 = up.cross(Vector3.FORWARD)
-	if right.length_squared() < 0.0001:
-		right = up.cross(Vector3.RIGHT)
-	right = right.normalized()
-	var forward: Vector3 = right.cross(up).normalized()
-	var rope_basis := Basis(right, up, forward)
-	var mid: Vector3 = (start + anchor) * 0.5
-
-	_rope_mesh.visible = true
-	_rope_mesh.global_transform = Transform3D(rope_basis, mid).scaled_local(Vector3(1.0, length, 1.0))
-
-	_hook_head.visible = true
-	_hook_head.global_position = anchor
+	if is_instance_valid(rope_visual):
+		rope_visual.set_attached(visible_now)

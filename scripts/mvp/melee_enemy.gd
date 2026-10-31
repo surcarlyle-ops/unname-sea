@@ -2,6 +2,7 @@ extends CharacterBody3D
 ## Ground enemy with a visible windup, stagger and one damage event per attack.
 
 signal defeated(enemy: Node3D)
+signal damage_received(amount: int, point: Vector3, armored: bool)
 
 enum State { CHASE, WINDUP, RECOVERY, STAGGER, DEAD }
 
@@ -102,7 +103,9 @@ func _can_hit_player() -> bool:
 func apply_damage(amount: int, push: Vector3) -> void:
 	if dead:
 		return
-	health = maxi(0, health - maxi(amount - int(stats.get("defense", 0)), 1))
+	var loss: int = mini(health, maxi(amount - int(stats.get("defense", 0)), 1))
+	health -= loss
+	damage_received.emit(loss, global_position + Vector3.UP * 1.0, false)
 	_flash_time = 0.12
 	_white_flash_time = 0.07  ## (Claude Code) bright white flash — sells the impact
 	velocity += Vector3(push.x, 1.3, push.z)

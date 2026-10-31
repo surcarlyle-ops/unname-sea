@@ -31,8 +31,11 @@ func build(cfg: Dictionary, terrain_node: Node3D, kit_materials: Dictionary) -> 
 	_rng.seed = int(cfg.flora.cherry_trees.seed)
 	# Shared blossom clump: instance colours tint it per cluster.
 	var blossom_acc: MESH_KIT.Accumulator = MESH_KIT.Accumulator.new()
-	blossom_acc.blob(Vector3.ZERO, Vector3(0.62, 0.46, 0.62), Color.WHITE, 3, 7, 0.12, 11)
+	# Finer rings plus smooth normals: the earlier 3-ring clump read as faceted
+	# blobs under the low sun, which was most of the "rough" look on the crowns.
+	blossom_acc.blob(Vector3.ZERO, Vector3(0.62, 0.46, 0.62), Color.WHITE, 5, 10, 0.1, 11)
 	_blossom_mesh = blossom_acc.to_mesh()
+	blossom_acc.smooth_normals(_blossom_mesh)
 	_build_cherry_trees()
 	_build_deep_trees()
 	_build_ground_cover()

@@ -3,9 +3,21 @@ extends Node3D
 
 const PLAYER_SCENE: PackedScene = preload("res://scenes/mvp/first_person_player.tscn")
 const ENEMY_SCRIPT: Script = preload("res://scripts/mvp/melee_enemy.gd")
+const GUARDIAN_SCRIPT: Script = preload("res://scripts/enemies/ruin_guardian_combat.gd")
 const HUD_SCRIPT: Script = preload("res://scripts/mvp/combat_hud.gd")
 const COURSE_SCRIPT: Script = preload("res://scripts/mvp/movement_course.gd")
-const RUINS_SCENE: PackedScene = preload("res://assets/environments/portal_ruins/portal_ruins_sample.glb")
+const TREE_SCRIPT: Script = preload("res://scripts/mvp/imported_tree.gd")
+const RUINS_PATH: String = "res://assets/environments/portal_ruins/portal_ruins_sample.glb"
+## 钓鱼 MVP（CodeBuddy 2026-10-28）：逻辑、战利品、表现、拾取各自独立，互不引用手部脚本。
+const FISHING_SCRIPT: Script = preload("res://scripts/mvp/fishing_mvp.gd")
+const LOOT_SCRIPT: Script = preload("res://scripts/mvp/fishing_loot.gd")
+const FISHING_PRESENTATION_SCRIPT: Script = preload("res://scripts/mvp/fishing_presentation.gd")
+const PICKUP_SCRIPT: Script = preload("res://scripts/mvp/loot_drop.gd")
+const SHORE_SCENE: PackedScene = preload("res://scenes/tests/shore_test_area.tscn")
+
+@export var initial_mode: int = 3
+
+const FISHING_CONFIG_PATH: String = "res://data/fishing_mvp.json"
 ## 遗迹偏移：已按地形扫描反算，让最平坦的草地正好落在训练场原点。
 ## 原偏移 (20,110,-640) 下平坦区在世界 (4,36.5,-162)，故新偏移 = 旧偏移 - 该点 + (0,1,0)。
 const RUINS_OFFSET: Vector3 = Vector3(16.0, 72.5, -478.0)
@@ -24,10 +36,30 @@ var notice_time: float = 0.0
 var _sounds: Dictionary = {}
 var _audio: Array[AudioStreamPlayer] = []
 var _audio_index: int = 0
+var play_menu: CanvasLayer
+var guardian: CharacterBody3D
+var feedback_config: Dictionary
+var fishing_config: Dictionary
+var fishing: Node
+var loot: Node
+var shore_area: Node3D
+var fishing_fx: Node3D
+var encounter_enemy: CharacterBody3D
+var pickups: Array[Node3D] = []
+var fishing_notice: String = ""
+var fishing_notice_time: float = 0.0
+var rod_granted: bool = false
+var _encounter_pending: Dictionary = {}
+var _enemy_tuning: Dictionary = {}
 
 
 func _ready() -> void:
 	tuning = JSON.parse_string(FileAccess.get_file_as_string("res://data/combat_mvp.json")) as Dictionary
+	feedback_config = JSON.parse_string(FileAccess.get_file_as_string("res://data/fishing_feedback.json")) as Dictionary
+	_setup_pickup_action()
+	fishing_config = JSON.parse_string(FileAccess.get_file_as_string(FISHING_CONFIG_PATH)) as Dictionary
+	if fishing_config == null:
+		fishing_config = {}
 	_build_world()
 	player = PLAYER_SCENE.instantiate() as CharacterBody3D
 	player.position = _vector(tuning.arena.spawn)
@@ -54,13 +86,34 @@ func _ready() -> void:
 	hud.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	layer.add_child(hud)
 	_build_audio()
-	start_round(2)
+	loot = LOOT_SCRIPT.new()
+	loot.name = "FishingLoot"
+	loot.bind(player.inventory)  ## 绑定到玩家的通用库存
+	add_child(loot)
+	fishing = FISHING_SCRIPT.new()
+	fishing.name = "FishingMVP"
+	fishing.config = fishing_config
+	add_child(fishing)
+	_wire_fishing()
+	play_menu = load("res://scripts/ui/play_pause_menu.gd").new()
+	play_menu.name = "PlayMenu"
+	play_menu.arena = self
+	add_child(play_menu)
+	start_round(initial_mode)
 	# Give the player time to read the controls before enemies advance.
 	player.set_controls_active(false)
 
 
 func _process(delta: float) -> void:
 	notice_time = maxf(0.0, notice_time - delta)
+	fishing_notice_time = maxf(0.0, fishing_notice_time - delta)
+	# 钓鱼状态机用真实帧时间推进，不受 physics_tick 设置影响；暂停时由 _toggle_loadout 冻结。
+	if mode == 4 and fishing != null:
+		# 菜单/失焦期间冻结咬钩计时；与引擎暂停无关，HUD 仍可绘制。
+		fishing.set_paused(player.menu_open or not player.controls_active)
+		fishing.rod_tip_position = fishing_fx.rod_tip() if is_instance_valid(fishing_fx) else Vector3.ZERO
+		fishing.check_distance(player.global_position)
+		_update_pickups(delta)
 
 
 func _exit_tree() -> void:
@@ -70,27 +123,78 @@ func _exit_tree() -> void:
 	_sounds.clear()
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
+	if player == null or play_menu == null:
+		return
 	if event is InputEventKey and event.pressed and not event.echo:
-		if event.physical_keycode == KEY_F:
-			start_round(0)
-		elif event.physical_keycode == KEY_G:
-			start_round(1)
-		elif event.physical_keycode == KEY_H:
-			start_round(2)
+		if event.physical_keycode == KEY_ESCAPE:
+			if play_menu.opened:
+				play_menu.close()
+			elif player.menu_open:
+				_toggle_loadout()
+			else:
+				open_play_menu()
+			get_viewport().set_input_as_handled()
+		elif play_menu.opened and (event.physical_keycode == KEY_TAB or (event.physical_keycode >= KEY_0 and event.physical_keycode <= KEY_Z)):
+			get_viewport().set_input_as_handled()
+
+
+func open_play_menu() -> void:
+	play_menu.open()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact") and not event.is_echo():
+		if not play_menu.opened and player.controls_active and not player.menu_open and not player.dead:
+			_collect_nearest_pickup()
+		get_viewport().set_input_as_handled()
 
 
 func start_round(next_mode: int) -> void:
-	mode = clampi(next_mode, 0, 2)
+	hud.clear_damage_numbers()
+	mode = clampi(next_mode, 0, 4)
+	guardian = null
+	# 切试炼：清掉未结算的钓鱼、遭遇占用与岸边掉落物（背包里的物品保留）。
+	_clear_fishing_trial()
+	if mode != 4:
+		_remove_fishing_world()
+	_clear_encounter()
+	_clear_pickups()
 	for old_enemy: Node in enemies.get_children():
 		enemies.remove_child(old_enemy)
 		old_enemy.queue_free()
 	defeated_count = 0
 	round_complete = false
 	player.spawn_position = _vector(tuning.arena.movement_spawn if mode == 2 else tuning.arena.spawn)
+	if mode == 3:
+		player.spawn_position = _vector(tuning.arena.guardian_player_spawn)
+	elif mode == 4:
+		_ensure_fishing_world()
+		if not fishing_config.has("arena"):
+			push_error("fishing_mvp.json 缺少 arena 块")
+		player.spawn_position = _vector(fishing_config.arena.spawn)
 	player.reset_to_spawn()
 	course.reset()
 	hud.close_loadout()
+	if mode == 4:
+		# 出生点面朝水池：鱼竿开局就能直接抛竿。
+		player.rotation.y = deg_to_rad(float(fishing_config.arena.get("spawn_yaw_degrees", 200.0)))
+		_prepare_fishing_trial()
+		return
+	if mode == 3:
+		round_total = 1
+		guardian = CharacterBody3D.new()
+		guardian.name = "RuinGuardian"
+		guardian.set_script(GUARDIAN_SCRIPT)
+		guardian.target = player
+		guardian.tuning = tuning.guardian
+		guardian.stats = GameData.get_monster(str(tuning.guardian.source_id))
+		guardian.position = _vector(tuning.arena.guardian_spawn)
+		guardian.defeated.connect(_on_enemy_defeated)
+		guardian.damage_received.connect(hud.add_damage_number)
+		enemies.add_child(guardian)
+		show_notice("守卫试炼：看蓄力预告，侧移、跳跃或钩爪避开石拳，趁收招反击 · J 重开")
+		return
 	var positions: Array = [] if mode == 2 else (tuning.arena.swarm_spawns if mode == 0 else tuning.arena.mobility_spawns)
 	round_total = positions.size()
 	for point: Array in positions:
@@ -101,6 +205,7 @@ func start_round(next_mode: int) -> void:
 		enemy.stats = GameData.get_monster(str(tuning.enemy.source_id))
 		enemy.position = _vector(point)
 		enemy.defeated.connect(_on_enemy_defeated)
+		enemy.damage_received.connect(hud.add_damage_number)
 		enemies.add_child(enemy)
 	show_notice("清怪试炼：用横扫同时命中多个敌人" if mode == 0 else ("机动试炼：钩住横梁，松钩后保留速度，再返回地面近战" if mode == 1 else "移动练习：沿左侧金色标记前进，Ctrl 滑铲、空格翻越"))
 
@@ -113,21 +218,479 @@ func _on_enemy_defeated(_enemy: Node3D) -> void:
 	defeated_count += 1
 	if defeated_count >= round_total:
 		round_complete = true
-		show_notice("试炼完成！R 再来一轮 · F 清怪 / G 机动 · 也可以继续练习钩爪")
+		show_notice("守卫已击败！R / J 再战 · F 清怪 / G 机动 / H 移动" if mode == 3 else "试炼完成！R 再来一轮 · F 清怪 / G 机动 / H 移动 / J 守卫")
 
 
 func show_notice(message: String) -> void:
 	notice = message
 	notice_time = 5.0
+	if hud != null and hud.has_method("push_message"):
+		hud.push_message(message)
+	if mode == 4:
+		fishing_notice = message
+		fishing_notice_time = 4.0
+
+
+# === 钓鱼试炼（CodeBuddy 2026-10-28） ===
+## 逻辑、背包、表现、遭遇各自独立；first_person_hands.gd 只通过 fishing 的
+## 公开状态与信号接入，不改这里。
+func _wire_fishing() -> void:
+	player.water_tool_used.connect(_on_fishing_action)
+	player.loadout_changing.connect(func() -> void: fishing.cancel_silent("switch"))
+	player.grapple_requested.connect(func() -> void: fishing.cancel_silent("grapple"))
+	player.reset_applied.connect(func() -> void: fishing.cancel_silent("reset"))
+	player.died.connect(_on_player_died_fishing)
+	fishing.notice_requested.connect(show_notice)
+	fishing.reel_started.connect(func(_is_fish: bool) -> void: _sound("fish_reel", 0.8))
+	fishing.cast_started.connect(_on_fishing_cast)
+	fishing.bite_started.connect(_on_fishing_bite)
+	fishing.bite_missed.connect(_on_fishing_missed)
+	fishing.cancelled.connect(_on_fishing_cancelled)
+	fishing.result_revealed.connect(_on_fishing_revealed)
+	fishing.encounter_requested.connect(_on_fishing_encounter)
+	fishing.auto_reeled.connect(_on_fishing_auto_reeled)
+	# Hands read the fishing state passively; the rod tip anchor is rebound below
+	# every time the presentation layer is rebuilt.
+	player.hands.bind_fishing_controller(fishing)
+
+
+func _on_player_died_fishing() -> void:
+	if fishing == null:
+		return
+	fishing.cancel_silent("death")
+	_clear_encounter()
+	_clear_pickups()
+
+
+func _prepare_fishing_trial() -> void:
+	_ensure_fishing_world()
+	_ensure_rod()
+	fishing.encounter_active = false
+	fishing.set_paused(false)
+	show_fishing_notice("钓鱼试炼：装备鱼竿，左键抛竿 → 咬钩时再点左键收竿 · 走到木钓台，看向前方 2–12 米水面 · N 鱼 / M 异兽")
+
+
+## 只在第一次进入钓鱼试炼时把鱼竿放进空置的 2 号位；该格被占用时不覆盖。
+func _ensure_rod() -> void:
+	if rod_granted:
+		return
+	rod_granted = true
+	var slot: int = int(fishing_config.get("rod_quick_slot", 1))
+	if player.quick_slots.has("fishing_rod"):
+		return
+	if slot < 0 or slot >= player.quick_slots.size():
+		return
+	if not player.quick_slots[slot].is_empty():
+		show_notice("2 号位已有物品，鱼竿留在背包里（Tab 自行放入）")
+		return
+	player.assign_quick_slot(slot, "fishing_rod")
+	player.selected_slot = slot
+	player._refresh_weapon()
+	show_notice("鱼竿已放进 2 号位")
+
+
+func _on_fishing_action() -> void:
+	if mode != 4 or fishing == null or player.dead or player.menu_open or not player.controls_active:
+		return
+	if fishing.encounter_active:
+		show_fishing_notice("先处理异兽，再继续垂钓")
+		return
+	match int(fishing.state):
+		2:  # WAITING：提前收竿，正常取消
+			fishing.cancel_waiting()
+		3:  # BITING：窗口内收竿 → 结算
+			fishing.reel_bite()
+		_:
+			_cast_line()
+
+
+func _cast_line() -> void:
+	if not player.equipped_water_tool():
+		return
+	var eye: Vector3 = player.camera.global_position
+	var forward: Vector3 = -player.camera.global_basis.z
+	var result: Dictionary = fishing.resolve_cast(eye, forward)
+	if result.has("reason"):
+		show_fishing_notice(str(result.reason))
+		return
+	fishing.begin_cast(fishing_fx.rod_tip(), result.point as Vector3)
+
+
+func _on_fishing_cast(_point: Vector3) -> void:
+	_sound("fish_cast", 0.6)
+
+
+func _on_fishing_bite() -> void:
+	_sound("fish_bite", 1.0)
+	player.add_shake(0.006)
+
+
+func _on_fishing_missed() -> void:
+	_sound("fish_missed", 0.8)
+
+
+func _on_fishing_cancelled(_reason: String) -> void:
+	_sound("fish_reel", 0.6)
+
+
+func _on_fishing_auto_reeled(distance: float) -> void:
+	show_notice("离鱼漂 %.1f 米，自动收竿" % distance)
+
+
+func _on_fishing_revealed(outcome: String, item_id: String, _monster_id: String) -> void:
+	if not is_instance_valid(fishing_fx):
+		return
+	if outcome == "fish":
+		_sound("fish_catch", 1.0)
+		fishing_fx.spawn_ripple(1.3, 0.5)
+		_grant_loot(item_id, 1, fishing.bobber_position)
+	else:
+		# 异兽：大水纹 + 独立警示音；出生位置与自动换武器在遭遇请求里处理。
+		_sound("fish_ominous", 1.0)
+		fishing_fx.spawn_ripple(2.6, 1.2)
+
+
+func _grant_loot(item_id: String, amount: int, _at: Vector3) -> void:
+	# Catch ownership stays on the ground until the player explicitly collects it.
+	var origin: Vector3 = fishing_fx.rod_tip() if is_instance_valid(fishing_fx) else player.camera.global_position
+	_spawn_pickup(item_id, amount, _catch_landing_point(), origin)
+	show_fishing_notice("钓到了 %s！蓝色光球落在脚边，靠近按 F 拾取" % _fishing_item_name(item_id))
+
+
+func _on_fishing_encounter(monster_id: String, reward_item: String, reward_count: int) -> void:
+	if encounter_enemy != null and is_instance_valid(encounter_enemy):
+		_refuse_encounter_fallback("已经有一只异兽在场，先处理它")
+		return
+	var spot: Vector3 = _pick_encounter_spot()
+	if spot == Vector3.INF:
+		_refuse_encounter_fallback("岸边没有合适的出现点")
+		return
+	fishing.keep_encounter()
+	var enemy: CharacterBody3D = CharacterBody3D.new()
+	enemy.name = "FishingEncounter"
+	enemy.set_script(ENEMY_SCRIPT)
+	enemy.target = null  # 0.8 秒后才开始追击
+	enemy.tuning = _fishing_enemy_tuning()
+	enemy.stats = GameData.get_monster(str(fishing_config.get("encounter_enemy_source_id", "mon_silence")))
+	enemy.position = spot
+	enemy.defeated.connect(_on_fishing_enemy_defeated)
+	enemy.damage_received.connect(hud.add_damage_number)
+	var marker: Label3D = Label3D.new()
+	marker.name = "EncounterTag"
+	marker.text = "钓上来的异兽"
+	marker.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	marker.font_size = 26
+	marker.pixel_size = 0.006
+	marker.outline_size = 6
+	marker.modulate = Color("e6b06b")
+	marker.position.y = 1.75
+	enemy.add_child(marker)
+	enemies.add_child(enemy)
+	encounter_enemy = enemy
+	_encounter_pending = {"monster_id": monster_id, "reward_item": reward_item, "reward_count": reward_count}
+	fishing.encounter_active = true
+	player.switch_to_combat_weapon()
+	show_notice("钓到了异兽！自动切回战斗武器，0.8 秒后开始追击")
+	var delay: float = float(fishing_config.get("encounter_delay", 0.8))
+	get_tree().create_timer(delay).timeout.connect(_start_encounter_chase.bind(enemy))
+
+
+## 异兽接不上时不能吞掉这次收竿：按普通渔获补一条鱼，并说明原因。
+func _refuse_encounter_fallback(message: String) -> void:
+	fishing.refuse_encounter(message)
+	if is_instance_valid(fishing_fx):
+		fishing_fx.spawn_ripple(1.0, 0.4)
+	_grant_loot(str(fishing_config.get("fish_pale_id", "fish_pale_minnow")), 1, fishing.bobber_position)
+
+
+func _start_encounter_chase(enemy: CharacterBody3D) -> void:
+	if not is_instance_valid(enemy) or enemy.dead or encounter_enemy != enemy:
+		return
+	enemy.target = player
+
+
+func _on_fishing_enemy_defeated(defeated: Node3D) -> void:
+	if encounter_enemy == null or defeated != encounter_enemy:
+		return
+	var spot: Vector3 = defeated.global_position
+	encounter_enemy = null
+	fishing.encounter_active = false
+	fishing.reset_encounter()
+	var reward_item: String = str(_encounter_pending.get("reward_item", ""))
+	var reward_count: int = int(_encounter_pending.get("reward_count", 1))
+	_encounter_pending.clear()
+	if not reward_item.is_empty():
+		_spawn_pickup(reward_item, reward_count, spot)
+	if is_instance_valid(fishing_fx):
+		fishing_fx.spawn_ripple(1.6, 0.6)
+	show_notice("异兽已击败，掉落一份材料，靠近按 F 拾取 · 可以继续垂钓")
+
+
+func _fishing_enemy_tuning() -> Dictionary:
+	if _enemy_tuning.is_empty():
+		_enemy_tuning = (tuning.get("enemy", {}) as Dictionary).duplicate(true)
+	return _enemy_tuning
+
+
+## 预设岸上位置：至少离玩家 5 米、不在墙里也不在玩家身上。
+func _pick_encounter_spot() -> Vector3:
+	var minimum: float = float(fishing_config.get("encounter_min_distance", 5.0))
+	if is_instance_valid(shore_area):
+		return shore_area.pick_encounter_spawn(player.global_position, minimum)
+	var candidates: Array = fishing_config.get("encounter_spawns", [])
+	for point: Array in candidates:
+		var spot: Vector3 = _vector(point)
+		if Vector2(spot.x - player.global_position.x, spot.z - player.global_position.z).length() < minimum:
+			continue
+		if _spot_blocked(spot):
+			continue
+		return spot
+	# 预设点都不合适时，围绕玩家再找一圈合法点（仍保持 5 米以上）。
+	for angle: int in range(0, 360, 30):
+		var offset: Vector3 = Vector3(cos(deg_to_rad(float(angle))), 0.0, sin(deg_to_rad(float(angle)))) * (minimum + 1.0)
+		var spot: Vector3 = player.global_position + offset
+		if _inside_pond(spot) or _spot_blocked(spot):
+			continue
+		return Vector3(spot.x, 0.1, spot.z)
+	return Vector3.INF
+
+
+func _spot_blocked(spot: Vector3) -> bool:
+	var capsule: CapsuleShape3D = CapsuleShape3D.new()
+	capsule.radius = 0.5
+	capsule.height = 1.1
+	var query: PhysicsShapeQueryParameters3D = PhysicsShapeQueryParameters3D.new()
+	query.shape = capsule
+	query.transform = Transform3D(Basis.IDENTITY, spot + Vector3.UP * 0.6)
+	query.collision_mask = 1
+	return not get_world_3d().direct_space_state.intersect_shape(query, 1).is_empty()
+
+
+func _inside_pond(point: Vector3) -> bool:
+	if not fishing_config.has("arena"):
+		return false
+	var area: Dictionary = fishing_config.arena as Dictionary
+	var minimum: Array = area.get("pond_min", [])
+	var maximum: Array = area.get("pond_max", [])
+	if minimum.size() < 2 or maximum.size() < 2:
+		return false
+	return point.x >= float(minimum[0]) and point.x <= float(maximum[0]) and point.z >= float(minimum[1]) and point.z <= float(maximum[1])
+
+
+## 背包满时的掉落点：把落点推到最近的岸边外侧，避免沉在水面中间。
+func _bank_point_near(point: Vector3) -> Vector3:
+	if not fishing_config.has("arena"):
+		return Vector3(point.x, 0.06, point.z + 1.0)
+	var area: Dictionary = fishing_config.arena as Dictionary
+	var minimum: Array = area.get("pond_min", [])
+	var maximum: Array = area.get("pond_max", [])
+	if minimum.size() < 2 or maximum.size() < 2:
+		return Vector3(point.x, 0.06, point.z + 1.0)
+	var min_x: float = float(minimum[0])
+	var min_z: float = float(minimum[1])
+	var max_x: float = float(maximum[0])
+	var max_z: float = float(maximum[1])
+	var margin: float = float(fishing_config.get("bobber_grip_margin", 1.0)) * 0.7
+	var bank_z: float = min_z - margin
+	if min_z - point.z <= point.z - max_z and min_z - point.z <= minf(point.x - min_x, max_x - point.x):
+		return Vector3(clampf(point.x, min_x, max_x), 0.06, bank_z)
+	if minf(point.x - min_x, max_x - point.x) < minf(min_z - point.z, point.z - max_z):
+		var bank_x: float = min_x - margin if point.x - min_x < max_x - point.x else max_x + margin
+		return Vector3(bank_x, 0.06, clampf(point.z, min_z, max_z))
+	var back_z: float = max_z + margin if point.z - min_z > max_z - point.z else min_z - margin
+	return Vector3(clampf(point.x, min_x, max_x), 0.06, back_z)
+
+
+func _setup_pickup_action() -> void:
+	# One canonical interaction action, with the old pickup name retained as an alias.
+	for action: String in ["interact", "fps_pickup"]:
+		if not InputMap.has_action(action):
+			InputMap.add_action(action)
+		InputMap.action_erase_events(action)
+		var key: InputEventKey = InputEventKey.new()
+		key.physical_keycode = OS.find_keycode_from_string(str(feedback_config.get("pickup_key", "F")))
+		InputMap.action_add_event(action, key)
+
+
+func _ground_drop_point(at: Vector3) -> Vector3:
+	var query: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(at + Vector3.UP * 1.2, at - Vector3.UP * 10.0, 1)
+	var hit: Dictionary = get_world_3d().direct_space_state.intersect_ray(query)
+	if hit.is_empty() or (hit.normal as Vector3).y < 0.65:
+		return Vector3.INF
+	var spot: Vector3 = hit.position as Vector3
+	if _inside_pond(spot) and spot.y < float(fishing_config.arena.water_level) + 0.1:
+		return Vector3.INF
+	return spot + Vector3.UP * 0.025
+
+
+func _catch_landing_point() -> Vector3:
+	var forward: Vector3 = -player.global_basis.z
+	var right: Vector3 = player.global_basis.x
+	for offset: Vector3 in [forward * 0.9 + right * 0.45, forward * 0.6, right * 0.6, -right * 0.6, Vector3.ZERO]:
+		var spot: Vector3 = _ground_drop_point(player.global_position + offset)
+		if spot != Vector3.INF:
+			return spot
+	return _ground_drop_point(player.spawn_position)
+
+
+func _spawn_pickup(item_id: String, amount: int, at: Vector3, flight_origin: Vector3 = Vector3.INF) -> void:
+	if amount <= 0:
+		return
+	var landing: Vector3 = _ground_drop_point(at) if at != Vector3.INF else _catch_landing_point()
+	if landing == Vector3.INF:
+		landing = _catch_landing_point()
+	if landing == Vector3.INF:
+		# Keep an unclaimed reward visible at the safe spawn even if a map has no ground query.
+		landing = player.spawn_position
+	var pickup: Area3D = PICKUP_SCRIPT.new() as Area3D
+	pickup.manual_collect = true
+	pickup.auto_collect = false
+	pickup.bag = loot
+	pickup.player = player
+	pickup.pick_radius = float(feedback_config.pickup_radius)
+	pickup.pickup_delay = float(feedback_config.pickup_delay)
+	pickup.setup(item_id, amount)
+	add_child(pickup)
+	pickup.global_position = landing
+	pickup.set_notice_target(hud)
+	pickup.collected.connect(func(id: String, count: int) -> void:
+		_sound("fish_pickup", 1.0)
+		show_fishing_notice("拾取 %s ×%d" % [_fishing_item_name(id), count])
+	)
+	pickup.landed.connect(func() -> void: _sound("fish_drop", 0.6))
+	if flight_origin != Vector3.INF:
+		pickup.launch_from(flight_origin - Vector3.UP * 0.10, float(feedback_config.drop_flight_seconds), float(feedback_config.drop_arc))
+	pickups.append(pickup)
+
+
+func _nearest_pickup() -> Node3D:
+	var nearest: Node3D = null
+	var distance: float = float(feedback_config.pickup_radius)
+	for pickup: Node3D in pickups:
+		if not is_instance_valid(pickup) or pickup.is_queued_for_deletion() or pickup.amount <= 0 or pickup.in_flight:
+			continue
+		var d: float = player.global_position.distance_to(pickup.global_position)
+		if d > distance:
+			continue
+		var ray: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.create(player.camera.global_position, pickup.global_position + Vector3.UP * 0.24, 1)
+		if not get_world_3d().direct_space_state.intersect_ray(ray).is_empty():
+			continue
+		distance = d
+		nearest = pickup
+	return nearest
+
+
+func _collect_nearest_pickup() -> void:
+	var pickup: Node3D = _nearest_pickup()
+	if is_instance_valid(pickup):
+		pickup.try_collect()
+
+
+func _update_pickups(_delta: float) -> void:
+	var nearest: Node3D = _nearest_pickup()
+	for index: int in range(pickups.size() - 1, -1, -1):
+		var pickup: Node3D = pickups[index]
+		if not is_instance_valid(pickup):
+			pickups.remove_at(index)
+			continue
+		pickup.paused = player.menu_open or not player.controls_active
+		pickup.set_focused(pickup == nearest and not player.menu_open)
+
+
+func _fishing_item_name(item_id: String) -> String:
+	var fish: Dictionary = GameData.get_fish(item_id)
+	if not fish.is_empty():
+		return str(fish.get("name", item_id))
+	return GameData.get_item_name(item_id)
+
+
+func _clear_pickups() -> void:
+	for pickup: Node3D in pickups:
+		if is_instance_valid(pickup):
+			pickup.queue_free()
+	pickups.clear()
+
+
+func _clear_encounter() -> void:
+	if encounter_enemy != null and is_instance_valid(encounter_enemy) and not encounter_enemy.dead:
+		encounter_enemy.queue_free()
+	encounter_enemy = null
+	_encounter_pending.clear()
+	if fishing != null:
+		fishing.encounter_active = false
+		fishing.reset_encounter()
+
+
+func _clear_fishing_trial() -> void:
+	if fishing != null:
+		fishing.cancel_silent("trial")
+		fishing.encounter_active = false
+		fishing.force = 0
+		fishing.set_paused(false)
+
+
+func _ensure_fishing_world() -> void:
+	if is_instance_valid(fishing_fx):
+		return
+	var existing: Node = get_node_or_null("FishingWorld")
+	if existing == null or existing.is_queued_for_deletion():
+		_build_fishing_world()
+	fishing_fx = FISHING_PRESENTATION_SCRIPT.new() as Node3D
+	fishing_fx.name = "FishingPresentation"
+	fishing_fx.fishing = fishing
+	fishing_fx.player = player
+	fishing_fx.water_level = float(fishing_config.arena.get("water_level", 0.06)) if fishing_config.has("arena") else 0.06
+	add_child(fishing_fx)
+	# Let the line start at the real rod tip in the player's hand instead of the
+	# camera offset fallback.
+	set_rod_tip_anchor(player.hands.fishing_tip_anchor())
+	fishing_fx.bite_tug.connect(func() -> void: _sound("fish_tug", 0.55))
+
+
+## Codex 接手点：手部/鱼竿模型就位后，把真实竿尖节点交给表现层，
+## 鱼线就会从掌心竿尖出发（不改钓鱼逻辑）。
+func set_rod_tip_anchor(anchor: Node3D) -> void:
+	if is_instance_valid(fishing_fx):
+		fishing_fx.set_rod_tip_anchor(anchor)
+
+
+func _build_fishing_world() -> void:
+	# Reuse the delivered shore prefab away from the training obstacles.
+	shore_area = SHORE_SCENE.instantiate() as Node3D
+	shore_area.name = "FishingWorld"
+	shore_area.position = _vector(fishing_config.get("shore_origin", [300.0, 0.0, 0.0]))
+	add_child(shore_area)
+	fishing_config["arena"] = shore_area.fishing_arena_config()
+	fishing.config = fishing_config
+
+
+func _remove_fishing_world() -> void:
+	if is_instance_valid(fishing_fx):
+		fishing_fx.queue_free()
+	fishing_fx = null
+	var world: Node = get_node_or_null("FishingWorld")
+	if world != null and is_instance_valid(world):
+		remove_child(world)
+		world.queue_free()
+	shore_area = null
+
+
+func show_fishing_notice(message: String) -> void:
+	show_notice(message)
 
 
 func _toggle_loadout() -> void:
 	if player.menu_open:
 		hud.close_loadout()
 		player.set_controls_active(true)
+		if fishing != null:
+			fishing.set_paused(false)
 	else:
 		player.menu_open = true
 		player.set_controls_active(false)
+		# 暂停期间冻结钓鱼计时与咬钩窗口；不依赖引擎暂停，战斗 HUD 仍可绘制。
+		if fishing != null:
+			fishing.set_paused(true)
 		hud.open_loadout()
 
 
@@ -174,7 +737,8 @@ func _build_world() -> void:
 	sun.shadow_normal_bias = 1.2
 	add_child(sun)
 	# 遗迹地形先铺底，训练场元素再叠在上面。
-	_build_ruins()
+	if initial_mode != 4:
+		_build_ruins()
 	var floor_size: Vector3 = _vector(tuning.arena.size)
 	# 地面加厚到 3 米，把遗迹草地的起伏埋在下面。
 	_box("ArenaFloor", Vector3(0, -1.5, 0), Vector3(floor_size.x, 3.0, floor_size.z), Color("9c8f78"))
@@ -203,6 +767,8 @@ func _build_world() -> void:
 	_sign("高台", Vector3(-12, 3, -5), 32)
 	_sign("高台", Vector3(12, 3, -5), 32)
 	_build_parkour()
+	if initial_mode != 4:
+		_build_exterior_trees()
 	course = Node3D.new()
 	course.set_script(COURSE_SCRIPT)
 	course.arena = self
@@ -210,11 +776,27 @@ func _build_world() -> void:
 
 
 ## 载入 UE 遗迹地形，只给 Landscape 加三角碰撞，建筑保持纯装饰。
+func _build_exterior_trees() -> void:
+	var group: Node3D = Node3D.new()
+	group.name = "ExteriorTrees"
+	add_child(group)
+	var points: Array[Vector3] = [Vector3(-14, 0, -30), Vector3(0, 0, -34), Vector3(14, 0, -31)]
+	for i: int in range(3):
+		var tree: Node3D = Node3D.new()
+		tree.name = "Tree%d" % (i + 1)
+		tree.set_script(TREE_SCRIPT)
+		tree.position = points[i]
+		tree.scale = Vector3.ONE * [0.56, 0.64, 0.60][i]
+		tree.rotation.y = float(i) * 1.2
+		group.add_child(tree)
+
+
 func _build_ruins() -> void:
-	if RUINS_SCENE == null:
+	var ruins_scene: PackedScene = load(RUINS_PATH) as PackedScene
+	if ruins_scene == null:
 		push_warning("遗迹模型缺失，训练场单独运行")
 		return
-	var ruins: Node3D = RUINS_SCENE.instantiate() as Node3D
+	var ruins: Node3D = ruins_scene.instantiate() as Node3D
 	if ruins == null:
 		return
 	ruins.name = "ImportedRuins"
@@ -241,7 +823,7 @@ func _build_parkour() -> void:
 	_box("ParkourStepC", Vector3(-6, 8.0, -19), Vector3(4, 1, 4), Color("c2b294"))
 	_box("ParkourStepD", Vector3(0, 12.0, -20), Vector3(4, 1, 4), Color("d7c595"))
 	# Front course: a gentler climb near the spawn side.
-	_box("ParkourStepE", Vector3(0, 2.5, 13), Vector3(4, 1, 4), Color("c2b294"))
+	# Keep the central approach to the guardian unobstructed.
 	_box("ParkourStepF", Vector3(8, 6.0, 16), Vector3(4, 1, 4), Color("c2b294"))
 	_box("ParkourStepG", Vector3(-8, 10.0, 18), Vector3(4, 1, 4), Color("d7c595"))
 	# Floating islands in the middle: only reachable with the hook.
@@ -289,9 +871,9 @@ func _material(color: Color) -> StandardMaterial3D:
 	return material
 
 
-func _sign(text: String, point: Vector3, font_size: int) -> void:
+func _sign(text: String, point: Vector3, font_size: int) -> Label3D:
 	var label: Label3D = Label3D.new()
-	label.text = text
+	label.text = ""
 	label.position = point
 	label.font_size = font_size
 	label.pixel_size = 0.009
@@ -299,6 +881,7 @@ func _sign(text: String, point: Vector3, font_size: int) -> void:
 	label.outline_modulate = Color("435a55")
 	label.outline_size = 10
 	add_child(label)
+	return label
 
 
 func _vector(values: Array) -> Vector3:
@@ -319,6 +902,16 @@ func _build_audio() -> void:
 	_sounds.jump = _movement_noise(0.10, 140.0, 0.55)
 	_sounds.slide = _movement_noise(0.25, 80.0, 0.85)
 	_sounds.wave = _tone(320.0, 0.32, 0.75)
+	# 钓鱼：抛竿、咬钩、收获、错过、异兽警示各用独立音色。
+	_sounds.fish_cast = _tone(240.0, 0.12, 0.5)
+	_sounds.fish_reel = _movement_noise(0.16, 150.0, 0.5)
+	_sounds.fish_tug = _movement_noise(0.07, 430.0, 0.7)
+	_sounds.fish_drop = _tone(420.0, 0.08, 0.5)
+	_sounds.fish_pickup = _tone(1050.0, 0.16, -0.35)
+	_sounds.fish_bite = _tone(760.0, 0.12, 0.0)
+	_sounds.fish_catch = _tone(520.0, 0.22, 0.25)
+	_sounds.fish_missed = _tone(190.0, 0.16, 0.35)
+	_sounds.fish_ominous = _tone(96.0, 0.55, 0.85)
 
 
 func _tone(frequency: float, duration: float, slide: float) -> AudioStreamWAV:

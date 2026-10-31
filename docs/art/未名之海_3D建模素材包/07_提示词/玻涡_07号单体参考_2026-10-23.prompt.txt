@@ -1,0 +1,6 @@
+生成方式：内置 image_gen。（Codex）
+输出：../11_怪物参考/玻涡_07号单体参考_2026-10-23.png
+用户初选上一轮07，内置图像编辑工具独立整理。保留青绿玻璃弧片／青铜轴心；这是忠于源设计的单体重绘整理，不是逐像素裁剪。源九宫格保留溯源，单体图未进一步审核。
+目视检查：单体与九格均可辨识，白底展示；图为概念候选，材质／建模／动作未验证，未提交 Tripo、未修改游戏。
+
+Edit the provided 3x3 monster concept sheet. Isolate ONLY design 07, the bottom-left cell, as a single full creature on pure white. This is asset extraction, NOT redesign. Faithfully preserve its exact recognizable asymmetric silhouette, arrangement of thick curving smoky teal glass crescents, broad flat fractured-glass surfaces with ivory mineral veining, aged-brass collars and mounting points, and single suspended spindle-shaped bronze center. Do not make a new monster, add eyes, legs, a head, change materials, add blue magical effects or turn it into a perfect symmetric ring. Remove all other cells, all numbering and grid lines. Keep every original part of creature 07 fully visible with enough generous white margin; show the same angle and pose. Large crisp studio isolated asset render, subtle soft shadow, pure white #FFFFFF background, no text.

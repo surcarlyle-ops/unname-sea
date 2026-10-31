@@ -1,11 +1,28 @@
 {
   "_comment": "First-person melee playtest tuning. Placeholder content, not final balance. Codex.",
+  "_imported_batch_comment": "UE5/Fab playtest batch (CodeBuddy): damage/range/timing are placeholders riding the existing melee and bolt paths (no new skills, reload or ammo). Each weapon's viewmodel block carries its own measured scale/rotation/grip offset; not final art.",
   "player": {
     "health": 100,
     "movement_profile": "agile",
     "movement_profiles": {
-      "agile": { "name": "灵动", "walk_forward": 5.2, "walk_side": 4.3, "walk_back": 3.8, "sprint_forward": 8.2, "sprint_side": 5.5, "sprint_back": 4.6 },
-      "light_reference": { "name": "轻型参考", "walk_forward": 5.1, "walk_side": 4.2, "walk_back": 3.7, "sprint_forward": 6.6, "sprint_side": 4.4, "sprint_back": 3.7 }
+      "agile": {
+        "name": "灵动",
+        "walk_forward": 5.2,
+        "walk_side": 4.3,
+        "walk_back": 3.8,
+        "sprint_forward": 8.2,
+        "sprint_side": 5.5,
+        "sprint_back": 4.6
+      },
+      "light_reference": {
+        "name": "轻型参考",
+        "walk_forward": 5.1,
+        "walk_side": 4.2,
+        "walk_back": 3.7,
+        "sprint_forward": 6.6,
+        "sprint_side": 4.4,
+        "sprint_back": 3.7
+      }
     },
     "ground_acceleration": 35.0,
     "ground_reverse_acceleration": 45.0,
@@ -19,11 +36,11 @@
     "gravity_apex_window": 2.2,
     "terminal_velocity": 26.0,
     "terminal_soft_zone": 8.0,
-    "landing_dip_light": 0.020,
-    "landing_dip_medium": 0.070,
-    "landing_dip_heavy": 0.100,
-    "landing_recovery_medium": 0.10,
-    "landing_recovery_heavy": 0.20,
+    "landing_dip_light": 0.02,
+    "landing_dip_medium": 0.07,
+    "landing_dip_heavy": 0.1,
+    "landing_recovery_medium": 0.1,
+    "landing_recovery_heavy": 0.2,
     "landing_recovery_speed_scale": 0.55,
     "mouse_sensitivity": 0.0022,
     "fov": 78.0,
@@ -39,12 +56,12 @@
     "slide_camera_drop": 0.025,
     "slide_camera_back": 0.035,
     "slide_camera_roll_degrees": 0.55,
-    "slide_camera_shake": 0.0025,
+    "slide_camera_shake": 0.009,
     "slide_camera_fov_add": 0.8,
     "slide_camera_motion_scale": 1.0,
     "stance_sharpness": 14.0,
     "jump_buffer_seconds": 0.12,
-    "coyote_seconds": 0.10,
+    "coyote_seconds": 0.1,
     "overspeed_deceleration": 7.0,
     "slide_min_speed": 4.8,
     "slide_buffer_seconds": 0.15,
@@ -57,13 +74,13 @@
     "step_height": 0.32,
     "step_camera_recovery": 2.8,
     "mantle_min_height": 0.45,
-    "mantle_max_height": 2.20,
+    "mantle_max_height": 2.2,
     "mantle_reach": 1.35,
     "mantle_duration": 0.38,
     "mantle_jump_boost": 4.5,
     "mantle_jump_lift": 2.6,
     "mantle_boost_fov_add": 12.0,
-    "mantle_boost_duration": 0.40,
+    "mantle_boost_duration": 0.4,
     "vault_max_height": 1.0,
     "vault_duration": 0.28,
     "traversal_max_speed": 9.0,
@@ -77,7 +94,7 @@
     "wallrun_cooldown": 0.35,
     "wallrun_camera_roll_degrees": 8.0,
     "wallrun_camera_sharpness": 9.0,
-    "wallrun_camera_shake": 0.030,
+    "wallrun_camera_shake": 0.03,
     "walljump_horizontal": 8.0,
     "walljump_vertical": 6.0,
     "walljump_window": 0.28,
@@ -86,15 +103,33 @@
     "camera_sharpness": 8.0,
     "step_distance": 1.9,
     "crouch_step_distance": 1.25,
+    "camera_bob": {
+      "_comment": "跑动镜头起伏：与手部 bob 同一个步频相位（一个相位=两步）。竖直/前后/俯仰每步一次，横向/偏航/滚转每两步一次，滑铲/攀爬/蹬墙/空中淡出。参考 Apex 的头动：位移之外还有俯仰(bob_pitch)与偏航(bob_yaw)，纯位移在远景上几乎看不出来，所以加了这两个旋转分量。仍属轻微，嫌大嫌小直接调这里。",
+      "vertical": 0.011,
+      "horizontal": 0.0065,
+      "forward": 0.003,
+      "pitch_degrees": 0.17,
+      "yaw_degrees": 0.08,
+      "roll_degrees": 0.19,
+      "sharpness": 9.0
+    },
     "hand_pose_sharpness": 12.0,
     "hand_motion_scale": 1.0,
     "movement_audio_db": -23.0,
     "potion_heal": 35,
-    "potion_cooldown": 3.0
+    "potion_cooldown": 3.0,
+    "fall_damage": {
+      "_comment": "坠落伤害：从最高点算落差。safe_height = 训练场钩爪柱台面高度（HookCap 顶面 y=6.3），站在台子上或从台子跳下不扣血，比它更高才扣，每多米递增。",
+      "safe_height": 6.3,
+      "damage_per_meter": 6.0,
+      "min_damage": 1,
+      "max_damage": 60
+    }
   },
   "weapon": {
     "id": "practice_blade",
     "name": "练习刃",
+    "hidden": true,
     "damage": 13,
     "range": 2.8,
     "arc_degrees": 135.0,
@@ -110,17 +145,34 @@
       "damage": 11,
       "range": 2.9,
       "arc_degrees": 150.0,
-      "windup": 0.10,
+      "windup": 0.1,
       "active": 0.16,
-      "recovery": 0.20,
+      "recovery": 0.2,
       "knockback": 4.5,
       "energy_max": 3,
       "wave_damage": 18,
+      "wave_windup": 0.2,
+      "wave_active": 0.18,
+      "wave_recovery": 0.3,
       "wave_range": 9.0,
       "wave_speed": 16.0,
       "wave_width": 3.2,
       "wave_height": 1.6,
       "wave_knockback": 7.5
+    },
+    "m1911": {
+      "id": "m1911",
+      "name": "M1911（测试）",
+      "damage": 14,
+      "range": 40.0,
+      "windup": 0.02,
+      "active": 0.02,
+      "recovery": 0.28,
+      "knockback": 2.5,
+      "ranged": true,
+      "bolt_speed": 90.0,
+      "bolt_life": 0.6,
+      "energy_max": 0
     },
     "steam_pistol": {
       "id": "steam_pistol",
@@ -135,6 +187,402 @@
       "bolt_speed": 62.0,
       "bolt_life": 1.2,
       "energy_max": 0
+    },
+    "dark_knight_sword": {
+      "id": "dark_knight_sword",
+      "name": "暗黑骑士长剑",
+      "damage": 18,
+      "range": 3.2,
+      "arc_degrees": 145.0,
+      "windup": 0.13,
+      "active": 0.19,
+      "recovery": 0.3,
+      "knockback": 6.0,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/dark_knight_longsword/LongSword.fbx",
+        "attach": "melee",
+        "scale": 0.72,
+        "rotation": [
+          180.0,
+          0.0,
+          0.0
+        ],
+        "offset": [
+          0.0,
+          0.88,
+          0.0
+        ],
+        "textures": {
+          "normal": "res://assets/weapons/dark_knight_longsword/LongSword_low_LongSword_Normal_Raw.png",
+          "orm": "res://assets/weapons/dark_knight_longsword/LongSword_low_LongSword_OcclusionRoughnessMetallic_Raw.png",
+          "emission": "res://assets/weapons/dark_knight_longsword/LongSword_low_LongSword_Emissive_sRGB.png"
+        }
+      }
+    },
+    "sword_08": {
+      "id": "sword_08",
+      "name": "长剑08",
+      "damage": 15,
+      "range": 3.0,
+      "arc_degrees": 140.0,
+      "windup": 0.12,
+      "active": 0.17,
+      "recovery": 0.24,
+      "knockback": 5.0,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/sword_08/Sword_08.fbx",
+        "attach": "melee",
+        "scale": 0.009,
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "offset": [
+          0.0,
+          0.075,
+          0.0
+        ],
+        "textures": {
+          "albedo": "res://assets/weapons/sword_08/T_SWORD_08_4k_D.tga",
+          "normal": "res://assets/weapons/sword_08/T_SWORD_08_4k_N.tga",
+          "orm": "res://assets/weapons/sword_08/T_SWORD_08_4k_M.tga"
+        }
+      }
+    },
+    "lowpoly_axe": {
+      "id": "lowpoly_axe",
+      "name": "低模斧",
+      "damage": 20,
+      "range": 2.6,
+      "arc_degrees": 130.0,
+      "windup": 0.16,
+      "active": 0.18,
+      "recovery": 0.34,
+      "knockback": 7.0,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/lowpoly_pack/axe_001.fbx",
+        "attach": "melee",
+        "scale": 0.7,
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "offset": [
+          0.0,
+          -0.126,
+          0.0
+        ],
+        "textures": {
+          "albedo": "res://assets/weapons/lowpoly_pack/Texture_1.png"
+        }
+      }
+    },
+    "lowpoly_bat": {
+      "id": "lowpoly_bat",
+      "name": "低模球棒",
+      "damage": 14,
+      "range": 2.7,
+      "arc_degrees": 140.0,
+      "windup": 0.13,
+      "active": 0.16,
+      "recovery": 0.26,
+      "knockback": 6.0,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/lowpoly_pack/baseball_bat_001.fbx",
+        "attach": "melee",
+        "scale": 0.77,
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "offset": [
+          0.0,
+          0.04,
+          0.0
+        ],
+        "textures": {
+          "albedo": "res://assets/weapons/lowpoly_pack/Texture_1.png"
+        }
+      }
+    },
+    "lowpoly_hockey": {
+      "id": "lowpoly_hockey",
+      "name": "低模球杆",
+      "hidden": true,
+      "damage": 12,
+      "range": 3.0,
+      "arc_degrees": 150.0,
+      "windup": 0.14,
+      "active": 0.16,
+      "recovery": 0.28,
+      "knockback": 4.5,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/lowpoly_pack/hockey_stick_001.fbx",
+        "attach": "melee",
+        "scale": 0.8,
+        "rotation": [
+          180.0,
+          0.0,
+          0.0
+        ],
+        "offset": [
+          0.0,
+          0.09,
+          0.0
+        ],
+        "textures": {
+          "albedo": "res://assets/weapons/lowpoly_pack/Texture_1.png"
+        }
+      }
+    },
+    "lowpoly_knife": {
+      "id": "lowpoly_knife",
+      "name": "低模短刀",
+      "damage": 9,
+      "range": 2.0,
+      "arc_degrees": 110.0,
+      "windup": 0.08,
+      "active": 0.12,
+      "recovery": 0.18,
+      "knockback": 2.5,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/lowpoly_pack/knife_001.fbx",
+        "attach": "melee",
+        "scale": 0.55,
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "textures": {
+          "albedo": "res://assets/weapons/lowpoly_pack/Texture_1.png"
+        }
+      }
+    },
+    "lowpoly_pistol": {
+      "id": "lowpoly_pistol",
+      "name": "低模左轮",
+      "hidden": true,
+      "damage": 12,
+      "range": 35.0,
+      "windup": 0.03,
+      "active": 0.02,
+      "recovery": 0.3,
+      "knockback": 2.0,
+      "ranged": true,
+      "bolt_speed": 80.0,
+      "bolt_life": 0.5,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/lowpoly_pack/pistol_001.fbx",
+        "attach": "gun",
+        "scale": 0.52,
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "offset": [
+          0.026,
+          0.031,
+          0.0
+        ],
+        "textures": {
+          "albedo": "res://assets/weapons/lowpoly_pack/Texture_1.png"
+        }
+      }
+    },
+    "lowpoly_rifle": {
+      "id": "lowpoly_rifle",
+      "name": "低模步枪",
+      "damage": 16,
+      "range": 45.0,
+      "windup": 0.04,
+      "active": 0.02,
+      "recovery": 0.34,
+      "knockback": 2.5,
+      "ranged": true,
+      "bolt_speed": 95.0,
+      "bolt_life": 0.55,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/lowpoly_pack/rifle_001.fbx",
+        "attach": "gun",
+        "scale": 0.5,
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "offset": [
+          -0.015,
+          0.045,
+          0.0
+        ],
+        "textures": {
+          "albedo": "res://assets/weapons/lowpoly_pack/Texture_1.png"
+        }
+      }
+    },
+    "lowpoly_shotgun": {
+      "id": "lowpoly_shotgun",
+      "name": "低模霰弹",
+      "hidden": true,
+      "damage": 22,
+      "range": 25.0,
+      "windup": 0.06,
+      "active": 0.02,
+      "recovery": 0.52,
+      "knockback": 5.0,
+      "ranged": true,
+      "bolt_speed": 70.0,
+      "bolt_life": 0.4,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/lowpoly_pack/shotgun_001.fbx",
+        "attach": "gun",
+        "scale": 0.5,
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "offset": [
+          0.0,
+          0.04,
+          0.0
+        ],
+        "textures": {
+          "albedo": "res://assets/weapons/lowpoly_pack/Texture_1.png"
+        }
+      }
+    },
+    "lowpoly_sniper": {
+      "id": "lowpoly_sniper",
+      "name": "低模狙击",
+      "damage": 30,
+      "range": 60.0,
+      "windup": 0.1,
+      "active": 0.02,
+      "recovery": 0.62,
+      "knockback": 4.0,
+      "ranged": true,
+      "bolt_speed": 140.0,
+      "bolt_life": 0.5,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/lowpoly_pack/sniper_rifle_001.fbx",
+        "attach": "gun",
+        "scale": 0.55,
+        "rotation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "offset": [
+          0.0,
+          0.05,
+          0.0
+        ],
+        "textures": {
+          "albedo": "res://assets/weapons/lowpoly_pack/Texture_1.png"
+        }
+      }
+    },
+    "scifi_knife": {
+      "id": "scifi_knife",
+      "name": "暗影匕首",
+      "damage": 12,
+      "range": 2.1,
+      "arc_degrees": 115.0,
+      "windup": 0.08,
+      "active": 0.12,
+      "recovery": 0.2,
+      "knockback": 3.0,
+      "energy_max": 0,
+      "playtest_placeholder": true,
+      "viewmodel": {
+        "model": "res://assets/weapons/scifi_knife/sm_knife.fbx",
+        "attach": "melee",
+        "scale": 1.2,
+        "rotation": [
+          -45.0,
+          180.0,
+          0.0
+        ],
+        "offset": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "material": {
+          "albedo_color": "#3f454e",
+          "metallic": 0.7,
+          "roughness": 0.32
+        }
+      }
+    },
+    "fishing_rod": {
+      "id": "fishing_rod",
+      "name": "钓鱼竿",
+      "tool": "fishing",
+      "description": "分支鱼竿（MVP 测试档，钓力 66）。装备后在钓鱼试炼里左键抛竿 / 收竿。"
+    }
+  },
+  "equipment": {
+    "_comment": "泰拉瑞亚式装备栏（CodeBuddy 2026-10-24）：护甲 3 格（头/身/腿，竖列）+ 饰品 5 格（竖列），放在背包右侧。社交/染料列暂不做——目前没有对应物品。",
+    "items": {
+      "wind_boots": {
+        "name": "疾风之靴",
+        "slot": "accessory",
+        "mark": "靴",
+        "color": "#7fd6ff",
+        "rarity": "高级",
+        "desc": "高级饰品：提升移动速度，并免疫坠落伤害。",
+        "effects": {
+          "fall_immune": true,
+          "move_speed_bonus": 0.0
+        }
+      }
+    },
+    "dev_defaults": {
+      "_comment": "开发者模式默认穿着：饰品第 1 格放疾风之靴。移速加成按用户要求暂不生效（move_speed_bonus=0），只启用免疫坠落伤害。",
+      "armor": [
+        "",
+        "",
+        ""
+      ],
+      "accessories": [
+        "wind_boots",
+        "",
+        "",
+        "",
+        ""
+      ]
     }
   },
   "enemy": {
@@ -146,11 +594,109 @@
     "recovery": 1.0,
     "stagger": 0.24
   },
+  "guardian": {
+    "source_id": "mon_ruin_guardian",
+    "size_multiplier": 2.0,
+    "gravity": 22.0,
+    "walk_speed": 3.15,
+    "aggro_range": 28.0,
+    "attack_range": 9.2,
+    "target_height": 2.0,
+    "windup_skip": 1.6,
+    "attack_cooldown": 0.6923077,
+    "attack_speed": 1.3,
+    "fist_offset": 0.2,
+    "fist_radius": 0.82,
+    "hard_part_damage_multiplier": 0.5,
+    "foot_armor_height": 0.16,
+    "telegraph_width": 2.0,
+    "knockback_scale": 0.12,
+    "death_linger": 1.3,
+    "melee_range": 3.4,
+    "swing_step_distance": 0.7,
+    "charge_min_range": 8.0,
+    "charge_max_range": 22.0,
+    "charge_max_distance": 18.0,
+    "charge_stop_distance": 2.3,
+    "swing_windup": 0.7,
+    "swing_active": 0.34,
+    "swing_recovery": 0.78,
+    "slam_windup": 1.1,
+    "slam_active": 0.2,
+    "slam_recovery": 1.1,
+    "slam_radius": 5.6,
+    "slam_wave_duration": 0.7,
+    "slam_jump_height": 0.65
+  },
   "arena": {
-    "spawn": [0.0, 0.08, 8.0],
-    "size": [48.0, 1.0, 44.0],
-    "swarm_spawns": [[-2.4, 0.1, -1.0], [0.0, 0.1, -2.5], [2.4, 0.1, -1.0], [-4.0, 0.1, -5.0], [4.0, 0.1, -5.0]],
-    "mobility_spawns": [[0.0, 0.1, -3.0], [8.0, 0.1, -8.0], [-8.0, 0.1, -8.0]],
-    "movement_spawn": [-19.0, 0.08, 17.0]
+    "spawn": [
+      0.0,
+      0.08,
+      8.0
+    ],
+    "size": [
+      48.0,
+      1.0,
+      44.0
+    ],
+    "swarm_spawns": [
+      [
+        -2.4,
+        0.1,
+        -1.0
+      ],
+      [
+        0.0,
+        0.1,
+        -2.5
+      ],
+      [
+        2.4,
+        0.1,
+        -1.0
+      ],
+      [
+        -4.0,
+        0.1,
+        -5.0
+      ],
+      [
+        4.0,
+        0.1,
+        -5.0
+      ]
+    ],
+    "mobility_spawns": [
+      [
+        0.0,
+        0.1,
+        -3.0
+      ],
+      [
+        8.0,
+        0.1,
+        -8.0
+      ],
+      [
+        -8.0,
+        0.1,
+        -8.0
+      ]
+    ],
+    "movement_spawn": [
+      -19.0,
+      0.08,
+      17.0
+    ],
+    "guardian_spawn": [
+      0.0,
+      0.1,
+      -3.0
+    ],
+    "guardian_player_spawn": [
+      0.0,
+      0.08,
+      16.0
+    ]
   }
 }

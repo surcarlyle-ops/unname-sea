@@ -172,6 +172,10 @@ func _build_pads(cfg: Dictionary) -> void:
 		specs.append(village.shrine)
 	if village.has("pagoda"):
 		specs.append(village.pagoda)
+	# 导入的地标庭院也要一块压平的台地，否则四角会一角悬空一角陷进坡里。
+	if cfg.has("landmark") and bool(cfg.landmark.get("enabled", false)):
+		var landmark_footprint: float = float(cfg.landmark.get("footprint", 20.0))
+		specs.append({"center": cfg.landmark.center, "size": [landmark_footprint, landmark_footprint]})
 	for spec: Dictionary in specs:
 		var center: Vector2 = Vector2(float(spec.center[0]), float(spec.center[1]))
 		var footprint: float = 0.0

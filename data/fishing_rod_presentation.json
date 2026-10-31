@@ -1,0 +1,30 @@
+{
+  "_comment": "First-person fishing presentation only. No catch timing, rewards or encounter logic. Codex.",
+  "hand_position": [0.34, -0.31, -0.47],
+  "hand_degrees": [5.73, -4.58, -81.45],
+  "forward_tilt_degrees": -42.0,
+  "forearm_tilt_degrees": 0.0,
+  "handle_radius": 0.023,
+  "tip_height": 1.32,
+  "colors": {
+    "wood": "73533a",
+    "wrap": "354c49",
+    "metal": "b69962",
+    "tip": "bbc8af"
+  },
+  "cast_duration": 0.4,
+  "reel_duration": 0.35,
+  "casting": [
+    {"t": 0.0, "offset": [0, 0, 0], "pitch": 0},
+    {"t": 0.30, "offset": [0.025, 0.035, 0.085], "pitch": 40},
+    {"t": 0.62, "offset": [-0.025, -0.025, -0.085], "pitch": -30},
+    {"t": 0.82, "offset": [-0.01, -0.01, -0.025], "pitch": -8},
+    {"t": 1.0, "offset": [0, 0, 0], "pitch": 0}
+  ],
+  "reeling": [
+    {"t": 0.0, "offset": [0, 0, 0], "pitch": 0},
+    {"t": 0.32, "offset": [0.01, 0.035, 0.065], "pitch": 23},
+    {"t": 0.66, "offset": [0.005, 0.012, 0.025], "pitch": 9},
+    {"t": 1.0, "offset": [0, 0, 0], "pitch": 0}
+  ]
+}

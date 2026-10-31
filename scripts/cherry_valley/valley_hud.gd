@@ -71,8 +71,6 @@ func _draw() -> void:
 		return
 	_draw_title()
 	_draw_status()
-	if show_help and _hint_timer < 18.0:
-		_draw_help()
 
 
 func _draw_loading() -> void:

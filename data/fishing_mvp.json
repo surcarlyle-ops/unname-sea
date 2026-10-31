@@ -1,0 +1,105 @@
+{
+  "_comment": "钓鱼MVP独立参数（CodeBuddy 2026-10-28）。不覆盖完整游戏的 rod_data.json 15-45s 旧数据；本轮测试档钓力66，对照泰拉瑞亚官方Wiki：Catch frequency 约3.10s/次（含成功判定），Reel in time 约1.44-5.40s（均值约1.55s）。",
+  "fishing_power": 66,
+  "bobber_ticks_per_second": 60,
+  "catch_counter": 660,
+  "bite_success_divisor": 2.0,
+  "bite_success_base": 75,
+  "counter_growth_base_min": 1,
+  "counter_growth_base_max": 2,
+  "counter_growth_bonus": 60,
+  "reel_window_ticks_min": 91,
+  "reel_window_ticks_max": 240,
+  "reel_decay_min_ticks": 1,
+  "reel_decay_max_ticks": 4,
+  "_comment_cast": "表现节拍：抛竿与揭晓时长只影响表现和状态锁定，不替代随机咬钩",
+  "cast_seconds": 0.4,
+  "reveal_seconds": 0.35,
+  "rod_id": "rod_branch",
+  "bait_id": "inf_test_bait",
+  "cast_min_range": 2.0,
+  "cast_max_range": 12.0,
+  "bobber_grip_margin": 1.0,
+  "auto_reel_distance": 16.0,
+  "rod_quick_slot": 1,
+  "_comment_outcome": "渔获权重：苍白小鲦40 / 环鳞鱼40 / 异兽20",
+  "outcome_fish_pale": 40,
+  "outcome_fish_ring": 40,
+  "outcome_encounter": 20,
+  "fish_pale_id": "fish_pale_minnow",
+  "fish_ring_id": "fish_ring_scale",
+  "encounter_monster_id": "mon_phosphor_scale",
+  "encounter_enemy_source_id": "mon_silence",
+  "encounter_delay": 0.8,
+  "encounter_min_distance": 5.0,
+  "encounter_reward_item": "item_scale",
+  "encounter_reward_count": 1,
+  "reveal_hold_seconds": 0.0,
+  "stack_limit": 999,
+  "message_seconds": 2.6,
+  "material_hint_pale": "可加工为鱼骨",
+  "material_hint_ring": "可加工为鱼骨与鱼鳞",
+  "arena": {
+    "_comment": "钓鱼试炼场地：水池中心在训练场前左侧（x -14..-2, z 12..20），岸边 z≈11，战斗空地在池前 5 米。",
+    "spawn": [
+      -8.0,
+      0.08,
+      8.0
+    ],
+    "pond_min": [
+      -14.0,
+      12.0
+    ],
+    "pond_max": [
+      -2.0,
+      20.0
+    ],
+    "water_level": 0.06,
+    "encounter_spawns": [
+      [
+        -0.6,
+        0.1,
+        11.0
+      ],
+      [
+        -0.6,
+        0.1,
+        18.0
+      ],
+      [
+        -14.8,
+        0.1,
+        8.0
+      ],
+      [
+        -14.8,
+        0.1,
+        11.5
+      ],
+      [
+        -8.0,
+        0.1,
+        5.0
+      ],
+      [
+        -8.0,
+        0.1,
+        10.5
+      ],
+      [
+        3.0,
+        0.1,
+        8.0
+      ]
+    ],
+    "spawn_yaw_degrees": 200.0
+  },
+  "counter_growth_power_rate": 0.038333,
+  "_comment_growth": "growth = 1.5 + 60*(1/60 chance) + fishing_power * 23/600 per tick; 660 / that = seconds between checks (11/(2.5+23/600*FP)), then divide by bite success chance (75+FP)/2.",
+  "counter_growth_bonus_chance_per_tick": 0.016666666666666666,
+  "shore_origin": [
+    300.0,
+    0.0,
+    0.0
+  ]
+}

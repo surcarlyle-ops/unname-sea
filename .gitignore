@@ -21,3 +21,10 @@ tools/asset_pipeline/.deps/
 *.log
 __pycache__/
 *.pyc
+
+# Local agent configuration and secrets
+.claude/
+.codebuddy/
+.env
+.env.*
+!.env.example

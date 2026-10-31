@@ -105,7 +105,9 @@ func _physics_process(delta: float) -> void:
 func _impact(hit: Dictionary) -> void:
 	var collider: Object = hit.get("collider")
 	var point: Vector3 = hit.get("position", global_position)
-	if collider != null and collider.has_method("apply_damage"):
+	if collider != null and collider.has_method("apply_damage_at"):
+		collider.apply_damage_at(damage, velocity.normalized() * knockback, point)
+	elif collider != null and collider.has_method("apply_damage"):
 		collider.apply_damage(damage, velocity.normalized() * knockback)
 	_burst(point)
 	queue_free()

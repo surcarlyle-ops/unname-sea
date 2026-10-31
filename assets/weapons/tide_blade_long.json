@@ -1,0 +1,14 @@
+{
+  "source": "fantasy sword 3d model.glb",
+  "source_sha256": "d2cd9e42297b075a9b8ad0933704fcb5200106d8ee63325e0baf3cfd29511b04",
+  "output": "tide_blade_long.glb",
+  "blade_base": 0.48,
+  "original_tip": 0.99951171875,
+  "new_tip": 1.259267578125,
+  "blade_length_multiplier": 1.5,
+  "extension": 0.259755859375,
+  "stretch_start": 0.56,
+  "stretch_end": 0.88,
+  "unchanged_lower_vertices": 11101,
+  "note": "Only middle-blade Y positions and their normals changed. Hilt, guard, blade tip shape, X/Z width, UVs, indices and embedded textures preserved. Codex."
+}

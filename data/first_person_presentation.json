@@ -1,0 +1,136 @@
+{
+  "_comment": "MVP viewmodel presentation only; does not change player movement. Codex.",
+  "empty": {
+    "idle_position": [
+      0.34,
+      -0.76,
+      -0.22
+    ],
+    "idle_rotation": [
+      -0.35,
+      -0.18,
+      -0.14
+    ],
+    "moving_position": [
+      0.37,
+      -0.61,
+      -0.32
+    ],
+    "moving_rotation": [
+      -0.55,
+      -0.08,
+      -0.12
+    ],
+    "reference_speed": 8.2,
+    "vertical_swing": 0.045,
+    "forward_swing": 0.07,
+    "pitch_swing": 0.12,
+    "grip": 0.17
+  },
+  "view": {
+    "depth_offset": -0.1,
+    "scale": 1.12
+  },
+  "weapon_motion": {
+    "sharpness": 10.0,
+    "crouch_tilt_degrees": 45.0,
+    "crouch_offset": [
+      -0.015,
+      -0.035,
+      0.015
+    ],
+    "slide_offset": [
+      0.1,
+      -0.1,
+      0.04
+    ],
+    "slide_degrees": [
+      -12.0,
+      -16.0,
+      -22.0
+    ],
+    "grapple_offset": [
+      0.08,
+      -0.12,
+      0.04
+    ],
+    "grapple_degrees": [
+      -8.0,
+      -12.0,
+      -20.0
+    ]
+  },
+  "grapple": {
+    "forearm_max_bend_degrees": 25.0,
+    "reach_bend_reduction_degrees": 7.0,
+    "reel_bend_add_degrees": 8.0,
+    "swing_bend_add_degrees": 3.0,
+    "pull_finish_distance": 2.0,
+    "pull_sharpness": 6.0,
+    "swing_reference_speed": 12.0,
+    "reach_offset": [
+      0.0,
+      0.0,
+      -0.025
+    ],
+    "reel_offset": [
+      0.035,
+      -0.035,
+      0.07
+    ],
+    "swing_offset": [
+      0.025,
+      -0.02,
+      0.04
+    ],
+    "closest_grip_depth": 0.46,
+    "reel_degrees": [
+      5.0,
+      -3.0,
+      -3.0
+    ],
+    "reel_wrist_degrees": 45.0,
+    "swing_follow_gain": 0.65,
+    "windup_duration": 0.12,
+    "hand_position": [
+      -0.33,
+      -0.24,
+      -0.53
+    ],
+    "hand_rotation": [
+      0.08,
+      -0.3,
+      0.15
+    ],
+    "grip": 0.7,
+    "raise_sharpness": 30.0,
+    "launch_kick_distance": 0.055,
+    "launch_kick_duration": 0.11,
+    "impact_settle_distance": 0.018,
+    "impact_settle_duration": 0.1,
+    "follow_gain": 0.42,
+    "follow_yaw_degrees": 12.0,
+    "follow_pitch_degrees": 10.0,
+    "follow_roll_degrees": 5.0,
+    "follow_sharpness": 8.0,
+    "impact_pull_delay_seconds": 0.06666666666666667
+  },
+  "pistol": {
+    "kick_duration": 0.18,
+    "rise_duration": 0.025,
+    "back_distance": 0.05,
+    "up_distance": 0.012,
+    "pitch_degrees": 4.0
+  },
+  "rope": {
+    "shot_speed": 360.0,
+    "shot_min_duration": 0.016,
+    "shot_max_duration": 0.06,
+    "retract_duration": 0.08,
+    "waist_sag": 0.006,
+    "grip_bend": 0.015,
+    "grip_bend_length": 0.075,
+    "impact_vibration": 0.003,
+    "impact_settle_duration": 0.1
+  }
+}

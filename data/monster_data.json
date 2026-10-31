@@ -2,6 +2,18 @@
   "_comment": "异兽数据。原创设计，无文化预设。每只含独立掉落表与\"招牌稀有掉落\"。",
   "monsters": [
     {
+      "id": "mon_ruin_guardian",
+      "name": "玄岩重卫",
+      "prototype": "石甲遗迹守卫",
+      "area": "ruins",
+      "hp": 300,
+      "attack": 22,
+      "defense": 1,
+      "is_boss": true,
+      "description": "巨石臂前冲出拳的遗迹守卫。当前只用于主战斗试炼，掉落与正式区域尚未接入。",
+      "drops": []
+    },
+    {
       "id": "mon_phosphor_scale",
       "name": "磷鳞",
       "prototype": "深海发光鱼",

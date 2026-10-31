@@ -12,8 +12,7 @@ var height: float = 1.6
 var _traveled: float = 0.0
 var _hit: Dictionary = {}
 var _oriented: bool = false
-var _material: StandardMaterial3D
-var _glow_material: StandardMaterial3D
+var _materials: Array[ShaderMaterial] = []
 
 
 func _ready() -> void:
@@ -25,7 +24,8 @@ func _physics_process(delta: float) -> void:
 	if not _oriented:
 		_oriented = true
 		if direction.length_squared() > 0.001:
-			look_at(global_position + direction.normalized(), Vector3.UP)
+			var up: Vector3 = Vector3.FORWARD if absf(direction.normalized().dot(Vector3.UP)) > 0.98 else Vector3.UP
+			look_at(global_position + direction.normalized(), up)
 	var step: float = speed * delta
 	_traveled += step
 	global_position += direction * step
@@ -47,7 +47,8 @@ func _check_targets() -> void:
 		var enemy: Node3D = node as Node3D
 		if enemy == null or enemy.dead or _hit.has(enemy.get_instance_id()):
 			continue
-		var offset: Vector3 = enemy.global_position - global_position
+		var point: Vector3 = enemy.damage_point() if enemy.has_method("damage_point") else enemy.global_position
+		var offset: Vector3 = point - global_position
 		offset.y = 0.0
 		var along: float = offset.dot(direction)
 		# 只吃冲击波所在的那一小段厚度。
@@ -56,7 +57,7 @@ func _check_targets() -> void:
 		var lateral: Vector3 = offset - direction * along
 		if lateral.length() > width * 0.5:
 			continue
-		if absf(enemy.global_position.y - global_position.y) > height:
+		if absf(point.y - global_position.y) > height:
 			continue
 		_hit[enemy.get_instance_id()] = true
 		var push: Vector3 = direction * knockback
@@ -65,35 +66,55 @@ func _check_targets() -> void:
 
 
 func _fade() -> void:
-	var life: float = clampf(1.0 - _traveled / maxf(max_range, 0.01), 0.0, 1.0)
-	var alpha: float = clampf(life * 1.8, 0.0, 1.0)
-	_material.albedo_color.a = 0.50 * alpha
-	_glow_material.albedo_color.a = 0.72 * alpha
+	var life: float = clampf(_traveled / maxf(max_range, 0.01), 0.0, 1.0)
+	var alpha: float = smoothstep(0.0, 0.07, life) * (1.0 - smoothstep(0.55, 1.0, life))
+	for i: int in range(_materials.size()):
+		_materials[i].set_shader_parameter("opacity", alpha * [0.95, 0.35, 0.15][i])
 
 
 func _build_visual() -> void:
-	_material = StandardMaterial3D.new()
-	_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	_material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	_material.albedo_color = Color(0.32, 0.94, 0.86, 0.50)
-	var shell: BoxMesh = BoxMesh.new()
-	shell.size = Vector3(width, height, 0.36)
-	var shell_instance: MeshInstance3D = MeshInstance3D.new()
-	shell_instance.mesh = shell
-	shell_instance.material_override = _material
-	shell_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	add_child(shell_instance)
+	var mesh: ArrayMesh = _crescent_mesh()
+	for i: int in range(3):
+		var material: ShaderMaterial = ShaderMaterial.new()
+		material.shader = preload("res://shaders/tide_crescent.gdshader")
+		material.set_shader_parameter("opacity", 0.0)
+		material.set_shader_parameter("echo", float(i) / 2.0)
+		_materials.append(material)
+		var ribbon: MeshInstance3D = MeshInstance3D.new()
+		ribbon.name = "Crescent" if i == 0 else "Wake%d" % i
+		ribbon.mesh = mesh
+		ribbon.material_override = material
+		ribbon.position = Vector3(0, -0.035 * i, 0.28 * i)
+		ribbon.scale = Vector3.ONE * (1.0 - i * 0.06)
+		ribbon.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		add_child(ribbon)
 
-	_glow_material = StandardMaterial3D.new()
-	_glow_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	_glow_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-	_glow_material.cull_mode = BaseMaterial3D.CULL_DISABLED
-	_glow_material.albedo_color = Color(0.78, 1.0, 0.96, 0.72)
-	var core: BoxMesh = BoxMesh.new()
-	core.size = Vector3(width * 0.74, height * 0.52, 0.16)
-	var core_instance: MeshInstance3D = MeshInstance3D.new()
-	core_instance.mesh = core
-	core_instance.material_override = _glow_material
-	core_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-	add_child(core_instance)
+
+func _crescent_mesh() -> ArrayMesh:
+	# A tapered curved ribbon with swept-back tips; the silhouette is geometry,
+	# so it cannot turn back into a rectangular billboard at grazing angles.
+	var vertices: PackedVector3Array = PackedVector3Array()
+	var uvs: PackedVector2Array = PackedVector2Array()
+	var indices: PackedInt32Array = PackedInt32Array()
+	var segments: int = 48
+	for i: int in range(segments + 1):
+		var u: float = float(i) / segments
+		var t: float = u * 2.0 - 1.0
+		var taper: float = pow(maxf(0.0, 1.0 - t * t), 0.7)
+		var center: Vector3 = Vector3(t * width * 0.5, 0.23 * (1.0 - t * t), 0.45 * t * t)
+		var thickness: float = clampf(height * 0.10, 0.08, 0.20) * taper
+		vertices.append(center + Vector3(0, -thickness, 0.10 * taper))
+		vertices.append(center + Vector3(0, thickness, -0.10 * taper))
+		uvs.append(Vector2(u, 0))
+		uvs.append(Vector2(u, 1))
+		if i < segments:
+			var n: int = i * 2
+			indices.append_array(PackedInt32Array([n, n + 1, n + 2, n + 1, n + 3, n + 2]))
+	var arrays: Array = []
+	arrays.resize(Mesh.ARRAY_MAX)
+	arrays[Mesh.ARRAY_VERTEX] = vertices
+	arrays[Mesh.ARRAY_TEX_UV] = uvs
+	arrays[Mesh.ARRAY_INDEX] = indices
+	var result: ArrayMesh = ArrayMesh.new()
+	result.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, arrays)
+	return result

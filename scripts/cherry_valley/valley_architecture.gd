@@ -12,6 +12,7 @@ var sizes: Dictionary = {}
 
 var _lantern_bodies: Array[NamedNode] = []
 var _window_lights: Array[Node3D] = []
+var _lantern_lights: Array[OmniLight3D] = []
 
 
 ## NamedNode lets the lighting module reach the lantern emission materials later.
@@ -49,6 +50,9 @@ func set_lantern_energy(energy: float) -> void:
 	for lantern: NamedNode in _lantern_bodies:
 		if is_instance_valid(lantern.node):
 			lantern.material.emission_energy_multiplier = energy
+	for lamp: OmniLight3D in _lantern_lights:
+		if is_instance_valid(lamp):
+			lamp.light_energy = energy * 0.85
 
 
 # ---------------------------------------------------------------- bridge
@@ -434,6 +438,22 @@ func _build_lantern(point: Vector2) -> void:
 	# Soft halo quad so lanterns read at distance without bloom levels.
 	var halo: MeshInstance3D = _make_halo(Vector3(0, 1.28, 0), 1.5, Color("#ffcf8a"))
 	root.add_child(halo)
+	# Larger, softer halo: in the reference the lamps read as warm blobs in the
+	# blue haze, not as small bright dots.
+	var wide_halo: MeshInstance3D = _make_halo(Vector3(0, 1.28, 0), 4.2, Color("#ffd7a0"))
+	(wide_halo.material_override as StandardMaterial3D).albedo_color = Color("#ffd7a0") * Color(1, 1, 1, 0.07)
+	root.add_child(wide_halo)
+	# One omni light per lantern so the nearby path and grass pick up warm light.
+	var lamp: OmniLight3D = OmniLight3D.new()
+	lamp.name = "LanternLight"
+	lamp.position = Vector3(0, 1.35, 0)
+	lamp.light_color = Color("#ffc884")
+	lamp.light_energy = 1.6
+	lamp.omni_range = 7.5
+	lamp.omni_attenuation = 1.4
+	lamp.shadow_enabled = false
+	root.add_child(lamp)
+	_lantern_lights.append(lamp)
 	MESH_KIT.solid_box(root, "LanternBody", Vector3(0, 0.9, 0), Vector3(0.62, 1.8, 0.62), 0.0)
 
 

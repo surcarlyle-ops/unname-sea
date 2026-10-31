@@ -15,6 +15,13 @@ signal notice_requested(message: String)
 signal movement_sound(sound_name: String, strength: float)
 signal wave_released()
 signal hurt_direction(direction: Vector2)  ## (Claude Code) Apex-style damage direction indicator: screen-space 2D direction from player to attacker
+signal fall_damage_taken(amount: int)  ## 坠落扣血，供 HUD 在血条上方显示数字
+## 钓鱼钩子（CodeBuddy 2026-10-28）：换装备/武器或使用钩爪前，先清理未完成的钓鱼；
+## 场景重置（重新开始、切试炼）后通知钓鱼状态机清场。
+signal water_tool_used()  ## 当前快捷物品是钓鱼竿，左键交给钓鱼逻辑
+signal loadout_changing()  ## 即将切换快捷物品
+signal grapple_requested()  ## 即将发射钩爪
+signal reset_applied()  ## reset_to_spawn 已把玩家送回出生点
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
@@ -30,10 +37,28 @@ var dead: bool = false
 var health: int = 100
 var max_health: int = 100
 var selected_slot: int = 2
-var quick_slots: Array[String] = ["tide_blade", "", "steam_pistol", "", "potion"]
+var quick_slots: Array[String] = ["tide_blade", "", "steam_pistol", "m1911", "potion"]
+## 通用物品栏（武器、工具、药水、鱼、材料共用）
+const BACKPACK_SLOT_COUNT: int = 15
+const POTION_ID: String = "potion"
+var inventory: Inventory  ## 唯一数量与格位来源
+## 泰拉瑞亚式装备栏：护甲 3（头/身/腿）+ 饰品 5，与背包同一套点击搬运逻辑。
+const ARMOR_SLOT_COUNT: int = 3
+const ACCESSORY_SLOT_COUNT: int = 5
+const ARMOR_ROW: int = 4
+const ACCESSORY_ROW: int = 5
+var armor_slots: Array[String] = []
+var accessory_slots: Array[String] = []
+var _equipment: Dictionary = {}
 ## 鸣潮刃的充能格数，命中积累，满格后按 E 释放冲击波。
 var energy: int = 0
+var _wave_elapsed: float = -1.0
+var _wave_fired: bool = false
 var spawn_position: Vector3
+## 钓鱼（CodeBuddy 2026-10-28）：最近使用的战斗武器、钓到异兽后自动切到的武器。
+var last_combat_weapon_id: String = ""
+var _tool_input_held: bool = false
+var fishing_auto_weapon_id: String = ""
 var attack_elapsed: float = -1.0
 ## 远程武器每次攻击只触发一发，避免 active 窗口跨帧重复开火。
 var _attack_fired: bool = false
@@ -53,6 +78,11 @@ var _settings: Dictionary
 var _weapons: Dictionary = {}
 var _weapon: Dictionary = {}
 var _was_on_floor: bool = true
+## 坠落伤害：离地后记录到过的最高点，落地时用落差结算。
+var _fall_peak_y: float = 0.0
+var _fall_grounded: bool = false
+## 供 HUD 判断：这次掉血是不是坠落造成的（坠落没有攻击方向，不画方向箭头）。
+var last_damage_was_fall: bool = false
 var _previous_velocity_y: float = 0.0
 var _shake: float = 0.0
 var _hitstop_time: float = 0.0  ## (Claude Code) seconds of hit-stop remaining
@@ -76,14 +106,20 @@ func _ready() -> void:
 	if tuning.has("weapons"):
 		for key: String in tuning.weapons:
 			_weapons[key] = tuning.weapons[key]
+	_init_inventory()
+	_init_equipment(tuning)
 	_weapon = _weapons.get(quick_slots[selected_slot], {})
 	max_health = int(_settings.health)
 	health = max_health
 	spawn_position = global_position
+	_fall_peak_y = global_position.y
+	# Enemy limbs block the player but must not become velocity-carrying platforms.
+	platform_floor_layers = 1
 	camera.fov = float(_settings.fov)
 	motion = MOTION_SCRIPT.new()
 	motion.setup(self, _settings)
 	motion.landed.connect(func(speed: float) -> void:
+		hands.notify_landing(speed)
 		movement_sound.emit("land", clampf(speed / 8.0, 0.4, 1.0))
 		# 视线下沉由 motion 统一处理，这里只补镜头震动，避免两套位移叠加。
 		var shake: float = 0.0
@@ -171,13 +207,8 @@ func _setup_input() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo:
 		var key: InputEventKey = event as InputEventKey
-		if key.physical_keycode == KEY_R:
-			retry_requested.emit()
-		elif key.physical_keycode == KEY_TAB and not dead:
+		if key.physical_keycode == KEY_TAB and not dead:
 			loadout_requested.emit()
-		elif key.physical_keycode == KEY_V and not menu_open:
-			motion.toggle_profile()
-			notice_requested.emit("移动档：%s · V 切换，R 重跑路线" % motion.profile_name())
 		elif key.physical_keycode == KEY_E and not menu_open:
 			release_wave()
 		elif key.physical_keycode >= KEY_1 and key.physical_keycode <= KEY_5:
@@ -186,13 +217,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if quick_slots[slot_index] == "potion":
 				use_potion()
 			else:
-				selected_slot = slot_index
-				_refresh_weapon()
-		elif key.physical_keycode == KEY_ESCAPE and not dead:
-			if menu_open:
-				loadout_requested.emit()
-			else:
-				set_controls_active(not controls_active)
+				select_slot(slot_index)
 	elif event is InputEventMouseMotion and controls_active:
 		var motion: InputEventMouseMotion = event as InputEventMouseMotion
 		rotate_camera(motion.relative)
@@ -205,12 +230,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			if button.pressed and controls_active:
 				motion.mantling = false
 				motion.sliding = false
+				grapple_requested.emit()
 				grapple.try_attach()
 			else:
 				grapple.release()
 		elif button.pressed and controls_active and button.button_index in [MOUSE_BUTTON_WHEEL_UP, MOUSE_BUTTON_WHEEL_DOWN]:
-			selected_slot = posmod(selected_slot + (1 if button.button_index == MOUSE_BUTTON_WHEEL_DOWN else -1), 5)
-			_refresh_weapon()
+			select_slot(posmod(selected_slot + (1 if button.button_index == MOUSE_BUTTON_WHEEL_DOWN else -1), 5))
 
 
 func _notification(what: int) -> void:
@@ -232,6 +257,7 @@ func set_controls_active(active: bool) -> void:
 	controls_active = active and not dead
 	if controls_active:
 		_attack_blocked_until_release = Input.is_action_pressed("fps_attack")
+		_tool_input_held = Input.is_action_pressed("fps_attack")
 	if not controls_active:
 		grapple.release()
 		velocity = Vector3.ZERO
@@ -259,28 +285,48 @@ func _physics_process(delta: float) -> void:
 	var direction: Vector3 = global_basis * Vector3(axes.x, 0.0, axes.y)
 	var sprinting: bool = not Input.is_action_pressed("fps_walk")
 	var jump_pressed: bool = Input.is_action_just_pressed("fps_jump")
-	if jump_pressed and grapple.is_attached():
+	if jump_pressed and grapple.is_pulling():
 		grapple.apply_super_grapple()
 		jump_pressed = false
 	motion.prepare(delta, direction, sprinting, jump_pressed, Input.is_action_pressed("fps_jump"), Input.is_action_pressed("fps_crouch"), _momentum_time > 0.0)
 	if _attack_blocked_until_release:
 		_attack_blocked_until_release = Input.is_action_pressed("fps_attack")
 	elif Input.is_action_pressed("fps_attack"):
-		request_attack()
+		# 钓鱼竿：只在按下的那一次发请求；长按或连点不会重复抛竿/收竿。
+		if equipped_water_tool():
+			if not _tool_input_held:
+				_tool_input_held = true
+				water_tool_used.emit()
+		else:
+			request_attack()
+	else:
+		_tool_input_held = false
 	move_and_slide()
 	motion.after_move(delta)
+	_update_fall_tracking()
 	_potion_cooldown = maxf(0.0, _potion_cooldown - delta)
 	_update_movement_feedback()
+	# 镜头起伏与手部 bob 共用同一相位，节奏才对得上。
+	motion.view_stride_phase = _stride_phase
 	_update_attack(delta)
+	_update_wave(delta)
 	var wall_distance: float = _front_obstacle_distance()
 	var progress: float = attack_elapsed / attack_duration() if attack_elapsed >= 0.0 else -1.0
 	hands.update_pose(delta, Vector2(velocity.x, velocity.z).length(), sprinting, progress, swing_index, equipped_blade(), wall_distance, {
 		"grounded": is_on_floor(), "sliding": motion.sliding, "mantling": motion.mantling,
+		"crouching": motion.crouching,
 		"wallrunning": motion.wallrunning, "wallrun_side": motion.wallrun_side,
+		"grappling": grapple.is_attached(),
+		"grapple_preparing": grapple.is_preparing(),
+		"wave_progress": _wave_elapsed / _wave_duration() if _wave_elapsed >= 0.0 else -1.0,
+		"grapple_anchor": grapple.anchor,
+		"grapple_shot_duration": grapple.rope_visual.shot_duration,
+		"local_velocity": camera.global_basis.inverse() * velocity,
 		"stride_phase": _stride_phase, "sharpness": float(_settings.hand_pose_sharpness), "scale": float(_settings.hand_motion_scale)
 	})
 	var glow_maximum: int = energy_max()
-	hands.set_energy_glow(float(energy) / float(glow_maximum) if glow_maximum > 0 else 0.0)
+	var glow_ratio: float = float(energy) / float(glow_maximum) if glow_maximum > 0 else 0.0
+	hands.set_energy_glow(1.0 if _wave_elapsed >= 0.0 and not _wave_fired else glow_ratio)
 	if global_position.y < -8.0:
 		reset_to_spawn(false)
 		notice_requested.emit("落水已返回安全点")
@@ -290,12 +336,44 @@ func equipped_blade() -> bool:
 	return not quick_slots[selected_slot].is_empty()
 
 
+## 钓鱼竿是工具不是武器：左键交给钓鱼逻辑，不触发近战/开火。
+func equipped_water_tool() -> bool:
+	var item: Dictionary = _weapons.get(quick_slots[selected_slot], {}) as Dictionary
+	return str(item.get("tool", "")) == "fishing"
+
+
+## 最近使用的战斗武器（不含空手与鱼竿），供异兽出现后自动切回。
+func last_combat_weapon() -> String:
+	if last_combat_weapon_id.is_empty() or not _weapons.has(last_combat_weapon_id):
+		return ""
+	return last_combat_weapon_id
+
+
+func _remember_combat_weapon() -> void:
+	var item_id: String = quick_slots[selected_slot]
+	var item: Dictionary = _weapons.get(item_id, {}) as Dictionary
+	if item_id.is_empty() or not item.get("tool", "").is_empty():
+		return
+	last_combat_weapon_id = item_id
+
+
 ## 当前武器的充能上限，0 表示该武器没有充能机制。
 func energy_max() -> int:
 	return int(_weapon.get("energy_max", 0))
 
 
+## 切换手持快捷物品；先让钓鱼逻辑清理未完成的抛竿，再切换。
+func select_slot(index: int) -> void:
+	if index < 0 or index >= quick_slots.size() or index == selected_slot:
+		return
+	loadout_changing.emit()
+	selected_slot = index
+	_refresh_weapon()
+
+
 func _refresh_weapon() -> void:
+	_remember_combat_weapon()
+	_wave_elapsed = -1.0
 	_weapon = _weapons.get(quick_slots[selected_slot], {})
 	energy = 0
 	attack_elapsed = -1.0
@@ -303,15 +381,157 @@ func _refresh_weapon() -> void:
 		hands.set_weapon(quick_slots[selected_slot])
 
 
+## 背包物品清单：现有全部武器 + 药水。顺序沿用 JSON，格子位置才稳定。
+## 带 "hidden": true 的条目不进背包（数据仍保留，测试与旧入口照旧可用）。
+func item_catalog() -> Array[String]:
+	var ids: Array[String] = []
+	for key: String in _weapons:
+		var entry: Variant = _weapons[key]
+		if entry is Dictionary and bool((entry as Dictionary).get("hidden", false)):
+			continue
+		ids.append(key)
+	if not ids.has(POTION_ID):
+		ids.append(POTION_ID)
+	return ids
+
+
+## 初始化背包：没装在快捷栏里的物品按顺序摆进储物格，剩下的留空。
+func _init_inventory() -> void:
+	inventory = Inventory.new()
+	inventory.setup(BACKPACK_SLOT_COUNT, 999)
+	# 快捷栏中的非空物品需要在库存中有对应的记录（即使数量为 0 也行）。
+	# 这样 UI 读取时能正常展示快捷栏内容。
+	for item_id: String in quick_slots:
+		if not item_id.is_empty():
+			var count: int = inventory.get_count(item_id)
+			if count <= 0:
+				inventory.items[item_id] = 0
+
+
+## 行 0 = 快捷栏（1-5 键），行 1..3 = 背包存储，行 4 = 护甲，行 5 = 饰品。
+## 返回该位置的物品 ID，"" 表示空。
+func slot_item(row: int, column: int) -> String:
+	if row == 0:
+		return quick_slots[column] if column >= 0 and column < quick_slots.size() else ""
+	if row == ARMOR_ROW:
+		return armor_slots[column] if column >= 0 and column < armor_slots.size() else ""
+	if row == ACCESSORY_ROW:
+		return accessory_slots[column] if column >= 0 and column < accessory_slots.size() else ""
+	# 背包存储部分（行 1..3，列 0..4）
+	var index: int = (row - 1) * 5 + column
+	if index >= 0 and index < inventory.slot_count:
+		return inventory.slots[index]
+	return ""
+
+
+## 设置某个位置的物品 ID（用于拖放、交换等 UI 操作）。
+func set_slot_item(row: int, column: int, item_id: String) -> void:
+	if row == 0:
+		# 快捷栏
+		if column < 0 or column >= quick_slots.size():
+			return
+		# 只要手上的物品变了就通知钓鱼逻辑清理未完成的抛竿。
+		if column == selected_slot and quick_slots[column] != item_id:
+			loadout_changing.emit()
+		quick_slots[column] = item_id
+		if column == selected_slot:
+			_refresh_weapon()
+		return
+	if row == ARMOR_ROW or row == ACCESSORY_ROW:
+		# 装备栏
+		var target: Array[String] = armor_slots if row == ARMOR_ROW else accessory_slots
+		if column < 0 or column >= target.size():
+			return
+		# 只有类型对得上的物品能放进装备栏
+		if not item_id.is_empty() and not _fits_slot(item_id, row):
+			return
+		target[column] = item_id
+		return
+	# 背包存储部分
+	var index: int = (row - 1) * 5 + column
+	if index >= 0 and index < inventory.slot_count:
+		inventory.slots[index] = item_id
+
+
+# === 装备栏 ===
+func _init_equipment(tuning: Dictionary) -> void:
+	_equipment.clear()
+	armor_slots.clear()
+	accessory_slots.clear()
+	var block: Dictionary = tuning.get("equipment", {}) as Dictionary
+	var items: Dictionary = block.get("items", {}) as Dictionary
+	for key: String in items:
+		_equipment[key] = items[key]
+	var defaults: Dictionary = block.get("dev_defaults", {}) as Dictionary
+	var armor_default: Array = defaults.get("armor", []) as Array
+	var accessory_default: Array = defaults.get("accessories", []) as Array
+	for i: int in range(ARMOR_SLOT_COUNT):
+		armor_slots.append(str(armor_default[i]) if i < armor_default.size() else "")
+	for i: int in range(ACCESSORY_SLOT_COUNT):
+		accessory_slots.append(str(accessory_default[i]) if i < accessory_default.size() else "")
+
+
+func equipment_def(item_id: String) -> Dictionary:
+	return _equipment.get(item_id, {}) as Dictionary
+
+
+func equipment_name(item_id: String) -> String:
+	var def: Dictionary = equipment_def(item_id)
+	return str(def.get("name", "")) if not def.is_empty() else ""
+
+
+func _fits_slot(item_id: String, row: int) -> bool:
+	var def: Dictionary = equipment_def(item_id)
+	if def.is_empty():
+		return false
+	return str(def.get("slot", "")) == ("armor" if row == ARMOR_ROW else "accessory")
+
+
+## 已装备的饰品里是否有免疫坠落伤害的效果。
+func has_fall_immunity() -> bool:
+	for item_id: String in accessory_slots:
+		if item_id.is_empty():
+			continue
+		var effects: Dictionary = equipment_def(item_id).get("effects", {}) as Dictionary
+		if bool(effects.get("fall_immune", false)):
+			return true
+	return false
+
+
+## 钓到异兽后自动切回最近使用的战斗武器；没有记录则用初始剑（或 1 号位上的原战斗武器）。
+func switch_to_combat_weapon() -> String:
+	var choice: String = last_combat_weapon()
+	if choice.is_empty():
+		for slot: int in range(quick_slots.size()):
+			var item: Dictionary = _weapons.get(quick_slots[slot], {}) as Dictionary
+			if not quick_slots[slot].is_empty() and item.get("tool", "").is_empty():
+				choice = quick_slots[slot]
+				break
+	if choice.is_empty():
+		return ""
+	var slot: int = quick_slots.find(choice)
+	if slot >= 0:
+		loadout_changing.emit()
+		selected_slot = slot
+		fishing_auto_weapon_id = choice
+		_refresh_weapon()
+	return choice
+
+
 func assign_quick_slot(index: int, item_id: String) -> void:
-	if index < 0 or index >= 5:
+	if index < 0 or index >= quick_slots.size():
 		return
 	if not item_id.is_empty() and not _weapons.has(item_id):
 		return
+	loadout_changing.emit()
 	if not item_id.is_empty():
-		for slot: int in range(5):
+		# 一件物品只占一个格子：其它快捷栏位和背包里的同名物品都清掉。
+		for slot: int in range(quick_slots.size()):
 			if quick_slots[slot] == item_id:
 				quick_slots[slot] = ""
+		for slot: int in range(inventory.slots.size()):
+			if inventory.slots[slot] == item_id:
+				inventory.slots[slot] = ""
 	quick_slots[index] = item_id
 	_refresh_weapon()
 
@@ -320,9 +540,36 @@ func assign_quick_slot(index: int, item_id: String) -> void:
 func release_wave() -> bool:
 	if not controls_active or dead or not equipped_blade():
 		return false
+	if _wave_elapsed >= 0.0 or attack_elapsed >= 0.0 or hands.drink_active() or motion.mantling or hands.block_active():
+		return false
 	if not _weapon.has("wave_damage") or energy < energy_max():
 		return false
 	energy = 0
+	_wave_elapsed = 0.0
+	_wave_fired = false
+	hands._cancel_spawn_animation()
+	return true
+
+
+func _wave_duration() -> float:
+	return float(_weapon.get("wave_windup", 0.20)) + float(_weapon.get("wave_active", 0.18)) + float(_weapon.get("wave_recovery", 0.30))
+
+
+func _update_wave(delta: float) -> void:
+	if _wave_elapsed < 0.0:
+		return
+	if dead or not controls_active or hands.drink_active() or motion.mantling or not _weapon.has("wave_damage"):
+		_wave_elapsed = -1.0
+		return
+	_wave_elapsed += delta
+	if not _wave_fired and _wave_elapsed >= float(_weapon.get("wave_windup", 0.20)):
+		_wave_fired = true
+		_spawn_wave()
+	if _wave_elapsed >= _wave_duration():
+		_wave_elapsed = -1.0
+
+
+func _spawn_wave() -> void:
 	var forward: Vector3 = -camera.global_basis.z
 	var wave: Node3D = Node3D.new()
 	wave.set_script(TIDE_WAVE_SCRIPT)
@@ -337,7 +584,6 @@ func release_wave() -> bool:
 	get_tree().current_scene.add_child(wave)
 	wave.global_position = camera.global_position + forward * 1.1
 	add_shake(0.012)
-	return true
 
 
 func attack_duration() -> float:
@@ -363,7 +609,7 @@ func use_potion() -> bool:
 
 
 func request_attack() -> bool:
-	if not controls_active or dead or motion.mantling or not equipped_blade() or attack_elapsed >= 0.0:
+	if not controls_active or dead or motion.mantling or not equipped_blade() or attack_elapsed >= 0.0 or _wave_elapsed >= 0.0:
 		return false
 	if hands.drink_active():
 		return false
@@ -404,6 +650,7 @@ func _fire_bolt() -> void:
 		host = get_parent()
 	host.add_child(bolt)
 	bolt.setup(origin, forward, float(_weapon.bolt_speed), float(_weapon.bolt_life), int(_weapon.damage), float(_weapon.knockback))
+	hands.play_pistol_recoil()
 	add_shake(0.010)
 
 
@@ -417,6 +664,14 @@ func _resolve_melee() -> void:
 		if target == null or target.dead or _hit_targets.has(target.get_instance_id()):
 			continue
 		var destination: Vector3 = target.global_position + Vector3.UP * 0.65
+		var contact: Dictionary = {}
+		if target.has_method("melee_contact"):
+			contact = target.melee_contact(origin, forward, float(_weapon.range), min_dot)
+			if contact.is_empty():
+				continue
+			destination = contact.position
+		elif target.has_method("damage_point"):
+			destination = target.damage_point()
 		var offset: Vector3 = destination - origin
 		if offset.length() > float(_weapon.range) or forward.dot(offset.normalized()) < min_dot:
 			continue
@@ -425,7 +680,10 @@ func _resolve_melee() -> void:
 			continue
 		_hit_targets[target.get_instance_id()] = true
 		var push: Vector3 = (destination - global_position).normalized() * float(_weapon.knockback)
-		target.apply_damage(int(_weapon.damage), push)
+		if not contact.is_empty():
+			target.apply_part_damage(int(_weapon.damage), push, str(contact.part))
+		else:
+			target.apply_damage(int(_weapon.damage), push)
 		hit_count += 1
 		last_hit_time = Time.get_ticks_msec() / 1000.0
 		landed = true
@@ -441,9 +699,53 @@ func _resolve_melee() -> void:
 		energy = mini(energy + 1, energy_max())
 
 
+## 记录离地后的最高点；落地那一帧用"最高点 - 落点"算落差。
+## 攀爬和蹬墙跑不算坠落，会持续把基准压到当前高度。
+func _update_fall_tracking() -> void:
+	var grounded: bool = is_on_floor()
+	if grounded:
+		if not _fall_grounded:
+			_apply_fall_damage(_fall_peak_y - global_position.y)
+		_fall_peak_y = global_position.y
+	elif not motion.mantling and not motion.wallrunning:
+		_fall_peak_y = maxf(_fall_peak_y, global_position.y)
+	_fall_grounded = grounded
+
+
+## 坠落伤害：落差在 safe_height（钩爪柱台面 6.3 m）以内不扣血，
+## 超过后每多一米加 damage_per_meter，封顶 max_damage。
+func _apply_fall_damage(drop: float) -> void:
+	var cfg: Dictionary = _settings.get("fall_damage", {}) as Dictionary
+	if cfg.is_empty() or dead or not controls_active:
+		return
+	# 疾风之靴之类的饰品：免疫坠落伤害。
+	if has_fall_immunity():
+		return
+	var safe: float = float(cfg.get("safe_height", 6.3))
+	if drop <= safe:
+		return
+	var amount: int = int(round((drop - safe) * float(cfg.get("damage_per_meter", 6.0))))
+	amount = maxi(amount, int(cfg.get("min_damage", 1)))
+	amount = mini(amount, int(cfg.get("max_damage", 60)))
+	health = maxi(0, health - amount)
+	damage_taken += amount
+	last_damage_was_fall = true
+	# 借用无敌帧触发 HUD 受击红闪，但不给击退方向——坠落没有攻击来源。
+	hurt_time_left = float(_settings.get("hurt_invulnerability", 0.65))
+	add_shake(0.012 + 0.001 * float(amount))
+	health_changed.emit(health)
+	fall_damage_taken.emit(amount)
+	if health <= 0:
+		dead = true
+		set_controls_active(false)
+		grapple.reset()
+		died.emit()
+
+
 func receive_damage(amount: int, source: Vector3) -> bool:
 	if dead or not controls_active or hurt_time_left > 0.0:
 		return false
+	last_damage_was_fall = false
 	health = maxi(0, health - amount)
 	damage_taken += amount
 	hurt_time_left = float(_settings.hurt_invulnerability)
@@ -486,6 +788,8 @@ func reset_to_spawn(restore_health: bool = true) -> void:
 	camera.h_offset = 0.0
 	camera.v_offset = 0.0
 	global_position = spawn_position
+	_fall_peak_y = global_position.y
+	_fall_grounded = false
 	_reset_movement_feedback()
 	velocity = Vector3.ZERO
 	rotation = Vector3.ZERO
@@ -493,6 +797,8 @@ func reset_to_spawn(restore_health: bool = true) -> void:
 	attack_elapsed = -1.0
 	energy = 0
 	_momentum_time = 0.0
+	_wave_elapsed = -1.0
+	_wave_fired = false
 	hurt_time_left = 0.0
 	dead = false
 	menu_open = false
@@ -502,6 +808,7 @@ func reset_to_spawn(restore_health: bool = true) -> void:
 		damage_taken = 0
 	health_changed.emit(health)
 	set_controls_active(true)
+	reset_applied.emit()
 
 
 func _front_obstacle_distance() -> float:
@@ -550,3 +857,49 @@ func _on_grapple_released() -> void:
 
 func _on_grapple_failed() -> void:
 	notice_requested.emit("没有钩中：瞄准石柱或横梁，距离需在 %d 米内" % int(grapple.max_range))
+
+
+# === 通用背包接口（UI 与其他系统读取用） ===
+
+## 获取某个物品的数量
+func item_count(item_id: String) -> int:
+	if inventory == null:
+		return 0
+	return inventory.get_count(item_id)
+
+
+## 获取背包列表：格位顺序，含数量
+func inventory_entries() -> Array[Dictionary]:
+	if inventory == null:
+		return []
+	return inventory.entries()
+
+
+## 背包操作：交换两个格位
+func inventory_swap_slots(from_row: int, from_col: int, to_row: int, to_col: int) -> bool:
+	var from_idx: int = _rowcol_to_index(from_row, from_col)
+	var to_idx: int = _rowcol_to_index(to_row, to_col)
+	if from_idx < 0 or to_idx < 0:
+		return false
+	return inventory.swap_slots(from_idx, to_idx)
+
+
+## 背包操作：删除到垃圾槽
+func inventory_delete_to_trash(item_id: String, count: int = 1) -> bool:
+	if inventory == null:
+		return false
+	return inventory.delete_to_trash(item_id, count)
+
+
+## 背包操作：从垃圾槽恢复
+func inventory_restore_from_trash() -> bool:
+	if inventory == null:
+		return false
+	return inventory.restore_from_trash()
+
+
+## 内部：行列坐标转格位索引（背包存储部分，行 1..3）
+func _rowcol_to_index(row: int, col: int) -> int:
+	if row == 0 or row == ARMOR_ROW or row == ACCESSORY_ROW or row < 1 or row > 3 or col < 0 or col >= 5:
+		return -1
+	return (row - 1) * 5 + col

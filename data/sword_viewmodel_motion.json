@@ -1,5 +1,46 @@
 {
   "_comment": "Camera-space sword presentation only; damage and attack timing stay in combat_mvp.json. Offsets are metres from the current idle wrist; blade directions use camera -Z forward. Codex.",
+  "draw": {
+    "release": 0.16,
+    "catch": 0.80,
+    "close": 0.87,
+    "release_offset": [0.015, 0.06, -0.02],
+    "release_degrees": [-10.0, 0.0, 5.0],
+    "wait_offset": [0.10, -0.14, 0.08],
+    "wait_degrees": [8.0, 0.0, -8.0],
+    "catch_offset": [-0.025, 0.07, -0.05],
+    "catch_degrees": [-8.0, 0.0, -3.0],
+    "flight_depth": 0.10,
+    "catch_dip": 0.025,
+    "open_grip": 0.15,
+    "closed_grip": 0.88
+  },
+  "vertical_swings": {
+    "dark_knight_sword": [
+      {"t": 0.0, "pitch": 0.0, "offset": [0, 0, 0]},
+      {"t": 0.22, "pitch": 22.0, "offset": [-0.025, 0.10, 0.035]},
+      {"t": 0.40, "pitch": -86.0, "offset": [-0.02, -0.075, -0.15]},
+      {"t": 0.60, "pitch": -108.0, "offset": [-0.02, -0.13, -0.12]},
+      {"t": 0.82, "pitch": -42.0, "offset": [-0.01, -0.055, -0.03]},
+      {"t": 1.0, "pitch": 0.0, "offset": [0, 0, 0]}
+    ],
+    "sword_08": [
+      {"t": 0.0, "pitch": 0.0, "offset": [0, 0, 0]},
+      {"t": 0.20, "pitch": 16.0, "offset": [-0.015, 0.075, 0.02]},
+      {"t": 0.38, "pitch": -76.0, "offset": [-0.015, -0.055, -0.12]},
+      {"t": 0.58, "pitch": -96.0, "offset": [-0.015, -0.105, -0.10]},
+      {"t": 0.80, "pitch": -35.0, "offset": [-0.005, -0.04, -0.02]},
+      {"t": 1.0, "pitch": 0.0, "offset": [0, 0, 0]}
+    ]
+  },
+  "wave_swing": [
+    {"t": 0.0, "offset": [0, 0, 0], "blade": [0.98, 0, 0]},
+    {"t": 0.24, "offset": [0.10, 0.07, 0.02], "blade": [0.85, 0.40, -0.34]},
+    {"t": 0.40, "offset": [-0.22, 0.06, -0.20], "blade": [-0.90, 0.04, -0.43]},
+    {"t": 0.57, "offset": [-0.36, 0.04, -0.16], "blade": [-0.96, 0.02, -0.28]},
+    {"t": 0.72, "offset": [-0.23, 0.02, -0.06], "blade": [-0.88, 0.16, -0.44]},
+    {"t": 1.0, "offset": [0, 0, 0], "blade": [0.98, 0, 0]}
+  ],
   "swings": [
     [
       {"t": 0.0, "offset": [0, 0, 0], "blade": [0.98, 0, 0]},

@@ -18,6 +18,7 @@ const RAIN_SCRIPT: Script = preload("res://scripts/cherry_valley/valley_rain.gd"
 const WALKER_SCRIPT: Script = preload("res://scripts/cherry_valley/valley_walker.gd")
 const WATERFALL_SCRIPT: Script = preload("res://scripts/cherry_valley/valley_waterfall.gd")
 const BIRDS_SCRIPT: Script = preload("res://scripts/cherry_valley/valley_birds.gd")
+const BACKDROP_SCRIPT: Script = preload("res://scripts/cherry_valley/valley_backdrop.gd")
 const AMBIENT_SCRIPT: Script = preload("res://scripts/cherry_valley/valley_ambient.gd")
 const TOUR_SCRIPT: Script = preload("res://scripts/cherry_valley/valley_tour.gd")
 const TOUCH_SCRIPT: Script = preload("res://scripts/cherry_valley/valley_touch.gd")
@@ -36,6 +37,8 @@ var hud: Control
 var rain: Node3D
 var waterfall: Node3D
 var birds: Node3D
+var backdrop: Node3D
+var landmark: Node3D
 var ambient: Node3D
 var tour: Node3D
 var touch: Control
@@ -251,12 +254,43 @@ func _build_details() -> void:
 		waterfall.set_script(WATERFALL_SCRIPT)
 		add_child(waterfall)
 		waterfall.build(config, terrain, materials)
+	backdrop = Node3D.new()
+	backdrop.name = "Backdrop"
+	backdrop.set_script(BACKDROP_SCRIPT)
+	add_child(backdrop)
+	backdrop.build(config, terrain, materials)
+	_build_landmark()
 	if config.has("birds") and bool(config.birds.enabled):
 		birds = Node3D.new()
 		birds.name = "Birds"
 		birds.set_script(BIRDS_SCRIPT)
 		add_child(birds)
 		birds.build(config)
+
+
+## 导入的烘焙庭院（Pagoda Cherry，Fab）。整包是一个带自家庭院地面与夜空球的
+## 独立场景：夜空球必须按配置关掉，否则会把整个山谷罩进一颗黑球里；落位用
+## terrain.height_at 取地面高度，配合 valley_terrain 里同一坐标的压平台地。
+func _build_landmark() -> void:
+	if not config.has("landmark") or not bool(config.landmark.get("enabled", false)):
+		return
+	var spec: Dictionary = config.landmark
+	var packed: PackedScene = load(str(spec.get("scene", ""))) as PackedScene
+	if packed == null:
+		push_warning("landmark scene missing: " + str(spec.get("scene", "")))
+		return
+	landmark = packed.instantiate() as Node3D
+	landmark.name = "Landmark"
+	add_child(landmark)
+	for hidden: Variant in spec.get("hide_nodes", []):
+		var found: Node = landmark.find_child(str(hidden), true, false)
+		if found is Node3D:
+			(found as Node3D).visible = false
+	var center: Array = spec.get("center", [0.0, 0.0]) as Array
+	var at: Vector2 = Vector2(float(center[0]), float(center[1]))
+	landmark.position = Vector3(at.x, terrain.height_at(at.x, at.y), at.y)
+	landmark.rotation.y = deg_to_rad(float(spec.get("yaw", 0.0)))
+	landmark.scale = Vector3.ONE * float(spec.get("scale", 1.0))
 
 
 func _build_ambient() -> void:
@@ -347,6 +381,8 @@ func _apply_mood(key: String) -> void:
 		birds.set_mood(mood)
 	if architecture != null:
 		architecture.set_lantern_energy(1.9 if key == "blue_hour" else (0.9 if key == "morning" else 1.2))
+	if backdrop != null:
+		backdrop.set_mood(mood)
 	if hud != null:
 		hud.mood_label = lighting.mood_label(key)
 
@@ -364,6 +400,8 @@ func _apply_quality(level: String) -> void:
 		waterfall.apply_quality(_quality_settings)
 	if birds != null:
 		birds.apply_quality(_quality_settings)
+	if backdrop != null:
+		backdrop.apply_quality(_quality_settings)
 	if hud != null:
 		hud.quality_label = "高画质" if level == "high" else "轻量"
 

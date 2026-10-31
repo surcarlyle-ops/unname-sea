@@ -1,0 +1,39 @@
+{
+  "_comment": "Menu copy and artwork only (Codex). Routes remain owned by scene_menu.json.",
+  "combat_mvp": {
+    "title": "训练场",
+    "subtitle": "先让战斗与移动变得顺手。",
+    "summary": "试试近战、钩爪与守卫战斗。在熟悉的场地里，找到最舒服的移动和出手节奏。",
+    "features": [
+      "第一人称",
+      "自由战斗",
+      "钩爪机动"
+    ],
+    "image": "res://assets/ui/trial_menu/combat.png",
+    "accent": "#D9BE87"
+  },
+  "shore_test": {
+    "title": "岸边钓场",
+    "subtitle": "把鱼漂抛进水面，等一个未知的回应。",
+    "summary": "走到木钓台，用鱼竿期待未知渔获。钓到异兽就切回武器战斗，收获与材料都能在背包中查看。",
+    "features": [
+      "鱼竿与鱼漂",
+      "渔获入包",
+      "异兽遭遇"
+    ],
+    "image": "res://assets/ui/trial_menu/shore.png",
+    "accent": "#8CC8C0"
+  },
+  "cherry_valley": {
+    "title": "樱花山谷",
+    "subtitle": "沿着花树和山道，慢慢走一走。",
+    "summary": "看看山谷的建筑、植被与环境氛围，也可以使用场景自带的运镜和自动巡游。",
+    "features": [
+      "环境预览",
+      "自由漫游",
+      "镜头巡游"
+    ],
+    "image": "res://assets/ui/trial_menu/valley.png",
+    "accent": "#D8ADBE"
+  }
+}

@@ -563,35 +563,38 @@
     "moods": {
         "blue_hour": {
             "label": "蓝调时刻",
-            "sky_top": "#53668d",
-            "sky_horizon": "#d9bcc9",
-            "sky_ground_horizon": "#aab4c8",
-            "sky_bottom": "#5d677d",
-            "ambient_color": "#9fb0cf",
-            "ambient_energy": 0.46,
-            "sun_color": "#ffd7c2",
-            "sun_energy": 1.45,
+            "sky_top": "#1d2a49",
+            "sky_horizon": "#5f6f96",
+            "sky_ground_horizon": "#48566f",
+            "sky_bottom": "#232d44",
+            "ambient_color": "#8fa6cc",
+            "ambient_energy": 0.32,
+            "sun_color": "#b9c9ee",
+            "sun_energy": 0.9,
             "sun_rotation": [
                 -32.0,
                 -28.0,
                 0.0
             ],
-            "fog_color": "#8aa0bf",
-            "fog_density": 0.0014,
-            "fog_aerial": 0.42,
-            "fog_sky": 0.28,
-            "exposure": 1.06,
-            "glow": 0.26,
+            "fog_color": "#7089aa",
+            "fog_density": 0.0011,
+            "fog_aerial": 0.62,
+            "fog_sky": 0.2,
+            "exposure": 1.14,
+            "glow": 0.4,
             "water_deep": "#1a4149",
             "water_shallow": "#4f7d80",
             "water_sky": "#8f9fbe",
-            "water_alpha": 0.88,
+            "water_alpha": 0.82,
             "rain": false,
             "petal_color": "#ffc2d6",
-            "fog_begin": 45.0,
-            "fog_end": 430.0,
-            "fog_curve": 1.25,
-            "sun_scale": 0.30
+            "fog_begin": 24.0,
+            "fog_end": 400.0,
+            "fog_curve": 1.6,
+            "sun_scale": 0.30,
+            "haze_alpha": 0.055,
+            "mist_density": 0.92,
+            "ridge_tint": "#ffffff"
         },
         "morning": {
             "label": "清晨",
@@ -623,7 +626,10 @@
             "fog_begin": 45.0,
             "fog_end": 430.0,
             "fog_curve": 1.25,
-            "sun_scale": 0.36
+            "sun_scale": 0.36,
+            "haze_alpha": 0.032,
+            "mist_density": 0.45,
+            "ridge_tint": "#f3f7ff"
         },
         "rain": {
             "label": "雨中",
@@ -655,7 +661,10 @@
             "fog_begin": 30.0,
             "fog_end": 260.0,
             "fog_curve": 1.25,
-            "sun_scale": 0.16
+            "sun_scale": 0.16,
+            "haze_alpha": 0.070,
+            "mist_density": 1.00,
+            "ridge_tint": "#d5dee8"
         }
     },
     "quality": {
@@ -781,13 +790,60 @@
     },
     "reflection": {
         "enabled_quality": "high",
-        "tint": "#6b7a86",
-        "alpha": 0.34,
+        "tint": "#8494a6",
+        "alpha": 0.5,
         "plane_y": 0.0
     },
     "shaders": {
         "toon": "res://shaders/valley_toon.gdshader",
         "water": "res://shaders/valley_water.gdshader"
+    },
+    "valley": {
+        "ridges": [
+            {
+                "azimuth": 180.0,
+                "distance": 390.0,
+                "span": 700.0,
+                "height": 108.0,
+                "steepness": 0.9,
+                "noise": 0.3,
+                "seed": 7
+            },
+            {
+                "azimuth": 160.0,
+                "distance": 480.0,
+                "span": 640.0,
+                "height": 142.0,
+                "steepness": 0.8,
+                "noise": 0.24,
+                "seed": 31
+            },
+            {
+                "azimuth": 200.0,
+                "distance": 440.0,
+                "span": 660.0,
+                "height": 122.0,
+                "steepness": 0.85,
+                "noise": 0.26,
+                "seed": 53
+            }
+        ]
+    },
+    "landmark": {
+        "_comment": "导入的 Pagoda Cherry 烘焙庭院（Fab 素材，CodeBuddy 2026-10-24）。整包自带夜空球，按 hide_nodes 关掉，只留建筑与樱花；地面在 terrain._build_pads 里压平。",
+        "enabled": true,
+        "scene": "res://assets/environments/pagoda_cherry/source/japanese_cherrybake.glb",
+        "center": [
+            -56.0,
+            24.0
+        ],
+        "yaw": 24.0,
+        "scale": 1.0,
+        "footprint": 36.0,
+        "hide_nodes": [
+            "Sphere",
+            "sakuras"
+        ]
     },
     "waterfall": {
         "_comment": "落差固定在河道中心（x 由河道推导），上游为岩台，下游为浅水潭。",

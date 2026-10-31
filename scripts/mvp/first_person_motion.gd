@@ -43,10 +43,14 @@ var _eye_height: float = 1.6
 var _vertical_speed: float = 0.0
 var _slide_view_weight: float = 0.0
 var _slide_view_phase: float = 0.0
+var _slide_impact_age: float = 1.0
 var _slide_view_kick: float = 0.0
 var _view_was_sliding: bool = false
 var _camera_base_position: Vector3
 var _camera_base_rotation: Vector3
+## 跑动镜头起伏：与手部 bob 共用同一个步频相位（由 player 每帧写入）。
+var view_stride_phase: float = 0.0
+var _bob_weight: float = 0.0
 var _mantle_target: Vector3
 var _mantle_direction: Vector3
 var _mantle_speed: float = 0.0
@@ -118,7 +122,7 @@ func suspend() -> void:
 
 func prepare(delta: float, direction: Vector3, sprint: bool, jump_pressed: bool, jump_held: bool, crouch_held: bool, momentum_grace: bool) -> void:
 	var grounded: bool = _body.is_on_floor()
-	var attached: bool = _body.grapple.is_attached()
+	var attached: bool = _body.grapple.is_pulling()
 	_landing_recovery = maxf(0.0, _landing_recovery - delta)
 	_wallrun_cooldown = maxf(0.0, _wallrun_cooldown - delta)
 	_wall_jump_window = maxf(0.0, _wall_jump_window - delta)
@@ -153,8 +157,10 @@ func prepare(delta: float, direction: Vector3, sprint: bool, jump_pressed: bool,
 	_set_stance((crouch_held and not awaiting_slide) or sliding)
 	# 攀爬：空中按前进贴墙即可翻上去（Apex 式）；挂钩时同样允许，成功后先松开钩索。
 	var wants_climb: bool = _jump_buffer > 0.0 or (jump_held and not grounded) or (not grounded and not direction.is_zero_approx())
+	var started_mantle: bool = false
 	if not mantling and not crouching and wants_climb and not direction.is_zero_approx():
 		if try_mantle(direction):
+			started_mantle = true
 			if attached:
 				_body.grapple.release()
 				attached = false
@@ -162,7 +168,9 @@ func prepare(delta: float, direction: Vector3, sprint: bool, jump_pressed: bool,
 	if jump_pressed and (wallrunning or _wall_jump_window > 0.0):
 		_do_wall_jump()
 	if mantling:
-		_update_mantle(delta, jump_pressed)
+		# 起始攀爬的那一次跳跃不能同时登记翻越冲刺：此前同一帧会置位，导致每次
+		# 起跳攀爬都额外 +mantle_jump_boost 冲出去，窄高台上会直接飞过对面掉下去。
+		_update_mantle(delta, jump_pressed and not started_mantle)
 	elif wallrunning:
 		_update_wallrun(delta, direction, grounded)
 	elif not attached:
@@ -544,6 +552,7 @@ func _update_view(delta: float) -> void:
 	_slide_view_weight = lerpf(_slide_view_weight, 1.0 if grounded_slide else 0.0, blend)
 	if grounded_slide and not _view_was_sliding:
 		_slide_view_kick = -float(_tuning.slide_camera_drop) * scale
+		_slide_impact_age = 0.0
 	_view_was_sliding = grounded_slide
 	_slide_view_kick = lerpf(_slide_view_kick, 0.0, blend)
 	var target_height: float = float(_tuning.crouching_eye_height if crouching else _tuning.standing_eye_height)
@@ -553,11 +562,12 @@ func _update_view(delta: float) -> void:
 	_head.position.y = _eye_height + _camera_offset + _slide_view_kick
 	_camera_offset = move_toward(_camera_offset, 0.0, float(_tuning.step_camera_recovery) * delta)
 	var speed: float = Vector2(_body.velocity.x, _body.velocity.z).length()
-	if grounded_slide:
-		# Distance drives the vibration; stopping against a wall stops the pattern.
-		_slide_view_phase = fmod(_slide_view_phase + speed * delta * 7.0, TAU)
+	# One short entry impulse; sustained sliding has no periodic vibration.
+	_slide_impact_age += delta
+	_slide_view_phase = minf(_slide_impact_age / 0.18, 1.0) * TAU
 	var weight: float = _slide_view_weight * scale
-	var shake: float = float(_tuning.slide_camera_shake) * weight * clampf(speed / 8.2, 0.0, 1.0)
+	var envelope: float = pow(maxf(0.0, 1.0 - _slide_impact_age / 0.18), 2.0)
+	var shake: float = float(_tuning.slide_camera_shake) * scale * envelope * clampf(speed / 8.2, 0.0, 1.0)
 	# 蹬墙跑的倾斜权重。
 	var wallrun_blend: float = 1.0 - exp(-float(_tuning.wallrun_camera_sharpness) * delta)
 	_wallrun_view_weight = lerpf(_wallrun_view_weight, 1.0 if wallrunning else 0.0, wallrun_blend)
@@ -567,11 +577,40 @@ func _update_view(delta: float) -> void:
 	var wallrun_offset: Vector3 = Vector3.ZERO
 	if wallrun_shake > 0.0001:
 		wallrun_offset = Vector3(sin(_wallrun_shake_phase * 1.7) * wallrun_shake, sin(_wallrun_shake_phase * 2.3) * wallrun_shake * 0.8, 0.0)
-	_camera.position = _camera_base_position + Vector3(sin(_slide_view_phase) * shake * 0.5, sin(_slide_view_phase * 2.0) * shake, float(_tuning.slide_camera_back) * weight) + wallrun_offset
+	# 跑动镜头起伏：跟手部 bob 同一个步频相位（一个相位 = 两步），
+	# 竖直每步一次起伏、横向每两步一次摆动，滑铲/攀爬/蹬墙/空中淡出。
+	var bob: Dictionary = _tuning.get("camera_bob", {}) as Dictionary
+	var bob_vertical: float = 0.0
+	var bob_horizontal: float = 0.0
+	var bob_forward: float = 0.0
+	var bob_pitch: float = 0.0
+	var bob_yaw: float = 0.0
+	var bob_roll: float = 0.0
+	if not bob.is_empty():
+		var bob_allowed: bool = _body.is_on_floor() and not sliding and not mantling and not wallrunning
+		# 参考速度取当前移动档的冲刺速度，换档时幅度自动跟着变。
+		var reference: float = maxf(movement_speed(-_body.global_basis.z, true), 0.1)
+		var bob_target: float = clampf(speed / reference, 0.0, 1.2) if bob_allowed else 0.0
+		_bob_weight = lerpf(_bob_weight, bob_target, 1.0 - exp(-float(bob.get("sharpness", 8.0)) * delta))
+		# 停下后残余权重归零：否则镜头永远差几十分之一毫米，回不到"普通姿态"。
+		if bob_target <= 0.0 and _bob_weight < 0.01:
+			_bob_weight = 0.0
+		# 一个相位 = 两步：step_wave 每步一次（落地/抬头），sway_wave 每两步一次（左右）。
+		var step_wave: float = sin(view_stride_phase * 2.0)
+		var sway_wave: float = cos(view_stride_phase)
+		bob_vertical = step_wave * float(bob.get("vertical", 0.0)) * _bob_weight
+		bob_forward = -step_wave * float(bob.get("forward", 0.0)) * _bob_weight
+		bob_horizontal = sway_wave * float(bob.get("horizontal", 0.0)) * _bob_weight
+		# 俯仰/偏航是"像 Apex 那样走路在晃"的主因：远景上纯位移几乎看不出来。
+		bob_pitch = step_wave * deg_to_rad(float(bob.get("pitch_degrees", 0.0))) * _bob_weight
+		bob_yaw = sway_wave * deg_to_rad(float(bob.get("yaw_degrees", 0.0))) * _bob_weight
+		bob_roll = sway_wave * deg_to_rad(float(bob.get("roll_degrees", 0.0))) * _bob_weight
+	_camera.position = _camera_base_position + Vector3(sin(_slide_view_phase) * shake * 0.5 + bob_horizontal, sin(_slide_view_phase * 2.0) * shake + bob_vertical, float(_tuning.slide_camera_back) * weight + bob_forward) + wallrun_offset
 	# 蹬墙跑：镜头朝墙的外侧倾斜（身体贴墙、重心偏向墙外）。
 	var wallrun_roll: float = deg_to_rad(float(_tuning.wallrun_camera_roll_degrees)) * _wallrun_view_weight * wallrun_side
 	# Roll changes posture without steering the forward aiming direction or mouse pitch.
-	_camera.rotation = _camera_base_rotation + Vector3(0.0, 0.0, deg_to_rad(float(_tuning.slide_camera_roll_degrees)) * weight * (-1.0 + sin(_slide_view_phase) * 0.15) + wallrun_roll)
+	var slide_pitch: float = sin(_slide_view_phase * 1.43) * shake * 0.65
+	_camera.rotation = _camera_base_rotation + Vector3(slide_pitch + bob_pitch, bob_yaw, deg_to_rad(float(_tuning.slide_camera_roll_degrees)) * (-weight + envelope * scale * sin(_slide_view_phase) * 0.30) + wallrun_roll + bob_roll)
 	var walk: float = movement_speed(-_body.global_basis.z, false)
 	var sprint: float = movement_speed(-_body.global_basis.z, true)
 	var amount: float = clampf((speed - walk) / maxf(sprint - walk, 0.1), 0.0, 1.0)
@@ -585,12 +624,14 @@ func _update_view(delta: float) -> void:
 
 
 func _reset_slide_view() -> void:
+	_slide_impact_age = 1.0
 	_slide_view_weight = 0.0
 	_wallrun_view_weight = 0.0
 	_wallrun_shake_phase = 0.0
 	_slide_view_phase = 0.0
 	_slide_view_kick = 0.0
 	_view_was_sliding = false
+	_bob_weight = 0.0
 	_camera.position = _camera_base_position
 	_camera.rotation = _camera_base_rotation
 	_camera.fov = float(_tuning.fov)

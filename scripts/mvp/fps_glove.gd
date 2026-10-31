@@ -12,7 +12,9 @@ var _fingers: Array[Dictionary] = []
 var _pose_override: Dictionary = {}
 var _override_weight: float = 0.0
 var authored_grip: bool = true
+var grip_kind: String = "relaxed"
 var _sword_pose: Dictionary = {}
+var _rope_pose: Dictionary = {}
 
 
 func _ready() -> void:
@@ -26,6 +28,11 @@ func _ready() -> void:
 	var layout: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/characters/fps_gloves/rig_layout.json")) as Dictionary
 	var poses: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/characters/fps_gloves/sword_grip_pose.json")) as Dictionary
 	_sword_pose = poses.get("right", {})
+	# Mirror the already verified closed handle pose onto the actual left rig.
+	# A reflected quaternion is (x, -y, -z, w), not a copied right-hand rotation.
+	for name: String in _sword_pose:
+		var q: Array = _sword_pose[name]
+		_rope_pose[name] = [float(q[0]), -float(q[1]), -float(q[2]), float(q[3])]
 	for finger_name: String in layout.fingers:
 		var locations: Array = layout.fingers[finger_name]
 		var start: Vector3 = _point(locations[0])
@@ -41,6 +48,16 @@ func _ready() -> void:
 func _disable_shadows(node: Node) -> void:
 	if node is GeometryInstance3D:
 		(node as GeometryInstance3D).cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	if node is MeshInstance3D:
+		var instance: MeshInstance3D = node as MeshInstance3D
+		instance.lod_bias = 8.0
+		for surface: int in range(instance.mesh.get_surface_count()):
+			var original: Material = instance.get_active_material(surface)
+			if original is StandardMaterial3D:
+				var material: StandardMaterial3D = original.duplicate()
+				# Tripo's overlapping leather/skin/nail shells include open backs.
+				material.cull_mode = BaseMaterial3D.CULL_DISABLED
+				instance.set_surface_override_material(surface, material)
 	for child: Node in node.get_children():
 		_disable_shadows(child)
 
@@ -74,12 +91,21 @@ func clear_pose_override() -> void:
 	_override_weight = 0.0
 
 
+func apply_rope_grip(weight: float) -> void:
+	apply_pose_override(_rope_pose, weight)
+	set_pose_immediate(grip)
+
+
 func set_pose_immediate(value: float) -> void:
 	grip = clampf(value, 0.0, 1.0)
 	if skeleton == null:
 		return
 	for finger: Dictionary in _fingers:
-		var rotation: Quaternion = Quaternion(finger.axis as Vector3, float(finger.angle) * grip)
+		var angle: float = float(finger.angle)
+		if grip_kind == "pistol" and not str(finger.name).begins_with("Thumb"):
+			var segment: int = int(str(finger.name).right(1)) - 1
+			angle = deg_to_rad([58.0, 67.0, 34.0][segment])
+		var rotation: Quaternion = Quaternion(finger.axis as Vector3, angle * grip)
 		if bool(finger.opposition):
 			rotation = Quaternion(Vector3.UP, grip * (1.0 if left_hand else -1.0)) * rotation
 		if authored_grip and not left_hand and _sword_pose.has(finger.name):

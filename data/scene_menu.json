@@ -1,0 +1,36 @@
+{
+  "_comment": "试玩地图清单（2026-10-28，CodeBuddyPro）。场景切换组件、返回钩子与最小地图选择界面都读这一份；新增试玩地图只改这里，不改脚本。kind: main = 主战斗 Demo，preview = 独立预览/测试场景，不是正式章节。",
+  "menu_scene": "res://scenes/ui/map_select.tscn",
+  "_comment_key": "返回键只允许普通键（字母/退格/回车等），不要用 F1–F12：用户键盘没有功能键。",
+  "return_key": "B",
+  "session_notice": "每次进入都会重新加载该试玩：不携带背包、装备或进度，退出后不保存。",
+  "maps": [
+    {
+      "id": "combat_mvp",
+      "name": "训练场 · 第一人称战斗",
+      "kind": "main",
+      "kind_label": "主战斗 Demo",
+      "status": "可试玩（主线）",
+      "description": "第一人称自由战斗、钩爪和守卫；各类试炼与开发功能由菜单选择。",
+      "scene": "res://scenes/combat_mvp.tscn"
+    },
+    {
+      "id": "shore_test",
+      "name": "岸边钓鱼测试区",
+      "kind": "mvp",
+      "kind_label": "钓鱼试玩",
+      "status": "可试玩（完整钓鱼遭遇）",
+      "description": "岸边钓鱼、实体渔获拾取与普通异兽战斗，收集物品进入通用库存。",
+      "scene": "res://scenes/shore_fishing_mvp.tscn"
+    },
+    {
+      "id": "cherry_valley",
+      "name": "樱花山谷",
+      "kind": "preview",
+      "kind_label": "独立预览",
+      "status": "可试玩（场景预览）",
+      "description": "山谷场景与运镜预览，进入后先等山谷生成；C 运镜 / Q、E 机位 / T 巡游 / J 环境音 / M 氛围 / Y 画质 / H 隐藏界面。",
+      "scene": "res://scenes/cherry_valley.tscn"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "_comment": "Codex: visual and pickup tuning only; does not alter fishing RNG.",
+  "bite_pulses": 3,
+  "bite_sink": 0.22,
+  "bite_side_pull": 0.045,
+  "bite_down_fraction": 0.2,
+  "return_arc": 0.16,
+  "early_return_seconds": 0.23,
+  "drop_flight_seconds": 0.32,
+  "drop_arc": 0.22,
+  "pickup_radius": 2.4,
+  "pickup_delay": 0.18,
+  "orb_radius": 0.115,
+  "orb_color": "69bcff",
+  "pickup_key": "F"
+}
